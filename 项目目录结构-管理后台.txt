@@ -1,0 +1,75 @@
+===========================================
+微信心理诊断小程序 - 管理后台目录结构
+===========================================
+
+项目根目录
+├── index.html                 # 入口HTML文件
+├── package.json               # npm依赖配置
+├── vite.config.js             # Vite构建配置
+├── tailwind.config.js         # Tailwind CSS配置
+├── postcss.config.js          # PostCSS配置
+├── src/
+│   ├── main.js                # 应用入口文件
+│   ├── App.vue                # 根组件
+│   ├── style.css              # 全局样式
+│   ├── assets/                # 静态资源
+│   │   ├── logo.png           # Logo图片
+│   │   └── icons/             # 图标资源
+│   ├── components/            # 公共组件
+│   │   ├── Layout.vue         # 布局组件
+│   │   ├── Sidebar.vue        # 侧边栏导航
+│   │   ├── Header.vue         # 顶部导航
+│   │   ├── Breadcrumb.vue     # 面包屑导航
+│   │   └── PageHeader.vue     # 页面头部
+│   ├── views/                 # 页面视图
+│   │   ├── Login.vue          # 登录页面
+│   │   ├── Dashboard.vue      # 仪表盘首页
+│   │   ├── Category/          # 测试分类管理
+│   │   │   ├── CategoryList.vue
+│   │   │   └── CategoryForm.vue
+│   │   ├── Test/              # 测试项目管理
+│   │   │   ├── TestList.vue
+│   │   │   └── TestForm.vue
+│   │   ├── Question/          # 题目管理
+│   │   │   ├── QuestionList.vue
+│   │   │   └── QuestionForm.vue
+│   │   ├── Result/            # 结果模板管理
+│   │   │   ├── ResultList.vue
+│   │   │   └── ResultForm.vue
+│   │   ├── User/              # 用户管理
+│   │   │   ├── UserList.vue
+│   │   │   └── UserDetail.vue
+│   │   ├── Record/            # 测试记录管理
+│   │   │   ├── RecordList.vue
+│   │   │   └── RecordDetail.vue
+│   │   └── Settings/          # 系统设置
+│   │       ├── AdminList.vue
+│   │       └── AdminForm.vue
+│   ├── router/                # 路由配置
+│   │   └── index.js           # 路由定义
+│   ├── store/                 # 状态管理
+│   │   └── index.js           # Pinia状态管理
+│   ├── api/                   # API接口封装
+│   │   ├── category.js        # 分类接口
+│   │   ├── test.js            # 测试接口
+│   │   ├── question.js        # 题目接口
+│   │   ├── user.js            # 用户接口
+│   │   ├── record.js          # 记录接口
+│   │   └── statistics.js      # 统计接口
+│   ├── utils/                 # 工具函数
+│   │   ├── request.js         # 请求封装
+│   │   ├── auth.js            # 认证工具
+│   │   └── format.js          # 格式化工具
+│   └── directives/            # 自定义指令
+│       └── auth.js            # 权限指令
+└── dist/                      # 构建产物目录
+
+===========================================
+说明：
+1. 采用Vue 3 + Vite技术栈
+2. 使用Tailwind CSS进行样式开发
+3. 使用Pinia进行状态管理
+4. 页面组件按功能模块划分
+5. API接口按业务模块封装
+6. 支持权限控制和路由守卫
+===========================================

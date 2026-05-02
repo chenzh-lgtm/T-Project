@@ -1,0 +1,24 @@
+<view class="test-card" bindtap="onTap">
+  <image class="test-cover" src="{{test.coverImage}}" mode="aspectFill"></image>
+  <view class="test-info">
+    <view class="test-header">
+      <text class="test-name">{{test.name}}</text>
+      <view class="test-tag" wx:if="{{test.categoryId === 1}}">性格</view>
+      <view class="test-tag tag-mental" wx:if="{{test.categoryId === 2}}">心理</view>
+      <view class="test-tag tag-fun" wx:if="{{test.categoryId === 3}}">趣味</view>
+    </view>
+    <text class="test-desc">{{test.description}}</text>
+    <view class="test-footer">
+      <view class="test-meta">
+        <view class="meta-item">
+          <image src="/images/icon-question.png" mode="aspectFit"></image>
+          <text>{{test.questionCount}}题</text>
+        </view>
+        <view class="meta-item">
+          <image src="/images/icon-time.png" mode="aspectFit"></image>
+          <text>{{test.estimatedTime}}分钟</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

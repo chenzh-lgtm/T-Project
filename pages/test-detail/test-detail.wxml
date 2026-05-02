@@ -1,0 +1,84 @@
+<view class="container">
+  <view class="test-cover-wrapper">
+    <image class="test-cover" src="{{test.coverImage}}" mode="aspectFill"></image>
+    <view class="cover-overlay">
+      <view class="test-category">
+        <text wx:if="{{test.categoryId === 1}}">性格测试</text>
+        <text wx:if="{{test.categoryId === 2}}">心理健康</text>
+        <text wx:if="{{test.categoryId === 3}}">趣味测试</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="test-content">
+    <view class="test-header">
+      <text class="test-name">{{test.name}}</text>
+      <view class="collect-btn {{isCollected ? 'collected' : ''}}" bindtap="onCollectTap">
+        <image src="{{isCollected ? '/images/icon-collected.png' : '/images/icon-collect.png'}}" mode="aspectFit"></image>
+      </view>
+    </view>
+
+    <view class="test-meta">
+      <view class="meta-item">
+        <image src="/images/icon-question.png" mode="aspectFit"></image>
+        <text>{{test.questionCount}}道题目</text>
+      </view>
+      <view class="meta-item">
+        <image src="/images/icon-time.png" mode="aspectFit"></image>
+        <text>约{{test.estimatedTime}}分钟</text>
+      </view>
+    </view>
+
+    <view class="test-desc-section">
+      <text class="section-title">测试简介</text>
+      <text class="test-desc">{{test.description}}</text>
+    </view>
+
+    <view class="test-guide-section">
+      <text class="section-title">测试说明</text>
+      <view class="guide-list">
+        <view class="guide-item">
+          <view class="guide-icon">1</view>
+          <view class="guide-content">
+            <text class="guide-title">选择答案</text>
+            <text class="guide-desc">根据你的第一反应选择最符合的选项</text>
+          </view>
+        </view>
+        <view class="guide-item">
+          <view class="guide-icon">2</view>
+          <view class="guide-content">
+            <text class="guide-title">认真作答</text>
+            <text class="guide-desc">请根据实际情况选择，答案没有对错之分</text>
+          </view>
+        </view>
+        <view class="guide-item">
+          <view class="guide-icon">3</view>
+          <view class="guide-content">
+            <text class="guide-title">获取结果</text>
+            <text class="guide-desc">完成测试后即可查看详细的分析报告</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="notice-section">
+      <view class="notice-icon">
+        <image src="/images/icon-notice.png" mode="aspectFit"></image>
+      </view>
+      <view class="notice-content">
+        <text class="notice-title">温馨提示</text>
+        <text class="notice-desc">本测试仅供个人参考，不能替代专业的医学诊断。如有严重心理困扰，请及时寻求专业帮助。</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <view class="share-btn" bindtap="onShareTap">
+      <image src="/images/icon-share.png" mode="aspectFit"></image>
+      <text>分享</text>
+    </view>
+    <view class="start-btn" bindtap="onStartTest">
+      <text>开始测试</text>
+    </view>
+  </view>
+</view>

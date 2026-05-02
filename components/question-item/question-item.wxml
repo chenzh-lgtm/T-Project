@@ -1,0 +1,22 @@
+<view class="question-item">
+  <view class="question-type-tag">
+    <text wx:if="{{question.type === 1}}">单选题</text>
+    <text wx:if="{{question.type === 2}}">多选题</text>
+    <text wx:if="{{question.type === 3}}">量表题</text>
+  </view>
+  <text class="question-text">{{question.content}}</text>
+  <view class="options-list">
+    <view
+      class="option-item {{selectedIndex === index ? 'selected' : ''}}"
+      wx:for="{{question.options}}"
+      wx:key="id"
+      bindtap="onOptionTap"
+      data-index="{{index}}"
+    >
+      <view class="option-indicator">
+        <view class="option-letter">{{letters[index]}}</view>
+      </view>
+      <text class="option-text">{{item.content}}</text>
+    </view>
+  </view>
+</view>

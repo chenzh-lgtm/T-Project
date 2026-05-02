@@ -1,0 +1,74 @@
+<view class="container">
+  <view class="result-header">
+    <view class="result-badge">
+      <image src="/images/result-badge.png" mode="aspectFit"></image>
+    </view>
+    <text class="result-type">{{resultType}}</text>
+  </view>
+
+  <view class="result-card">
+    <view class="result-score-wrapper">
+      <view class="score-circle">
+        <view class="score-inner">
+          <text class="score-value">{{totalScore}}</text>
+          <text class="score-label">得分</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="result-title-wrapper">
+      <text class="result-title">{{result.title}}</text>
+    </view>
+  </view>
+
+  <view class="result-section">
+    <view class="section-header">
+      <view class="section-icon">
+        <image src="/images/icon-analysis.png" mode="aspectFit"></image>
+      </view>
+      <text class="section-title">详细分析</text>
+    </view>
+    <view class="section-content">
+      <text class="analysis-text">{{result.analysis}}</text>
+    </view>
+  </view>
+
+  <view class="result-section">
+    <view class="section-header">
+      <view class="section-icon">
+        <image src="/images/icon-suggestion.png" mode="aspectFit"></image>
+      </view>
+      <text class="section-title">建议指导</text>
+    </view>
+    <view class="section-content">
+      <text class="suggestion-text">{{result.suggestion}}</text>
+    </view>
+  </view>
+
+  <view class="result-section">
+    <view class="section-header">
+      <view class="section-icon">
+        <image src="/images/icon-tip.png" mode="aspectFit"></image>
+      </view>
+      <text class="section-title">温馨提醒</text>
+    </view>
+    <view class="section-content notice-content">
+      <text class="notice-text">本测试结果仅供参考，不能替代专业的医学诊断。如有严重心理困扰，请及时寻求专业心理咨询师或医生的帮助。</text>
+    </view>
+  </view>
+
+  <view class="action-bar">
+    <view class="action-btn retry-btn" bindtap="onRetryTap">
+      <image src="/images/icon-retry.png" mode="aspectFit"></image>
+      <text>重新测试</text>
+    </view>
+    <view class="action-btn save-btn" bindtap="onSaveTap">
+      <image src="/images/icon-save.png" mode="aspectFit"></image>
+      <text>保存报告</text>
+    </view>
+    <view class="action-btn share-btn" bindtap="onShareTap">
+      <image src="/images/icon-share-white.png" mode="aspectFit"></image>
+      <text>分享</text>
+    </view>
+  </view>
+</view>
