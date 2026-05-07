@@ -1,0 +1,90 @@
+<view class="container">
+  <view class="profile-header">
+    <view class="user-info-section">
+      <view class="avatar-btn">
+        <view class="avatar">{{avatarText}}</view>
+      </view>
+      <view class="user-detail">
+        <text class="nickname">心理测试</text>
+        <text class="user-tip">探索你的内心世界</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="stats-section">
+    <view class="stat-item">
+      <text class="stat-value">{{stats.testCount}}</text>
+      <text class="stat-label">测试次数</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">{{stats.collectionCount}}</text>
+      <text class="stat-label">收藏数量</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">{{stats.reportCount}}</text>
+      <text class="stat-label">报告数量</text>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-item" bindtap="onHistoryTap">
+      <view class="menu-icon">
+        <text class="menu-emoji">📜</text>
+      </view>
+      <text class="menu-text">测试历史</text>
+      <view class="menu-arrow">
+        <text>→</text>
+      </view>
+    </view>
+    <view class="menu-item" bindtap="onCollectionTap">
+      <view class="menu-icon">
+        <text class="menu-emoji">⭐</text>
+      </view>
+      <text class="menu-text">我的收藏</text>
+      <view class="menu-arrow">
+        <text>→</text>
+      </view>
+    </view>
+    <view class="menu-item" bindtap="onReportsTap">
+      <view class="menu-icon">
+        <text class="menu-emoji">📊</text>
+      </view>
+      <text class="menu-text">我的报告</text>
+      <view class="menu-arrow">
+        <text>→</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-item" bindtap="onAboutTap">
+      <view class="menu-icon">
+        <text class="menu-emoji">ℹ️</text>
+      </view>
+      <text class="menu-text">关于我们</text>
+      <view class="menu-arrow">
+        <text>→</text>
+      </view>
+    </view>
+    <view class="menu-item" bindtap="onHelpTap">
+      <view class="menu-icon">
+        <text class="menu-emoji">❓</text>
+      </view>
+      <text class="menu-text">帮助与反馈</text>
+      <view class="menu-arrow">
+        <text>→</text>
+      </view>
+    </view>
+    <view class="menu-item" bindtap="onSettingsTap">
+      <view class="menu-icon">
+        <text class="menu-emoji">⚙️</text>
+      </view>
+      <text class="menu-text">设置</text>
+      <view class="menu-arrow">
+        <text>→</text>
+      </view>
+    </view>
+  </view>
+</view>

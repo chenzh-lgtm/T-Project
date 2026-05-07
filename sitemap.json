@@ -1,0 +1,10 @@
+{
+  "desc": "关于本项目小程序配置的更多信息",
+  "setting": {
+    "urlCheck": false
+  },
+  "rules": [{
+    "action": "allow",
+    "page": "*"
+  }]
+}

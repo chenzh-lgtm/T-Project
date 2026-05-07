@@ -1,0 +1,76 @@
+===========================================
+微信心理诊断小程序 - 前端目录结构
+===========================================
+
+项目根目录
+├── app.js                    # 小程序入口文件（生命周期管理）
+├── app.json                  # 全局配置（页面路由、tabBar等）
+├── app.wxss                  # 全局样式（通用样式变量）
+├── sitemap.json              # 搜索优化配置
+├── pages/                    # 页面目录
+│   ├── index/                # 首页
+│   │   ├── index.wxml        # 页面结构
+│   │   ├── index.wxss        # 页面样式
+│   │   └── index.js          # 页面逻辑
+│   ├── test-list/            # 测试列表页
+│   │   ├── test-list.wxml
+│   │   ├── test-list.wxss
+│   │   └── test-list.js
+│   ├── test-detail/          # 测试详情页
+│   │   ├── test-detail.wxml
+│   │   ├── test-detail.wxss
+│   │   └── test-detail.js
+│   ├── test/                 # 答题页面
+│   │   ├── test.wxml
+│   │   ├── test.wxss
+│   │   └── test.js
+│   ├── result/               # 结果页面
+│   │   ├── result.wxml
+│   │   ├── result.wxss
+│   │   └── result.js
+│   └── profile/              # 个人中心页
+│       ├── profile.wxml
+│       ├── profile.wxss
+│       └── profile.js
+├── components/               # 公共组件
+│   ├── test-card/            # 测试卡片组件
+│   │   ├── test-card.wxml
+│   │   ├── test-card.wxss
+│   │   └── test-card.js
+│   ├── question-item/        # 题目组件
+│   │   ├── question-item.wxml
+│   │   ├── question-item.wxss
+│   │   └── question-item.js
+│   ├── progress-bar/         # 进度条组件
+│   │   ├── progress-bar.wxml
+│   │   ├── progress-bar.wxss
+│   │   └── progress-bar.js
+│   └── tab-bar/              # 底部导航组件
+│       ├── tab-bar.wxml
+│       ├── tab-bar.wxss
+│       └── tab-bar.js
+├── utils/                    # 工具函数
+│   ├── api.js                # API接口封装
+│   ├── storage.js            # 本地存储工具
+│   ├── utils.js              # 通用工具函数
+│   └── config.js             # 配置文件（如API地址）
+├── data/                     # 模拟数据（开发阶段使用）
+│   └── mock-data.js          # 测试数据
+├── images/                   # 静态图片资源
+│   ├── logo.png              # 小程序Logo
+│   ├── icons/                # 图标目录
+│   │   ├── category-1.png
+│   │   ├── category-2.png
+│   │   └── category-3.png
+│   └── covers/               # 测试封面图目录
+│       └── test-cover.png
+└── miniprogram_npm/          # 第三方依赖包（npm安装后生成）
+
+===========================================
+说明：
+1. 页面文件遵循微信小程序规范，每个页面包含wxml、wxss、js三个文件
+2. 组件目录存放可复用的UI组件
+3. utils目录存放全局工具函数和配置
+4. images目录按功能分类存放图片资源
+5. data目录仅用于开发阶段的模拟数据
+===========================================

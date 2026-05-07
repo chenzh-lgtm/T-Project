@@ -1,0 +1,79 @@
+<view class="container">
+  <view class="header">
+    <text class="title">选择测试版本</text>
+    <text class="subtitle">MBTI性格测试提供两个版本供您选择</text>
+  </view>
+
+  <view class="version-list">
+    <!-- 标准版 -->
+    <view class="version-card free" bindtap="onSelectVersion" data-version="standard">
+      <view class="card-header">
+        <view class="version-badge free-badge">免费</view>
+        <text class="version-name">Form M (标准版)</text>
+      </view>
+      <view class="card-divider"></view>
+      <view class="card-body">
+        <view class="feature-item">
+          <text class="check-icon">✓</text>
+          <text class="feature-text">93道经典题目</text>
+        </view>
+        <view class="feature-item">
+          <text class="check-icon">✓</text>
+          <text class="feature-text">基础人格类型评估</text>
+        </view>
+        <view class="feature-item">
+          <text class="check-icon">✓</text>
+          <text class="feature-text">四个维度分析</text>
+        </view>
+        <view class="feature-item">
+          <text class="check-icon">✓</text>
+          <text class="feature-text">约15分钟完成</text>
+        </view>
+      </view>
+      <view class="card-footer">
+        <text class="version-desc">适合初次了解MBTI的用户</text>
+      </view>
+    </view>
+
+    <!-- 进阶版 -->
+    <view class="version-card paid" bindtap="onSelectVersion" data-version="advanced">
+      <view class="card-header">
+        <view class="version-badge paid-badge">
+          <text class="price">¥5</text>
+        </view>
+        <text class="version-name">Step II Form Q (进阶版)</text>
+      </view>
+      <view class="card-divider"></view>
+      <view class="card-body">
+        <view class="feature-item highlight">
+          <text class="check-icon">✓</text>
+          <text class="feature-text">144道精细化题目</text>
+        </view>
+        <view class="feature-item highlight">
+          <text class="check-icon">✓</text>
+          <text class="feature-text">深入探索人格偏好的细微差异</text>
+        </view>
+        <view class="feature-item">
+          <text class="check-icon">✓</text>
+          <text class="feature-text">20个层面维度详细分析</text>
+        </view>
+        <view class="feature-item">
+          <text class="check-icon">✓</text>
+          <text class="feature-text">约25分钟完成</text>
+        </view>
+        <view class="feature-item">
+          <text class="check-icon">✓</text>
+          <text class="feature-text">专属深度报告</text>
+        </view>
+      </view>
+      <view class="card-footer">
+        <text class="version-desc">适合想要深入了解自己的用户</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="tips-section">
+    <text class="tips-title">💡 温馨提示</text>
+    <text class="tips-text">两个版本都基于MBTI理论，标准版提供基础类型评估，进阶版提供更深入的人格维度分析。</text>
+  </view>
+</view>

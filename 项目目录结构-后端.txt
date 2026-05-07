@@ -1,0 +1,81 @@
+===========================================
+微信心理诊断小程序 - 后端目录结构
+===========================================
+
+项目根目录
+├── pom.xml                    # Maven依赖管理文件
+└── src/
+    └── main/
+        ├── java/
+        │   └── com/example/app/
+        │       ├── Application.java       # Spring Boot启动类
+        │       ├── controller/            # REST API控制层
+        │       │   ├── TestController.java        # 测试相关接口
+        │       │   ├── QuestionController.java    # 题目相关接口
+        │       │   ├── UserController.java        # 用户相关接口
+        │       │   ├── RecordController.java      # 测试记录接口
+        │       │   └── StatisticsController.java  # 统计接口
+        │       ├── service/               # 业务逻辑层
+        │       │   ├── TestService.java           # 测试业务逻辑
+        │       │   ├── QuestionService.java       # 题目业务逻辑
+        │       │   ├── UserService.java           # 用户业务逻辑
+        │       │   ├── RecordService.java         # 记录业务逻辑
+        │       │   └── StatisticsService.java     # 统计业务逻辑
+        │       ├── repository/            # 数据访问层
+        │       │   ├── TestCategoryRepository.java
+        │       │   ├── TestRepository.java
+        │       │   ├── QuestionRepository.java
+        │       │   ├── OptionRepository.java
+        │       │   ├── ResultTemplateRepository.java
+        │       │   ├── UserRepository.java
+        │       │   └── TestRecordRepository.java
+        │       ├── entity/                # 数据库实体
+        │       │   ├── TestCategory.java          # 测试分类实体
+        │       │   ├── Test.java                  # 测试实体
+        │       │   ├── Question.java              # 题目实体
+        │       │   ├── Option.java                # 选项实体
+        │       │   ├── ResultTemplate.java        # 结果模板实体
+        │       │   ├── User.java                  # 用户实体
+        │       │   └── TestRecord.java            # 测试记录实体
+        │       ├── dto/                   # 数据传输对象
+        │       │   ├── request/                   # 请求DTO
+        │       │   │   ├── TestCreateRequest.java
+        │       │   │   ├── QuestionCreateRequest.java
+        │       │   │   └── AnswerSubmitRequest.java
+        │       │   └── response/                  # 响应DTO
+        │       │       ├── TestResponse.java
+        │       │       ├── QuestionResponse.java
+        │       │       ├── ResultResponse.java
+        │       │       └── PageResponse.java
+        │       ├── config/                # 配置类
+        │       │   ├── WebConfig.java             # Web配置
+        │       │   ├── SecurityConfig.java        # 安全配置
+        │       │   └── SwaggerConfig.java         # Swagger配置
+        │       ├── security/              # 安全相关
+        │       │   ├── JwtTokenUtil.java          # JWT工具类
+        │       │   └── AuthInterceptor.java       # 认证拦截器
+        │       ├── exception/             # 异常处理
+        │       │   ├── BusinessException.java     # 业务异常
+        │       │   └── GlobalExceptionHandler.java # 全局异常处理器
+        │       └── util/                  # 工具类
+        │           ├── PasswordUtil.java          # 密码工具类
+        │           └── DateUtil.java              # 日期工具类
+        └── resources/
+            ├── application.yml            # 应用配置文件
+            ├── application-dev.yml        # 开发环境配置
+            ├── application-prod.yml       # 生产环境配置
+            └── schema.sql                 # 数据库初始化脚本
+
+===========================================
+说明：
+1. 采用Spring Boot标准分层架构
+2. controller层：处理HTTP请求，参数校验，调用Service
+3. service层：业务逻辑处理，事务管理
+4. repository层：数据访问，使用Spring Data JPA
+5. entity层：数据库实体映射
+6. dto层：数据传输对象，隔离Entity和API
+7. config层：Spring配置类
+8. security层：认证授权相关
+9. exception层：统一异常处理
+10. util层：通用工具类
+===========================================

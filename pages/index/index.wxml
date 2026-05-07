@@ -1,0 +1,72 @@
+<view class="container">
+  <view class="header">
+    <view class="user-info">
+      <view class="avatar">{{avatarText}}</view>
+      <text class="nickname">{{userInfo.nickname || '游客用户'}}</text>
+    </view>
+  </view>
+
+  <view class="banner">
+    <view class="banner-content">
+      <text class="banner-title">探索你的内心世界</text>
+      <text class="banner-subtitle">专业心理测试，助你了解真实的自己</text>
+    </view>
+  </view>
+
+  <view class="category-section">
+    <view class="section-header">
+      <text class="section-title">测试分类</text>
+    </view>
+    <view class="category-grid">
+      <view class="category-item" bindtap="onCategoryTap" data-id="1">
+        <view class="category-icon">
+          <text class="category-emoji">🧠</text>
+        </view>
+        <text class="category-name">性格测试</text>
+      </view>
+      <view class="category-item" bindtap="onCategoryTap" data-id="2">
+        <view class="category-icon">
+          <text class="category-emoji">💚</text>
+        </view>
+        <text class="category-name">心理健康</text>
+      </view>
+      <view class="category-item" bindtap="onCategoryTap" data-id="3">
+        <view class="category-icon">
+          <text class="category-emoji">🎮</text>
+        </view>
+        <text class="category-name">趣味测试</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="recommend-section">
+    <view class="section-header">
+      <text class="section-title">推荐测试</text>
+      <view class="more-btn" bindtap="onMoreTap">
+        <text>查看更多</text>
+        <text class="arrow">→</text>
+      </view>
+    </view>
+    <view class="test-list">
+      <view class="test-card" wx:for="{{recommendTests}}" wx:key="id" bindtap="onTestTap" data-id="{{item.id}}">
+        <view class="test-cover" style="background: linear-gradient(135deg, {{item.gradient}});">
+          <text class="test-emoji">{{item.emoji}}</text>
+        </view>
+        <view class="test-info">
+          <text class="test-name">{{item.name}}</text>
+          <text class="test-desc">{{item.description}}</text>
+          <view class="test-meta">
+            <view class="meta-item">
+              <text class="meta-icon">📋</text>
+              <text>{{item.questionCount}}题</text>
+            </view>
+            <view class="meta-item">
+              <text class="meta-icon">⏰</text>
+              <text>{{item.estimatedTime}}分钟</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

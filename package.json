@@ -1,0 +1,19 @@
+{
+  "name": "mbti-test-backend",
+  "version": "1.0.0",
+  "description": "MBTI测试后端",
+  "main": "init-database.js",
+  "scripts": {
+    "init-db": "node init-database.js"
+  },
+  "dependencies": {
+    "mysql2": "^3.22.3"
+  },
+  "keywords": [
+    "MBTI",
+    "psychological",
+    "test"
+  ],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,55 @@
+<view class="container">
+  <!-- 加载状态 -->
+  <view class="loading-view" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-view" wx:elif="{{records.length === 0}}">
+    <image class="empty-icon" src="/images/empty-icon.png" mode="aspectFit"></image>
+    <text class="empty-text">暂无测试历史</text>
+    <text class="empty-tip">完成测试后会显示在这里</text>
+    <button class="start-btn" bindtap="onStartTest">开始测试</button>
+  </view>
+
+  <!-- 历史列表 -->
+  <view class="history-list" wx:else>
+    <view class="history-item" wx:for="{{records}}" wx:key="id" bindtap="onRecordTap" data-record="{{item}}">
+      <view class="history-header">
+        <text class="test-name">{{item.testName}}</text>
+        <text class="test-date">{{item.completedAt}}</text>
+      </view>
+      <view class="history-content">
+        <view class="result-badge" wx:if="{{item.mbtiType}}">
+          <text class="result-type">{{item.mbtiType}}</text>
+        </view>
+        <view class="result-badge" wx:elif="{{item.funTypeName}}">
+          <text class="result-type">{{item.funTypeName}}</text>
+        </view>
+        <view class="result-badge" wx:elif="{{item.discTypeName}}">
+          <text class="result-type">{{item.discTypeName}}</text>
+        </view>
+        <view class="result-badge" wx:elif="{{item.pdpTypeName}}">
+          <text class="result-type">{{item.pdpTypeName}}</text>
+        </view>
+        <view class="result-badge" wx:elif="{{item.enneagramTypeName}}">
+          <text class="result-type">{{item.enneagramTypeName}}</text>
+        </view>
+        <view class="result-badge" wx:elif="{{item.jungTypeName}}">
+          <text class="result-type">{{item.jungTypeName}}</text>
+        </view>
+        <view class="result-badge score" wx:elif="{{item.totalScore > 0}}">
+          <text class="result-type">得分：{{item.totalScore}}</text>
+        </view>
+      </view>
+      <view class="history-arrow">
+        <text>→</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 清除历史按钮 -->
+  <view class="clear-section" wx:if="{{records.length > 0}}">
+    <button class="clear-btn" bindtap="onClearHistory">清空历史</button>
+  </view>
+</view>

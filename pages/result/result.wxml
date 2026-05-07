@@ -1,0 +1,266 @@
+<view class="container">
+  <view class="result-header">
+    <view class="result-badge" wx:if="{{testId !== 2}}">
+      <text class="badge-emoji">🎉</text>
+    </view>
+    <view class="result-badge" wx:else>
+      <text class="badge-emoji">💚</text>
+    </view>
+    <text class="result-type">{{resultType}}</text>
+  </view>
+
+  <view class="mbti-card" wx:if="{{mbtiType && testId === 1}}">
+    <view class="mbti-main">
+      <text class="mbti-type-big">{{mbtiType}}</text>
+      <text class="mbti-name-big">{{mbtiName}}</text>
+    </view>
+    <view class="mbti-intro">
+      <text class="intro-text">{{result.title}}</text>
+    </view>
+  </view>
+
+  <view class="personality-card" wx:if="{{(resultData.type || resultData.dimension || resultData.totalScore) && testId !== 1 && testId !== 2}}">
+    <view class="personality-badge">
+      <text class="personality-emoji">🎯</text>
+      <text class="personality-name">{{result.name || result.title}}</text>
+    </view>
+    <view class="personality-intro">
+      <text class="personality-title">{{result.title}}</text>
+    </view>
+  </view>
+
+  <view class="phq-card" wx:if="{{showScore && testId === 2}}">
+    <view class="phq-score-wrapper">
+      <view class="score-circle">
+        <view class="score-inner">
+          <text class="score-value">{{totalScore}}</text>
+          <text class="score-label">得分</text>
+        </view>
+      </view>
+      <view class="phq-result-text">
+        <text class="phq-title">{{result.title}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 统一显示结构：优势特点 -->
+  <view class="result-section" wx:if="{{result.strengths}}">
+    <view class="section-header">
+      <text class="section-emoji">✨</text>
+      <text class="section-title">优势特点</text>
+    </view>
+    <view class="section-content">
+      <text class="strengths-text">{{result.strengths}}</text>
+    </view>
+  </view>
+
+  <!-- 统一显示结构：适合领域 -->
+  <view class="result-section" wx:if="{{result.careers}}">
+    <view class="section-header">
+      <text class="section-emoji">💼</text>
+      <text class="section-title">适合领域</text>
+    </view>
+    <view class="section-content">
+      <text class="careers-text">{{result.careers}}</text>
+    </view>
+  </view>
+
+  <!-- 统一显示结构：深度分析 -->
+  <view class="result-section" wx:if="{{result.analysis || result.personalityAnalysis}}">
+    <view class="section-header">
+      <text class="section-emoji">📊</text>
+      <text class="section-title">深度分析</text>
+    </view>
+    <view class="section-content">
+      <text class="analysis-text">{{result.analysis || result.personalityAnalysis}}</text>
+    </view>
+  </view>
+
+  <!-- 统一显示结构：成长建议 -->
+  <view class="result-section" wx:if="{{result.suggestion || result.weaknessesAnalysis}}">
+    <view class="section-header">
+      <text class="section-emoji">💡</text>
+      <text class="section-title">成长建议</text>
+    </view>
+    <view class="section-content">
+      <text class="suggestion-text">{{result.suggestion || result.weaknessesAnalysis}}</text>
+    </view>
+  </view>
+
+  <!-- MBTI额外显示内容 -->
+  <view class="result-section" wx:if="{{testId === 1 && result.loveAdvice}}">
+    <view class="section-header">
+      <text class="section-emoji">💕</text>
+      <text class="section-title">恋爱建议</text>
+    </view>
+    <view class="section-content">
+      <text class="advice-text">{{result.loveAdvice}}</text>
+    </view>
+  </view>
+
+  <view class="result-section" wx:if="{{testId === 1 && result.careerAdvice}}">
+    <view class="section-header">
+      <text class="section-emoji">💼</text>
+      <text class="section-title">职业建议</text>
+    </view>
+    <view class="section-content">
+      <text class="advice-text">{{result.careerAdvice}}</text>
+    </view>
+  </view>
+
+  <!-- SCL-90维度分数 -->
+  <view class="result-section" wx:if="{{showSCL90Factors}}">
+    <view class="section-header">
+      <text class="section-emoji">📊</text>
+      <text class="section-title">各维度得分</text>
+    </view>
+    <view class="section-content">
+      <view class="scl90-factors">
+        <view class="factor-item">
+          <text class="factor-name">躯体化</text>
+          <view class="factor-score-bar">
+            <view class="score-fill" style="width: {{(factorAverages.somatization / 5) * 100}}%"></view>
+          </view>
+          <text class="factor-score">{{factorAverages.somatization}}</text>
+        </view>
+        <view class="factor-item">
+          <text class="factor-name">强迫症状</text>
+          <view class="factor-score-bar">
+            <view class="score-fill" style="width: {{(factorAverages.obsessive / 5) * 100}}%"></view>
+          </view>
+          <text class="factor-score">{{factorAverages.obsessive}}</text>
+        </view>
+        <view class="factor-item">
+          <text class="factor-name">人际关系敏感</text>
+          <view class="factor-score-bar">
+            <view class="score-fill" style="width: {{(factorAverages.interpersonal / 5) * 100}}%"></view>
+          </view>
+          <text class="factor-score">{{factorAverages.interpersonal}}</text>
+        </view>
+        <view class="factor-item">
+          <text class="factor-name">抑郁</text>
+          <view class="factor-score-bar">
+            <view class="score-fill" style="width: {{(factorAverages.depression / 5) * 100}}%"></view>
+          </view>
+          <text class="factor-score">{{factorAverages.depression}}</text>
+        </view>
+        <view class="factor-item">
+          <text class="factor-name">焦虑</text>
+          <view class="factor-score-bar">
+            <view class="score-fill" style="width: {{(factorAverages.anxiety / 5) * 100}}%"></view>
+          </view>
+          <text class="factor-score">{{factorAverages.anxiety}}</text>
+        </view>
+        <view class="factor-item">
+          <text class="factor-name">敌对</text>
+          <view class="factor-score-bar">
+            <view class="score-fill" style="width: {{(factorAverages.hostility / 5) * 100}}%"></view>
+          </view>
+          <text class="factor-score">{{factorAverages.hostility}}</text>
+        </view>
+        <view class="factor-item">
+          <text class="factor-name">恐怖</text>
+          <view class="factor-score-bar">
+            <view class="score-fill" style="width: {{(factorAverages.phobic / 5) * 100}}%"></view>
+          </view>
+          <text class="factor-score">{{factorAverages.phobic}}</text>
+        </view>
+        <view class="factor-item">
+          <text class="factor-name">偏执</text>
+          <view class="factor-score-bar">
+            <view class="score-fill" style="width: {{(factorAverages.paranoid / 5) * 100}}%"></view>
+          </view>
+          <text class="factor-score">{{factorAverages.paranoid}}</text>
+        </view>
+        <view class="factor-item">
+          <text class="factor-name">精神病性</text>
+          <view class="factor-score-bar">
+            <view class="score-fill" style="width: {{(factorAverages.psychotic / 5) * 100}}%"></view>
+          </view>
+          <text class="factor-score">{{factorAverages.psychotic}}</text>
+        </view>
+        <view class="factor-item">
+          <text class="factor-name">其他（睡眠、饮食等）</text>
+          <view class="factor-score-bar">
+            <view class="score-fill" style="width: {{(factorAverages.other / 5) * 100}}%"></view>
+          </view>
+          <text class="factor-score">{{factorAverages.other}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- SCL-90总分统计 -->
+  <view class="result-section" wx:if="{{showSCL90Factors}}">
+    <view class="section-header">
+      <text class="section-emoji">📈</text>
+      <text class="section-title">总分统计</text>
+    </view>
+    <view class="section-content">
+      <view class="scl90-summary">
+        <view class="summary-item">
+          <text class="summary-label">总分</text>
+          <text class="summary-value">{{totalScore}}</text>
+          <text class="summary-unit">分（90-450分）</text>
+        </view>
+        <view class="summary-item">
+          <text class="summary-label">总均分</text>
+          <text class="summary-value">{{totalAverage}}</text>
+          <text class="summary-unit">分（1-5分）</text>
+        </view>
+        <view class="summary-item">
+          <text class="summary-label">阳性项目数</text>
+          <text class="summary-value">{{positiveCount}}</text>
+          <text class="summary-unit">项（>43项提示可能存在心理问题）</text>
+        </view>
+        <view class="summary-item">
+          <text class="summary-label">阴性项目数</text>
+          <text class="summary-value">{{negativeCount}}</text>
+          <text class="summary-unit">项</text>
+        </view>
+        <view class="summary-item">
+          <text class="summary-label">阳性症状均分</text>
+          <text class="summary-value">{{positiveAverage}}</text>
+          <text class="summary-unit">分</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="result-section">
+    <view class="section-header">
+      <text class="section-emoji">⚠️</text>
+      <text class="section-title">温馨提醒</text>
+    </view>
+    <view class="section-content notice-content">
+      <text class="notice-text">本测试结果仅供参考，不能替代专业的医学诊断。如有严重心理困扰，请及时寻求专业心理咨询师或医生的帮助。</text>
+    </view>
+  </view>
+
+  <view class="action-bar">
+    <view class="action-btn retry-btn" bindtap="onRetryTap">
+      <text class="btn-emoji">🔄</text>
+      <text>重新测试</text>
+    </view>
+    <view class="action-btn save-btn" bindtap="onSaveTap">
+      <text class="btn-emoji">💾</text>
+      <text>保存报告</text>
+    </view>
+  </view>
+
+  <view class="share-section">
+    <view class="share-title">分享给好友</view>
+    <view class="share-buttons">
+      <button class="share-btn-wechat" open-type="share" bindtap="onShareTap">
+        <text class="share-icon">💬</text>
+        <text class="share-text">微信好友</text>
+      </button>
+      <button class="share-btn-timeline" bindtap="onShareTimelineTap">
+        <text class="share-icon">📖</text>
+        <text class="share-text">朋友圈</text>
+      </button>
+    </view>
+  </view>
+
+  <view class="action-bottom"></view>
+</view>

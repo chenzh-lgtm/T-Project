@@ -1,0 +1,81 @@
+<view class="container">
+  <view class="search-bar">
+    <view class="search-input-wrapper">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        type="text"
+        placeholder="搜索测试名称..."
+        value="{{searchKey}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm"
+      />
+      <view class="clear-btn" bindtap="onClearSearch" wx:if="{{searchKey}}">
+        <text class="clear-icon">✕</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="category-tabs">
+    <view
+      class="tab-item {{currentCategoryId === 0 ? 'active' : ''}}"
+      bindtap="onTabChange"
+      data-id="0"
+    >
+      <text>全部</text>
+    </view>
+    <view
+      class="tab-item {{currentCategoryId === item.id ? 'active' : ''}}"
+      wx:for="{{categories}}"
+      wx:key="id"
+      bindtap="onTabChange"
+      data-id="{{item.id}}"
+    >
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="test-list">
+    <view
+      class="test-card"
+      wx:for="{{filteredTests}}"
+      wx:key="id"
+      bindtap="onTestTap"
+      data-id="{{item.id}}"
+    >
+      <view class="test-cover" style="background: linear-gradient(135deg, {{item.gradient || '#6C5CE7, #a29bfe'}});">
+        <text class="test-emoji">{{item.emoji || '📋'}}</text>
+      </view>
+      <view class="test-info">
+        <view class="test-header">
+          <text class="test-name">{{item.name}}</text>
+          <view class="test-tag" wx:if="{{item.categoryId === 1}}">性格</view>
+          <view class="test-tag tag-mental" wx:if="{{item.categoryId === 2}}">心理</view>
+          <view class="test-tag tag-fun" wx:if="{{item.categoryId === 3}}">趣味</view>
+        </view>
+        <text class="test-desc">{{item.description}}</text>
+        <view class="test-footer">
+          <view class="test-meta">
+            <view class="meta-item">
+              <text class="meta-icon">📋</text>
+              <text>{{item.questionCount}}题</text>
+            </view>
+            <view class="meta-item">
+              <text class="meta-icon">⏰</text>
+              <text>{{item.estimatedTime}}分钟</text>
+            </view>
+          </view>
+          <view class="start-btn">
+            <text>开始测试</text>
+            <text class="start-arrow">→</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-tip" wx:if="{{filteredTests.length === 0}}">
+    <text class="empty-icon">📭</text>
+    <text>暂无相关测试</text>
+  </view>
+</view>
