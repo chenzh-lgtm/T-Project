@@ -1,7 +1,7 @@
 <view class="container">
   <view class="header">
     <view class="user-info">
-      <image class="avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <view class="avatar">{{avatarText}}</view>
       <text class="nickname">{{userInfo.nickname || '游客用户'}}</text>
     </view>
   </view>
@@ -11,7 +11,6 @@
       <text class="banner-title">探索你的内心世界</text>
       <text class="banner-subtitle">专业心理测试，助你了解真实的自己</text>
     </view>
-    <view class="banner-decoration"></view>
   </view>
 
   <view class="category-section">
@@ -20,20 +19,20 @@
     </view>
     <view class="category-grid">
       <view class="category-item" bindtap="onCategoryTap" data-id="1">
-        <view class="category-icon bg-personality">
-          <image src="/images/category-personality.png" mode="aspectFit"></image>
+        <view class="category-icon">
+          <text class="category-emoji">🧠</text>
         </view>
         <text class="category-name">性格测试</text>
       </view>
       <view class="category-item" bindtap="onCategoryTap" data-id="2">
-        <view class="category-icon bg-mental">
-          <image src="/images/category-mental.png" mode="aspectFit"></image>
+        <view class="category-icon">
+          <text class="category-emoji">💚</text>
         </view>
         <text class="category-name">心理健康</text>
       </view>
       <view class="category-item" bindtap="onCategoryTap" data-id="3">
-        <view class="category-icon bg-fun">
-          <image src="/images/category-fun.png" mode="aspectFit"></image>
+        <view class="category-icon">
+          <text class="category-emoji">🎮</text>
         </view>
         <text class="category-name">趣味测试</text>
       </view>
@@ -45,22 +44,24 @@
       <text class="section-title">推荐测试</text>
       <view class="more-btn" bindtap="onMoreTap">
         <text>查看更多</text>
-        <image src="/images/arrow-right.png" mode="aspectFit"></image>
+        <text class="arrow">→</text>
       </view>
     </view>
     <view class="test-list">
       <view class="test-card" wx:for="{{recommendTests}}" wx:key="id" bindtap="onTestTap" data-id="{{item.id}}">
-        <image class="test-cover" src="{{item.coverImage}}" mode="aspectFill"></image>
+        <view class="test-cover" style="background: linear-gradient(135deg, {{item.gradient}});">
+          <text class="test-emoji">{{item.emoji}}</text>
+        </view>
         <view class="test-info">
           <text class="test-name">{{item.name}}</text>
           <text class="test-desc">{{item.description}}</text>
           <view class="test-meta">
             <view class="meta-item">
-              <image src="/images/icon-question.png" mode="aspectFit"></image>
+              <text class="meta-icon">📋</text>
               <text>{{item.questionCount}}题</text>
             </view>
             <view class="meta-item">
-              <image src="/images/icon-time.png" mode="aspectFit"></image>
+              <text class="meta-icon">⏰</text>
               <text>{{item.estimatedTime}}分钟</text>
             </view>
           </view>

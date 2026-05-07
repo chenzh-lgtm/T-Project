@@ -1,0 +1,32 @@
+<view class="container">
+  <!-- 常见问题 -->
+  <view class="section">
+    <view class="section-title">常见问题</view>
+    <view class="faq-list">
+      <view class="faq-item" wx:for="{{faqList}}" wx:key="id" bindtap="onFaqTap" data-item="{{item}}">
+        <view class="faq-question">
+          <text class="faq-icon">❓</text>
+          <text class="faq-text">{{item.question}}</text>
+        </view>
+        <view class="faq-arrow">
+          <text>→</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+
+  <!-- 问题详情弹窗 -->
+  <view class="faq-modal" wx:if="{{showFaqModal}}" bindtap="onCloseFaqModal">
+    <view class="faq-modal-content" catchtap="">
+      <view class="faq-modal-header">
+        <text class="faq-modal-title">{{currentFaq.question}}</text>
+        <text class="faq-modal-close" bindtap="onCloseFaqModal">✕</text>
+      </view>
+      <view class="faq-modal-body">
+        <text>{{currentFaq.answer}}</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,35 @@
+<view class="container">
+  <!-- 加载状态 -->
+  <view class="loading-view" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-view" wx:elif="{{collections.length === 0}}">
+    <image class="empty-icon" src="/images/empty-icon.png" mode="aspectFit"></image>
+    <text class="empty-text">暂无收藏</text>
+    <text class="empty-tip">收藏感兴趣的测试，方便下次快速访问</text>
+    <button class="start-btn" bindtap="onBrowseTests">浏览测试</button>
+  </view>
+
+  <!-- 收藏列表 -->
+  <view class="collection-list" wx:else>
+    <view class="collection-item" wx:for="{{collections}}" wx:key="id" bindtap="onCollectionTap" data-item="{{item}}">
+      <image class="collection-cover" src="{{item.coverImage}}" mode="aspectFill"></image>
+      <view class="collection-info">
+        <text class="collection-name">{{item.name}}</text>
+        <text class="collection-desc">{{item.description}}</text>
+        <view class="collection-meta">
+          <text class="meta-text">{{item.categoryName}}</text>
+          <text class="meta-divider">|</text>
+          <text class="meta-text">约{{item.estimatedTime}}分钟</text>
+        </view>
+      </view>
+      <view class="collection-action">
+        <view class="collected-icon" catchtap="onRemoveCollect" data-id="{{item.id}}">
+          <text>❤️</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

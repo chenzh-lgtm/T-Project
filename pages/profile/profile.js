@@ -1,101 +1,73 @@
-const storage = require('../../utils/storage.js');
-
 Page({
   data: {
-    userInfo: null,
+    avatarText: '心',
     stats: {
-      testCount: 5,
-      collectionCount: 3,
-      reportCount: 5
+      testCount: 0,
+      collectionCount: 0,
+      reportCount: 0
     }
   },
 
   onLoad() {
-    this.loadUserInfo();
-  },
-
-  onShow() {
-    this.loadUserInfo();
     this.updateStats();
   },
 
-  loadUserInfo() {
-    const userInfo = storage.getUserInfo();
-    this.setData({ userInfo });
+  onShow() {
+    this.updateStats();
   },
 
   updateStats() {
-    const collections = wx.getStorageSync('collections') || [];
-    this.setData({
-      'stats.collectionCount': collections.length
-    });
-  },
+    try {
+      const collections = wx.getStorageSync('collections') || [];
+      const reports = wx.getStorageSync('savedReports') || [];
+      const history = wx.getStorageSync('testHistory') || [];
 
-  onGetUserProfile(e) {
-    wx.getUserProfile({
-      desc: '用于完善用户资料',
-      success: (res) => {
-        const userInfo = {
-          nickname: res.userInfo.nickName,
-          avatar: res.userInfo.avatarUrl,
-          gender: res.userInfo.gender
-        };
-        storage.setUserInfo(userInfo);
-        this.setData({ userInfo });
-        wx.showToast({
-          title: '登录成功',
-          icon: 'success'
-        });
-      },
-      fail: () => {
-        wx.showToast({
-          title: '登录失败',
-          icon: 'none'
-        });
-      }
-    });
+      this.setData({
+        'stats.testCount': history.length,
+        'stats.collectionCount': collections.length,
+        'stats.reportCount': reports.length
+      });
+    } catch (e) {
+      console.error('更新统计数据失败', e);
+    }
   },
 
   onHistoryTap() {
-    wx.showToast({
-      title: '功能开发中',
-      icon: 'none'
+    wx.navigateTo({
+      url: '/pages/history/history'
     });
   },
 
   onCollectionTap() {
-    wx.showToast({
-      title: '功能开发中',
-      icon: 'none'
+    wx.navigateTo({
+      url: '/pages/collection/collection'
     });
   },
 
   onReportsTap() {
-    wx.showToast({
-      title: '功能开发中',
-      icon: 'none'
+    wx.navigateTo({
+      url: '/pages/reports/reports'
     });
   },
 
   onAboutTap() {
     wx.showModal({
       title: '关于我们',
-      content: '心理诊断测试小程序 v1.0\n为您提供专业的心理测评服务',
-      showCancel: false
+      content: '心理诊断测试小程序 v1.0\n\n为您提供专业的心理测评服务\n\n涵盖性格测试、心理健康测试等多种类型\n\n帮助您更好地了解自己',
+      showCancel: false,
+      confirmText: '知道了'
     });
   },
 
   onHelpTap() {
-    wx.showToast({
-      title: '功能开发中',
-      icon: 'none'
+    wx.navigateTo({
+      url: '/pages/help/help'
     });
   },
 
   onSettingsTap() {
-    wx.showToast({
-      title: '功能开发中',
-      icon: 'none'
+    wx.navigateTo({
+      url: '/pages/settings/settings'
     });
   }
 });

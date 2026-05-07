@@ -1,38 +1,29 @@
 const { mockCategories, mockTests } = require('../../data/mock-data.js');
-const storage = require('../../utils/storage.js');
 
 Page({
   data: {
-    userInfo: null,
     categories: [],
-    recommendTests: []
+    recommendTests: [],
+    avatarText: '心'
   },
 
   onLoad() {
-    this.loadUserInfo();
     this.loadData();
   },
 
-  onShow() {
-    this.loadUserInfo();
-  },
-
-  loadUserInfo() {
-    const userInfo = storage.getUserInfo();
-    this.setData({ userInfo });
-  },
-
   loadData() {
+    const filteredTests = mockTests.filter(test => test.id !== 22);
     this.setData({
       categories: mockCategories,
-      recommendTests: mockTests.slice(0, 4)
+      recommendTests: filteredTests
     });
   },
 
   onCategoryTap(e) {
     const categoryId = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: `/pages/test-list/test-list?categoryId=${categoryId}`
+    wx.setStorageSync('selectedCategoryId', categoryId);
+    wx.switchTab({
+      url: '/pages/test-list/test-list'
     });
   },
 

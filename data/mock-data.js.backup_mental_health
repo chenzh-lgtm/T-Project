@@ -1,0 +1,3213 @@
+const mockCategories = [
+  {
+    id: 1,
+    name: '性格测试',
+    description: '了解你的性格特点和行为倾向',
+    icon: '/images/category-personality.png',
+    sortOrder: 1
+  },
+  {
+    id: 2,
+    name: '心理健康测试',
+    description: '评估你的心理状态和健康水平',
+    icon: '/images/category-mental.png',
+    sortOrder: 2
+  },
+  {
+    id: 3,
+    name: '趣味测试',
+    description: '轻松有趣的各类小测试',
+    icon: '/images/category-fun.png',
+    sortOrder: 3
+  }
+];
+
+const mockTests = [
+  {
+    id: 1,
+    categoryId: 1,
+    name: 'MBTI性格测试',
+    description: '国际流行的性格评估工具，通过四个维度分析你的性格类型',
+    coverImage: '/images/test-mbti.png',
+    emoji: '🧠',
+    gradient: '#6C5CE7, #a29bfe',
+    estimatedTime: 8,
+    questionCount: 25,
+    status: 1
+  },
+  {
+    id: 2,
+    categoryId: 2,
+    name: 'PHQ-9抑郁筛查量表',
+    description: '国际通用的抑郁症状筛查工具，帮助你了解自己的情绪状态',
+    coverImage: '/images/test-phq9.png',
+    emoji: '💚',
+    gradient: '#00b894, #55efc4',
+    estimatedTime: 3,
+    questionCount: 9,
+    status: 1
+  },
+  {
+    id: 3,
+    categoryId: 3,
+    name: '趣味性格测试',
+    description: '通过简单问题了解你的性格特点',
+    coverImage: '/images/test-career.png',
+    emoji: '🎮',
+    gradient: '#fdcb6e, #f39c12',
+    estimatedTime: 2,
+    questionCount: 5,
+    status: 1
+  },
+  {
+    id: 4,
+    categoryId: 1,
+    name: '九型人格测试',
+    description: '探索你的核心动机和恐惧，发现真实的自我',
+    coverImage: '/images/test-enneagram.png',
+    emoji: '🔮',
+    gradient: '#e17055, #fab1a0',
+    estimatedTime: 6,
+    questionCount: 18,
+    status: 1
+  },
+  {
+    id: 5,
+    categoryId: 1,
+    name: '大五人格测试',
+    description: '评估人格的五个核心维度，了解你的性格特征',
+    coverImage: '/images/test-ocean.png',
+    emoji: '🌊',
+    gradient: '#0984e3, #74b9ff',
+    estimatedTime: 5,
+    questionCount: 20,
+    status: 1
+  },
+  {
+    id: 6,
+    categoryId: 1,
+    name: 'DISC行为风格测试',
+    description: '分析你的行为倾向，提升人际沟通能力',
+    coverImage: '/images/test-disc.png',
+    emoji: '🎯',
+    gradient: '#00b894, #00cec9',
+    estimatedTime: 4,
+    questionCount: 16,
+    status: 1
+  },
+  {
+    id: 7,
+    categoryId: 1,
+    name: 'PDP性格测试',
+    description: '识别你的性格动物类型，发挥个人优势',
+    coverImage: '/images/test-pdp.png',
+    emoji: '🦁',
+    gradient: '#d63031, #ff7675',
+    estimatedTime: 4,
+    questionCount: 15,
+    status: 1
+  },
+  {
+    id: 8,
+    categoryId: 1,
+    name: '艾森克人格问卷',
+    description: '评估你的内外向、神经质和精神质维度',
+    coverImage: '/images/test-epq.png',
+    emoji: '🧩',
+    gradient: '#6c5ce7, #a29bfe',
+    estimatedTime: 5,
+    questionCount: 18,
+    status: 1
+  },
+  {
+    id: 9,
+    categoryId: 1,
+    name: '卡特尔16PF测试',
+    description: '测量16种根源人格特质，全面了解自我',
+    coverImage: '/images/test-16pf.png',
+    emoji: '📊',
+    gradient: '#fdcb6e, #f39c12',
+    estimatedTime: 8,
+    questionCount: 20,
+    status: 1
+  },
+  {
+    id: 10,
+    categoryId: 1,
+    name: '霍兰德职业兴趣测试',
+    description: '发现你的职业兴趣类型，找到理想职业方向',
+    coverImage: '/images/test-holland.png',
+    emoji: '💼',
+    gradient: '#00b894, #55efc4',
+    estimatedTime: 5,
+    questionCount: 18,
+    status: 1
+  },
+  {
+    id: 11,
+    categoryId: 1,
+    name: '荣格性格类型测试',
+    description: '基于荣格心理学，探索你的心理类型',
+    coverImage: '/images/test-jung.png',
+    emoji: '🔮',
+    gradient: '#e17055, #fdcb6e',
+    estimatedTime: 6,
+    questionCount: 20,
+    status: 1
+  }
+];
+
+const mockQuestions = [
+  {
+    id: 1,
+    testId: 1,
+    content: '在社交聚会中，你通常会：',
+    type: 1,
+    sortOrder: 1,
+    dimension: 'EI',
+    options: [
+      { id: 1, content: '主动与他人交谈，很享受社交', score: 'E' },
+      { id: 2, content: '等待别人来和我说话', score: 'I' }
+    ]
+  },
+  {
+    id: 2,
+    testId: 1,
+    content: '你更关注：',
+    type: 1,
+    sortOrder: 2,
+    dimension: 'SN',
+    options: [
+      { id: 3, content: '具体的事实和细节', score: 'S' },
+      { id: 4, content: '整体的模式和可能性', score: 'N' }
+    ]
+  },
+  {
+    id: 3,
+    testId: 1,
+    content: '做决定时，你更倾向于：',
+    type: 1,
+    sortOrder: 3,
+    dimension: 'TF',
+    options: [
+      { id: 5, content: '基于逻辑和事实', score: 'T' },
+      { id: 6, content: '基于情感和价值观', score: 'F' }
+    ]
+  },
+  {
+    id: 4,
+    testId: 1,
+    content: '面对计划，你更倾向于：',
+    type: 1,
+    sortOrder: 4,
+    dimension: 'JP',
+    options: [
+      { id: 7, content: '喜欢提前计划好一切', score: 'J' },
+      { id: 8, content: '保持灵活性，随机应变', score: 'P' }
+    ]
+  },
+  {
+    id: 5,
+    testId: 1,
+    content: '周末休息时，你更愿意：',
+    type: 1,
+    sortOrder: 5,
+    dimension: 'EI',
+    options: [
+      { id: 9, content: '和朋友一起出去玩', score: 'E' },
+      { id: 10, content: '在家休息，自己独处', score: 'I' }
+    ]
+  },
+  {
+    id: 6,
+    testId: 1,
+    content: '学习新事物时，你更看重：',
+    type: 1,
+    sortOrder: 6,
+    dimension: 'SN',
+    options: [
+      { id: 11, content: '实际应用和具体案例', score: 'S' },
+      { id: 12, content: '理论基础和概念框架', score: 'N' }
+    ]
+  },
+  {
+    id: 7,
+    testId: 1,
+    content: '朋友遇到困难时，你更倾向于：',
+    type: 1,
+    sortOrder: 7,
+    dimension: 'TF',
+    options: [
+      { id: 13, content: '分析问题，提出解决方案', score: 'T' },
+      { id: 14, content: '给予情感支持和安慰', score: 'F' }
+    ]
+  },
+  {
+    id: 8,
+    testId: 1,
+    content: '面对截止日期，你通常：',
+    type: 1,
+    sortOrder: 8,
+    dimension: 'JP',
+    options: [
+      { id: 15, content: '提前完成，留有余地', score: 'J' },
+      { id: 16, content: '最后时刻冲刺完成', score: 'P' }
+    ]
+  },
+  {
+    id: 9,
+    testId: 1,
+    content: '你更喜欢的工作环境是：',
+    type: 1,
+    sortOrder: 9,
+    dimension: 'EI',
+    options: [
+      { id: 17, content: '开放、协作的团队氛围', score: 'E' },
+      { id: 18, content: '安静、独立的工作空间', score: 'I' }
+    ]
+  },
+  {
+    id: 10,
+    testId: 1,
+    content: '你更容易被什么吸引：',
+    type: 1,
+    sortOrder: 10,
+    dimension: 'SN',
+    options: [
+      { id: 19, content: '实际可行的想法', score: 'S' },
+      { id: 20, content: '富有想象力的创意', score: 'N' }
+    ]
+  },
+  {
+    id: 11,
+    testId: 1,
+    content: '在争论中，你更在意：',
+    type: 1,
+    sortOrder: 11,
+    dimension: 'TF',
+    options: [
+      { id: 21, content: '谁说得有道理', score: 'T' },
+      { id: 22, content: '大家的感受如何', score: 'F' }
+    ]
+  },
+  {
+    id: 12,
+    testId: 1,
+    content: '你更喜欢的生活方式是：',
+    type: 1,
+    sortOrder: 12,
+    dimension: 'JP',
+    options: [
+      { id: 23, content: '有规律、有计划的生活', score: 'J' },
+      { id: 24, content: '随性而为，随遇而安', score: 'P' }
+    ]
+  },
+  {
+    id: 13,
+    testId: 1,
+    content: '当你需要充电时，你会：',
+    type: 1,
+    sortOrder: 13,
+    dimension: 'EI',
+    options: [
+      { id: 25, content: '和朋友聚会或参加活动', score: 'E' },
+      { id: 26, content: '独自阅读或思考', score: 'I' }
+    ]
+  },
+  {
+    id: 14,
+    testId: 1,
+    content: '当你学习新知识时，你倾向于：',
+    type: 1,
+    sortOrder: 14,
+    dimension: 'SN',
+    options: [
+      { id: 27, content: '从具体例子入手', score: 'S' },
+      { id: 28, content: '先理解整体框架', score: 'N' }
+    ]
+  },
+  {
+    id: 15,
+    testId: 1,
+    content: '团队合作中，你更看重：',
+    type: 1,
+    sortOrder: 15,
+    dimension: 'TF',
+    options: [
+      { id: 29, content: '效率和结果', score: 'T' },
+      { id: 30, content: '和谐的人际关系', score: 'F' }
+    ]
+  },
+  {
+    id: 16,
+    testId: 1,
+    content: '当有新任务时，你会：',
+    type: 1,
+    sortOrder: 16,
+    dimension: 'JP',
+    options: [
+      { id: 31, content: '先制定详细计划', score: 'J' },
+      { id: 32, content: '边做边调整', score: 'P' }
+    ]
+  },
+  {
+    id: 17,
+    testId: 1,
+    content: '你通常如何获取能量：',
+    type: 1,
+    sortOrder: 17,
+    dimension: 'EI',
+    options: [
+      { id: 33, content: '与他人互动交流', score: 'E' },
+      { id: 34, content: '独自思考或工作', score: 'I' }
+    ]
+  },
+  {
+    id: 18,
+    testId: 1,
+    content: '你更相信：',
+    type: 1,
+    sortOrder: 18,
+    dimension: 'SN',
+    options: [
+      { id: 35, content: '自己的经验和感官', score: 'S' },
+      { id: 36, content: '直觉和洞察力', score: 'N' }
+    ]
+  },
+  {
+    id: 19,
+    testId: 1,
+    content: '评价他人时，你更看重：',
+    type: 1,
+    sortOrder: 19,
+    dimension: 'TF',
+    options: [
+      { id: 37, content: '能力和成就', score: 'T' },
+      { id: 38, content: '品德和真诚', score: 'F' }
+    ]
+  },
+  {
+    id: 20,
+    testId: 1,
+    content: '你更喜欢：',
+    type: 1,
+    sortOrder: 20,
+    dimension: 'JP',
+    options: [
+      { id: 39, content: '确定的事情', score: 'J' },
+      { id: 40, content: '变化和惊喜', score: 'P' }
+    ]
+  },
+  {
+    id: 21,
+    testId: 1,
+    content: '在会议中，你通常：',
+    type: 1,
+    sortOrder: 21,
+    dimension: 'EI',
+    options: [
+      { id: 41, content: '积极发言，参与讨论', score: 'E' },
+      { id: 42, content: '认真倾听，适时发言', score: 'I' }
+    ]
+  },
+  {
+    id: 22,
+    testId: 1,
+    content: '解决问题时，你会：',
+    type: 1,
+    sortOrder: 22,
+    dimension: 'SN',
+    options: [
+      { id: 43, content: '从细节入手逐步分析', score: 'S' },
+      { id: 44, content: '先看整体再找关键点', score: 'N' }
+    ]
+  },
+  {
+    id: 23,
+    testId: 1,
+    content: '当朋友犯错时，你会：',
+    type: 1,
+    sortOrder: 23,
+    dimension: 'TF',
+    options: [
+      { id: 45, content: '直接指出并帮助改进', score: 'T' },
+      { id: 46, content: '委婉提醒，顾及感受', score: 'F' }
+    ]
+  },
+  {
+    id: 24,
+    testId: 1,
+    content: '旅行时，你更喜欢：',
+    type: 1,
+    sortOrder: 24,
+    dimension: 'JP',
+    options: [
+      { id: 47, content: '提前规划好行程', score: 'J' },
+      { id: 48, content: '随心而行，随机安排', score: 'P' }
+    ]
+  },
+  {
+    id: 25,
+    testId: 1,
+    content: '与人交往时，你更倾向于：',
+    type: 1,
+    sortOrder: 25,
+    dimension: 'EI',
+    options: [
+      { id: 49, content: '广泛交友，人脉丰富', score: 'E' },
+      { id: 50, content: '深交少数，知己难得', score: 'I' }
+    ]
+  },
+  {
+    id: 51,
+    testId: 2,
+    content: '做事时毫无兴趣或乐趣',
+    type: 3,
+    sortOrder: 1,
+    options: [
+      { id: 51, content: '完全没有', score: 0 },
+      { id: 52, content: '好几天', score: 1 },
+      { id: 53, content: '一半以上的天数', score: 2 },
+      { id: 54, content: '几乎每天', score: 3 }
+    ]
+  },
+  {
+    id: 52,
+    testId: 2,
+    content: '心情低落、沮丧或绝望',
+    type: 3,
+    sortOrder: 2,
+    options: [
+      { id: 55, content: '完全没有', score: 0 },
+      { id: 56, content: '好几天', score: 1 },
+      { id: 57, content: '一半以上的天数', score: 2 },
+      { id: 58, content: '几乎每天', score: 3 }
+    ]
+  },
+  {
+    id: 53,
+    testId: 2,
+    content: '入睡困难、睡不安稳或睡眠过多',
+    type: 3,
+    sortOrder: 3,
+    options: [
+      { id: 59, content: '完全没有', score: 0 },
+      { id: 60, content: '好几天', score: 1 },
+      { id: 61, content: '一半以上的天数', score: 2 },
+      { id: 62, content: '几乎每天', score: 3 }
+    ]
+  },
+  {
+    id: 54,
+    testId: 2,
+    content: '感觉疲倦或没有活力',
+    type: 3,
+    sortOrder: 4,
+    options: [
+      { id: 63, content: '完全没有', score: 0 },
+      { id: 64, content: '好几天', score: 1 },
+      { id: 65, content: '一半以上的天数', score: 2 },
+      { id: 66, content: '几乎每天', score: 3 }
+    ]
+  },
+  {
+    id: 55,
+    testId: 2,
+    content: '食欲不振或吃得太多',
+    type: 3,
+    sortOrder: 5,
+    options: [
+      { id: 67, content: '完全没有', score: 0 },
+      { id: 68, content: '好几天', score: 1 },
+      { id: 69, content: '一半以上的天数', score: 2 },
+      { id: 70, content: '几乎每天', score: 3 }
+    ]
+  },
+  {
+    id: 56,
+    testId: 2,
+    content: '对自己感到失望，或觉得自己是失败者',
+    type: 3,
+    sortOrder: 6,
+    options: [
+      { id: 71, content: '完全没有', score: 0 },
+      { id: 72, content: '好几天', score: 1 },
+      { id: 73, content: '一半以上的天数', score: 2 },
+      { id: 74, content: '几乎每天', score: 3 }
+    ]
+  },
+  {
+    id: 57,
+    testId: 2,
+    content: '做事时难以集中注意力',
+    type: 3,
+    sortOrder: 7,
+    options: [
+      { id: 75, content: '完全没有', score: 0 },
+      { id: 76, content: '好几天', score: 1 },
+      { id: 77, content: '一半以上的天数', score: 2 },
+      { id: 78, content: '几乎每天', score: 3 }
+    ]
+  },
+  {
+    id: 58,
+    testId: 2,
+    content: '动作或说话速度缓慢，或相反',
+    type: 3,
+    sortOrder: 8,
+    options: [
+      { id: 79, content: '完全没有', score: 0 },
+      { id: 80, content: '好几天', score: 1 },
+      { id: 81, content: '一半以上的天数', score: 2 },
+      { id: 82, content: '几乎每天', score: 3 }
+    ]
+  },
+  {
+    id: 59,
+    testId: 2,
+    content: '有不如死掉或伤害自己的念头',
+    type: 3,
+    sortOrder: 9,
+    options: [
+      { id: 83, content: '完全没有', score: 0 },
+      { id: 84, content: '好几天', score: 1 },
+      { id: 85, content: '一半以上的天数', score: 2 },
+      { id: 86, content: '几乎每天', score: 3 }
+    ]
+  },
+  {
+    id: 60,
+    testId: 3,
+    content: '你更喜欢什么样的团队项目？',
+    type: 1,
+    sortOrder: 1,
+    options: [
+      { id: 87, content: '大家一起头脑风暴，想出创意', score: 'A' },
+      { id: 88, content: '分工明确，各自负责自己的部分', score: 'B' },
+      { id: 89, content: '有领导者指挥，大家配合执行', score: 'C' },
+      { id: 90, content: '完全独立完成自己的工作', score: 'D' }
+    ]
+  },
+  {
+    id: 61,
+    testId: 3,
+    content: '当面对压力时，你会？',
+    type: 1,
+    sortOrder: 2,
+    options: [
+      { id: 91, content: '找朋友倾诉，释放情绪', score: 'A' },
+      { id: 92, content: '分析问题，找出解决方案', score: 'B' },
+      { id: 93, content: '制定详细的计划来应对', score: 'C' },
+      { id: 94, content: '先休息一下，等状态好了再说', score: 'D' }
+    ]
+  },
+  {
+    id: 62,
+    testId: 3,
+    content: '你理想中的周末是？',
+    type: 1,
+    sortOrder: 3,
+    options: [
+      { id: 95, content: '和朋友一起参加各种活动', score: 'A' },
+      { id: 96, content: '安静地看书或学习新技能', score: 'B' },
+      { id: 97, content: '整理房间，让生活更有条理', score: 'C' },
+      { id: 98, content: '睡到自然醒，随便做点什么', score: 'D' }
+    ]
+  },
+  {
+    id: 63,
+    testId: 3,
+    content: '在选择工作时，你更看重？',
+    type: 1,
+    sortOrder: 4,
+    options: [
+      { id: 99, content: '能够结识新朋友，扩展人脉', score: 'A' },
+      { id: 100, content: '有挑战性，能提升能力', score: 'B' },
+      { id: 101, content: '稳定有保障，福利好', score: 'C' },
+      { id: 102, content: '自由灵活，可以做自己想做的事', score: 'D' }
+    ]
+  },
+  {
+    id: 64,
+    testId: 3,
+    content: '你更愿意为什么样的活动付出时间？',
+    type: 1,
+    sortOrder: 5,
+    options: [
+      { id: 103, content: '社交活动、聚会、公益', score: 'A' },
+      { id: 104, content: '学习、阅读、研究', score: 'B' },
+      { id: 105, content: '运动健身、户外活动', score: 'C' },
+      { id: 106, content: '创意项目、艺术创作', score: 'D' }
+    ]
+  },
+  {
+    id: 65,
+    testId: 4,
+    content: '当你看到有人需要帮助时，你的第一反应是：',
+    type: 1,
+    sortOrder: 1,
+    dimension: 'enneagram',
+    options: [
+      { id: 107, content: '立刻伸出援手，行动第一', score: '2' },
+      { id: 108, content: '先观察情况，再决定如何帮助', score: '5' },
+      { id: 109, content: '考虑自己是否有能力帮忙', score: '6' },
+      { id: 110, content: '想着如果是我会怎么做', score: '9' }
+    ]
+  },
+  {
+    id: 66,
+    testId: 4,
+    content: '你最大的恐惧是：',
+    type: 1,
+    sortOrder: 2,
+    dimension: 'enneagram',
+    options: [
+      { id: 111, content: '不被爱或不被需要', score: '2' },
+      { id: 112, content: '被控制或失去自主权', score: '5' },
+      { id: 113, content: '生活中的不确定性和危险', score: '6' },
+      { id: 114, content: '冲突和失去和谐', score: '9' }
+    ]
+  },
+  {
+    id: 67,
+    testId: 4,
+    content: '在团队中，你通常扮演什么角色？',
+    type: 1,
+    sortOrder: 3,
+    dimension: 'enneagram',
+    options: [
+      { id: 115, content: '照顾者，关心每个人的需求', score: '2' },
+      { id: 116, content: '观察者，提供深入的分析', score: '5' },
+      { id: 117, content: '支持者，坚定地站在团队一边', score: '6' },
+      { id: 118, content: '调解者，维护团队和谐', score: '9' }
+    ]
+  },
+  {
+    id: 68,
+    testId: 4,
+    content: '你做决定时主要依据是：',
+    type: 1,
+    sortOrder: 4,
+    dimension: 'enneagram',
+    options: [
+      { id: 119, content: '对他人的影响和自己的感受', score: '2' },
+      { id: 120, content: '逻辑推理和事实分析', score: '5' },
+      { id: 121, content: '规则、义务和责任', score: '6' },
+      { id: 122, content: '对人和环境的感知', score: '9' }
+    ]
+  },
+  {
+    id: 69,
+    testId: 4,
+    content: '当你感到压力时，你会：',
+    type: 1,
+    sortOrder: 5,
+    dimension: 'enneagram',
+    options: [
+      { id: 123, content: '更加努力地帮助他人', score: '2' },
+      { id: 124, content: '退回到自己的世界思考', score: '5' },
+      { id: 125, content: '寻求权威或专家的建议', score: '6' },
+      { id: 126, content: '逃避问题，做些轻松的事', score: '9' }
+    ]
+  },
+  {
+    id: 70,
+    testId: 4,
+    content: '你的核心动机是：',
+    type: 1,
+    sortOrder: 6,
+    dimension: 'enneagram',
+    options: [
+      { id: 127, content: '被爱和被欣赏', score: '2' },
+      { id: 128, content: '理解和掌控世界', score: '5' },
+      { id: 129, content: '获得安全感和支持', score: '6' },
+      { id: 130, content: '保持内心的平静', score: '9' }
+    ]
+  },
+  {
+    id: 71,
+    testId: 4,
+    content: '在社交场合，你通常：',
+    type: 1,
+    sortOrder: 7,
+    dimension: 'enneagram',
+    options: [
+      { id: 131, content: '主动与他人建立联系', score: '2' },
+      { id: 132, content: '保持距离，专注于观察', score: '5' },
+      { id: 133, content: '寻找熟悉的面孔和群体', score: '6' },
+      { id: 134, content: '静静地待在角落', score: '9' }
+    ]
+  },
+  {
+    id: 72,
+    testId: 4,
+    content: '你如何看待规则和权威？',
+    type: 1,
+    sortOrder: 8,
+    dimension: 'enneagram',
+    options: [
+      { id: 135, content: '如果是为了大家好，我愿意遵守', score: '2' },
+      { id: 136, content: '规则是死的，应该灵活运用', score: '5' },
+      { id: 137, content: '规则是必要的，给我安全感', score: '6' },
+      { id: 138, content: '不喜欢冲突，尽量配合他人', score: '9' }
+    ]
+  },
+  {
+    id: 73,
+    testId: 4,
+    content: '当别人批评你时，你会：',
+    type: 1,
+    sortOrder: 9,
+    dimension: 'enneagram',
+    options: [
+      { id: 139, content: '感到受伤，试图解释自己', score: '2' },
+      { id: 140, content: '理性分析批评是否有道理', score: '5' },
+      { id: 141, content: '感到焦虑，怀疑自己', score: '6' },
+      { id: 142, content: '表面接受，内心不以为意', score: '9' }
+    ]
+  },
+  {
+    id: 74,
+    testId: 4,
+    content: '你倾向于如何表达情感？',
+    type: 1,
+    sortOrder: 10,
+    dimension: 'enneagram',
+    options: [
+      { id: 143, content: '直接且热情地表达', score: '2' },
+      { id: 144, content: '很少表达，深藏不露', score: '5' },
+      { id: 145, content: '谨慎表达，担心被误解', score: '6' },
+      { id: 146, content: '避免表达，维持平和', score: '9' }
+    ]
+  },
+  {
+    id: 75,
+    testId: 4,
+    content: '你更喜欢什么样的工作方式？',
+    type: 1,
+    sortOrder: 11,
+    dimension: 'enneagram',
+    options: [
+      { id: 147, content: '与他人协作，共同完成目标', score: '2' },
+      { id: 148, content: '独立研究，深入探索问题', score: '5' },
+      { id: 149, content: '有明确指引和安全环境', score: '6' },
+      { id: 150, content: '轻松氛围，按自己的节奏', score: '9' }
+    ]
+  },
+  {
+    id: 76,
+    testId: 4,
+    content: '你对时间的看法是：',
+    type: 1,
+    sortOrder: 12,
+    dimension: 'enneagram',
+    options: [
+      { id: 151, content: '应该用来帮助他人', score: '2' },
+      { id: 152, content: '足够深入探索感兴趣的事', score: '5' },
+      { id: 153, content: '需要谨慎规划和管理', score: '6' },
+      { id: 154, content: '不必太在意，顺其自然', score: '9' }
+    ]
+  },
+  {
+    id: 77,
+    testId: 4,
+    content: '当与他人发生冲突时，你会：',
+    type: 1,
+    sortOrder: 13,
+    dimension: 'enneagram',
+    options: [
+      { id: 155, content: '积极沟通，化解矛盾', score: '2' },
+      { id: 156, content: '离开现场，独自冷静', score: '5' },
+      { id: 157, content: '坚持立场，捍卫原则', score: '6' },
+      { id: 158, content: '假装没发生，逃避冲突', score: '9' }
+    ]
+  },
+  {
+    id: 79,
+    testId: 4,
+    content: '你理想的自我形象是：',
+    type: 1,
+    sortOrder: 14,
+    dimension: 'enneagram',
+    options: [
+      { id: 159, content: '充满爱心，受人欢迎', score: '2' },
+      { id: 160, content: '知识渊博，洞察深刻', score: '5' },
+      { id: 161, content: '可靠忠诚，值得信赖', score: '6' },
+      { id: 162, content: '心态平和，与世无争', score: '9' }
+    ]
+  },
+  {
+    id: 80,
+    testId: 4,
+    content: '当你获得成功时，你通常会：',
+    type: 1,
+    sortOrder: 15,
+    dimension: 'enneagram',
+    options: [
+      { id: 163, content: '与帮助过你的人分享喜悦', score: '2' },
+      { id: 164, content: '继续下一个目标，不停留', score: '5' },
+      { id: 165, content: '感到安心，感谢运气', score: '6' },
+      { id: 166, content: '放松享受，不喜张扬', score: '9' }
+    ]
+  },
+  {
+    id: 81,
+    testId: 4,
+    content: '你更关注生活中的：',
+    type: 1,
+    sortOrder: 16,
+    dimension: 'enneagram',
+    options: [
+      { id: 167, content: '人际关系和情感连接', score: '2' },
+      { id: 168, content: '知识和信息的获取', score: '5' },
+      { id: 169, content: '安全和稳定的环境', score: '6' },
+      { id: 170, content: '内心的安宁与满足', score: '9' }
+    ]
+  },
+  {
+    id: 82,
+    testId: 4,
+    content: '当你面临选择时，你倾向于：',
+    type: 1,
+    sortOrder: 17,
+    dimension: 'enneagram',
+    options: [
+      { id: 171, content: '考虑什么对大家最好', score: '2' },
+      { id: 172, content: '收集信息，分析利弊', score: '5' },
+      { id: 173, content: '遵循传统和权威建议', score: '6' },
+      { id: 174, content: '等待直觉或让别人决定', score: '9' }
+    ]
+  },
+  {
+    id: 83,
+    testId: 4,
+    content: '你对"完美"的定义是：',
+    type: 1,
+    sortOrder: 18,
+    dimension: 'enneagram',
+    options: [
+      { id: 175, content: '能够帮助到他人', score: '2' },
+      { id: 176, content: '深刻且有见解', score: '5' },
+      { id: 177, content: '正确且可靠的', score: '6' },
+      { id: 178, content: '简单而和谐的', score: '9' }
+    ]
+  },
+  {
+    id: 84,
+    testId: 5,
+    content: '我很容易和人熟络起来',
+    type: 3,
+    sortOrder: 1,
+    dimension: 'E',
+    options: [
+      { id: 179, content: '非常符合', score: 5 },
+      { id: 180, content: '比较符合', score: 4 },
+      { id: 181, content: '一般', score: 3 },
+      { id: 182, content: '不太符合', score: 2 },
+      { id: 183, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 85,
+    testId: 5,
+    content: '我倾向于从外部世界寻找刺激和活动',
+    type: 3,
+    sortOrder: 2,
+    dimension: 'E',
+    options: [
+      { id: 184, content: '非常符合', score: 5 },
+      { id: 185, content: '比较符合', score: 4 },
+      { id: 186, content: '一般', score: 3 },
+      { id: 187, content: '不太符合', score: 2 },
+      { id: 188, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 86,
+    testId: 5,
+    content: '我很容易担心一些事情',
+    type: 3,
+    sortOrder: 3,
+    dimension: 'N',
+    options: [
+      { id: 189, content: '非常符合', score: 5 },
+      { id: 190, content: '比较符合', score: 4 },
+      { id: 191, content: '一般', score: 3 },
+      { id: 192, content: '不太符合', score: 2 },
+      { id: 193, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 87,
+    testId: 5,
+    content: '我很容易感到害怕',
+    type: 3,
+    sortOrder: 4,
+    dimension: 'N',
+    options: [
+      { id: 194, content: '非常符合', score: 5 },
+      { id: 195, content: '比较符合', score: 4 },
+      { id: 196, content: '一般', score: 3 },
+      { id: 197, content: '不太符合', score: 2 },
+      { id: 198, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 88,
+    testId: 5,
+    content: '我非常喜欢思考和想象',
+    type: 3,
+    sortOrder: 5,
+    dimension: 'O',
+    options: [
+      { id: 199, content: '非常符合', score: 5 },
+      { id: 200, content: '比较符合', score: 4 },
+      { id: 201, content: '一般', score: 3 },
+      { id: 202, content: '不太符合', score: 2 },
+      { id: 203, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 89,
+    testId: 5,
+    content: '我喜欢尝试新事物',
+    type: 3,
+    sortOrder: 6,
+    dimension: 'O',
+    options: [
+      { id: 204, content: '非常符合', score: 5 },
+      { id: 205, content: '比较符合', score: 4 },
+      { id: 206, content: '一般', score: 3 },
+      { id: 207, content: '不太符合', score: 2 },
+      { id: 208, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 90,
+    testId: 5,
+    content: '我相信自己是个有价值的人',
+    type: 3,
+    sortOrder: 7,
+    dimension: 'A',
+    options: [
+      { id: 209, content: '非常符合', score: 5 },
+      { id: 210, content: '比较符合', score: 4 },
+      { id: 211, content: '一般', score: 3 },
+      { id: 212, content: '不太符合', score: 2 },
+      { id: 213, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 91,
+    testId: 5,
+    content: '我倾向于相信他人',
+    type: 3,
+    sortOrder: 8,
+    dimension: 'A',
+    options: [
+      { id: 214, content: '非常符合', score: 5 },
+      { id: 215, content: '比较符合', score: 4 },
+      { id: 216, content: '一般', score: 3 },
+      { id: 217, content: '不太符合', score: 2 },
+      { id: 218, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 92,
+    testId: 5,
+    content: '我做事很有条理',
+    type: 3,
+    sortOrder: 9,
+    dimension: 'C',
+    options: [
+      { id: 219, content: '非常符合', score: 5 },
+      { id: 220, content: '比较符合', score: 4 },
+      { id: 221, content: '一般', score: 3 },
+      { id: 222, content: '不太符合', score: 2 },
+      { id: 223, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 93,
+    testId: 5,
+    content: '我很容易记住事情',
+    type: 3,
+    sortOrder: 10,
+    dimension: 'C',
+    options: [
+      { id: 224, content: '非常符合', score: 5 },
+      { id: 225, content: '比较符合', score: 4 },
+      { id: 226, content: '一般', score: 3 },
+      { id: 227, content: '不太符合', score: 2 },
+      { id: 228, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 94,
+    testId: 5,
+    content: '在社交聚会中，我通常是说话较多的那个',
+    type: 3,
+    sortOrder: 11,
+    dimension: 'E',
+    options: [
+      { id: 229, content: '非常符合', score: 5 },
+      { id: 230, content: '比较符合', score: 4 },
+      { id: 231, content: '一般', score: 3 },
+      { id: 232, content: '不太符合', score: 2 },
+      { id: 233, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 95,
+    testId: 5,
+    content: '我很少感到忧郁或沮丧',
+    type: 3,
+    sortOrder: 12,
+    dimension: 'N',
+    options: [
+      { id: 234, content: '非常符合', score: 5 },
+      { id: 235, content: '比较符合', score: 4 },
+      { id: 236, content: '一般', score: 3 },
+      { id: 237, content: '不太符合', score: 2 },
+      { id: 238, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 96,
+    testId: 5,
+    content: '我有丰富的想象力和创意',
+    type: 3,
+    sortOrder: 13,
+    dimension: 'O',
+    options: [
+      { id: 239, content: '非常符合', score: 5 },
+      { id: 240, content: '比较符合', score: 4 },
+      { id: 241, content: '一般', score: 3 },
+      { id: 242, content: '不太符合', score: 2 },
+      { id: 243, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 97,
+    testId: 5,
+    content: '我对别人很有礼貌和体贴',
+    type: 3,
+    sortOrder: 14,
+    dimension: 'A',
+    options: [
+      { id: 244, content: '非常符合', score: 5 },
+      { id: 245, content: '比较符合', score: 4 },
+      { id: 246, content: '一般', score: 3 },
+      { id: 247, content: '不太符合', score: 2 },
+      { id: 248, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 98,
+    testId: 5,
+    content: '我是一个勤奋工作的人',
+    type: 3,
+    sortOrder: 15,
+    dimension: 'C',
+    options: [
+      { id: 249, content: '非常符合', score: 5 },
+      { id: 250, content: '比较符合', score: 4 },
+      { id: 251, content: '一般', score: 3 },
+      { id: 252, content: '不太符合', score: 2 },
+      { id: 253, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 99,
+    testId: 5,
+    content: '我能很好地与他人合作',
+    type: 3,
+    sortOrder: 16,
+    dimension: 'A',
+    options: [
+      { id: 254, content: '非常符合', score: 5 },
+      { id: 255, content: '比较符合', score: 4 },
+      { id: 256, content: '一般', score: 3 },
+      { id: 257, content: '不太符合', score: 2 },
+      { id: 258, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 100,
+    testId: 5,
+    content: '我很容易分心',
+    type: 3,
+    sortOrder: 17,
+    dimension: 'C',
+    options: [
+      { id: 259, content: '非常符合', score: 5 },
+      { id: 260, content: '比较符合', score: 4 },
+      { id: 261, content: '一般', score: 3 },
+      { id: 262, content: '不太符合', score: 2 },
+      { id: 263, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 101,
+    testId: 5,
+    content: '我对艺术和美学有强烈兴趣',
+    type: 3,
+    sortOrder: 18,
+    dimension: 'O',
+    options: [
+      { id: 264, content: '非常符合', score: 5 },
+      { id: 265, content: '比较符合', score: 4 },
+      { id: 266, content: '一般', score: 3 },
+      { id: 267, content: '不太符合', score: 2 },
+      { id: 268, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 102,
+    testId: 5,
+    content: '我常常感到精力充沛',
+    type: 3,
+    sortOrder: 19,
+    dimension: 'E',
+    options: [
+      { id: 269, content: '非常符合', score: 5 },
+      { id: 270, content: '比较符合', score: 4 },
+      { id: 271, content: '一般', score: 3 },
+      { id: 272, content: '不太符合', score: 2 },
+      { id: 273, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 103,
+    testId: 5,
+    content: '我能冷静地面对压力',
+    type: 3,
+    sortOrder: 20,
+    dimension: 'N',
+    options: [
+      { id: 274, content: '非常符合', score: 5 },
+      { id: 275, content: '比较符合', score: 4 },
+      { id: 276, content: '一般', score: 3 },
+      { id: 277, content: '不太符合', score: 2 },
+      { id: 278, content: '完全不符合', score: 1 }
+    ]
+  },
+  {
+    id: 104,
+    testId: 6,
+    content: '当你完成一个项目时，你更关注：',
+    type: 1,
+    sortOrder: 1,
+    dimension: 'DISC',
+    options: [
+      { id: 279, content: '最终结果和成就', score: 'D' },
+      { id: 280, content: '团队协作和人际关系', score: 'I' },
+      { id: 281, content: '规则、流程和稳定性', score: 'S' },
+      { id: 282, content: '数据和细节的准确性', score: 'C' }
+    ]
+  },
+  {
+    id: 105,
+    testId: 6,
+    content: '在会议上，你通常会：',
+    type: 1,
+    sortOrder: 2,
+    dimension: 'DISC',
+    options: [
+      { id: 283, content: '直接提出问题和解决方案', score: 'D' },
+      { id: 284, content: '分享想法，激励团队', score: 'I' },
+      { id: 285, content: '倾听他人，寻求共识', score: 'S' },
+      { id: 286, content: '提供数据和事实支持', score: 'C' }
+    ]
+  },
+  {
+    id: 106,
+    testId: 6,
+    content: '你更喜欢的工作环境是：',
+    type: 1,
+    sortOrder: 3,
+    dimension: 'DISC',
+    options: [
+      { id: 287, content: '快速变化，充满挑战', score: 'D' },
+      { id: 288, content: '友好开放，重视人际交往', score: 'I' },
+      { id: 289, content: '稳定有序，可预测', score: 'S' },
+      { id: 290, content: '精确、有标准流程', score: 'C' }
+    ]
+  },
+  {
+    id: 107,
+    testId: 6,
+    content: '当遇到困难时，你通常会：',
+    type: 1,
+    sortOrder: 4,
+    dimension: 'DISC',
+    options: [
+      { id: 291, content: '立即采取行动解决', score: 'D' },
+      { id: 292, content: '寻求他人的支持和鼓励', score: 'I' },
+      { id: 293, content: '耐心分析问题根源', score: 'S' },
+      { id: 294, content: '收集信息，制定详细计划', score: 'C' }
+    ]
+  },
+  {
+    id: 108,
+    testId: 6,
+    content: '你在团队中的角色通常是：',
+    type: 1,
+    sortOrder: 5,
+    dimension: 'DISC',
+    options: [
+      { id: 295, content: '领导者和决策者', score: 'D' },
+      { id: 296, content: '协调者和联络人', score: 'I' },
+      { id: 297, content: '支持者和执行者', score: 'S' },
+      { id: 298, content: '质量控制和审核者', score: 'C' }
+    ]
+  },
+  {
+    id: 109,
+    testId: 6,
+    content: '你如何处理截止日期的压力？',
+    type: 1,
+    sortOrder: 6,
+    dimension: 'DISC',
+    options: [
+      { id: 299, content: '快速行动，优先完成', score: 'D' },
+      { id: 300, content: '与团队共同面对', score: 'I' },
+      { id: 301, content: '按部就班，稳扎稳打', score: 'S' },
+      { id: 302, content: '制定详细计划，有条不紊', score: 'C' }
+    ]
+  },
+  {
+    id: 110,
+    testId: 6,
+    content: '你更倾向于通过什么方式沟通？',
+    type: 1,
+    sortOrder: 7,
+    dimension: 'DISC',
+    options: [
+      { id: 303, content: '简洁直接，重点突出', score: 'D' },
+      { id: 304, content: '生动有趣，富有感染力', score: 'I' },
+      { id: 305, content: '耐心倾听，温和友好', score: 'S' },
+      { id: 306, content: '准确完整，有理有据', score: 'C' }
+    ]
+  },
+  {
+    id: 111,
+    testId: 6,
+    content: '当需要改变计划时，你的反应是：',
+    type: 1,
+    sortOrder: 8,
+    dimension: 'DISC',
+    options: [
+      { id: 307, content: '快速调整，立即执行', score: 'D' },
+      { id: 308, content: '期待变化，与人分享', score: 'I' },
+      { id: 309, content: '需要时间适应', score: 'S' },
+      { id: 310, content: '分析影响后再决定', score: 'C' }
+    ]
+  },
+  {
+    id: 112,
+    testId: 6,
+    content: '你更喜欢什么样的任务？',
+    type: 1,
+    sortOrder: 9,
+    dimension: 'DISC',
+    options: [
+      { id: 311, content: '有挑战性，需要决断力', score: 'D' },
+      { id: 312, content: '需要创意和表达能力', score: 'I' },
+      { id: 313, content: '需要耐心和持久性', score: 'S' },
+      { id: 314, content: '需要精确和分析能力', score: 'C' }
+    ]
+  },
+  {
+    id: 113,
+    testId: 6,
+    content: '当与他人意见不合时，你会：',
+    type: 1,
+    sortOrder: 10,
+    dimension: 'DISC',
+    options: [
+      { id: 315, content: '坚持己见，争取胜利', score: 'D' },
+      { id: 316, content: '试图说服和影响对方', score: 'I' },
+      { id: 317, content: '避免冲突，寻求妥协', score: 'S' },
+      { id: 318, content: '用事实和逻辑证明', score: 'C' }
+    ]
+  },
+  {
+    id: 114,
+    testId: 6,
+    content: '你的工作风格更像是：',
+    type: 1,
+    sortOrder: 11,
+    dimension: 'DISC',
+    options: [
+      { id: 319, content: '开创者，敢于冒险', score: 'D' },
+      { id: 320, content: '激励者，富有热情', score: 'I' },
+      { id: 321, content: '稳定者，可靠踏实', score: 'S' },
+      { id: 322, content: '完美主义者，注重质量', score: 'C' }
+    ]
+  },
+  {
+    id: 115,
+    testId: 6,
+    content: '你希望别人如何描述你？',
+    type: 1,
+    sortOrder: 12,
+    dimension: 'DISC',
+    options: [
+      { id: 323, content: '果断、有魄力、善于指挥', score: 'D' },
+      { id: 324, content: '热情、有魅力、善于交际', score: 'I' },
+      { id: 325, content: '忠诚、耐心、善解人意', score: 'S' },
+      { id: 326, content: '严谨、细致、追求完美', score: 'C' }
+    ]
+  },
+  {
+    id: 116,
+    testId: 6,
+    content: '你如何面对风险和不确定性？',
+    type: 1,
+    sortOrder: 13,
+    dimension: 'DISC',
+    options: [
+      { id: 327, content: '接受挑战，敢于承担', score: 'D' },
+      { id: 328, content: '乐观对待，相信运气', score: 'I' },
+      { id: 329, content: '谨慎行事，避免风险', score: 'S' },
+      { id: 330, content: '分析评估，降低风险', score: 'C' }
+    ]
+  },
+  {
+    id: 117,
+    testId: 6,
+    content: '你更关注工作中的：',
+    type: 1,
+    sortOrder: 14,
+    dimension: 'DISC',
+    options: [
+      { id: 331, content: '结果、效率、业绩', score: 'D' },
+      { id: 332, content: '氛围、关系、认可', score: 'I' },
+      { id: 333, content: '稳定、安全、保障', score: 'S' },
+      { id: 334, content: '准确、质量、标准', score: 'C' }
+    ]
+  },
+  {
+    id: 118,
+    testId: 6,
+    content: '当别人需要帮助时，你会：',
+    type: 1,
+    sortOrder: 15,
+    dimension: 'DISC',
+    options: [
+      { id: 335, content: '立即行动，快速解决', score: 'D' },
+      { id: 336, content: '热情回应，给予支持', score: 'I' },
+      { id: 337, content: '无私帮助，不求回报', score: 'S' },
+      { id: 338, content: '按规则和程序帮助', score: 'C' }
+    ]
+  },
+  {
+    id: 119,
+    testId: 6,
+    content: '你的决策方式是：',
+    type: 1,
+    sortOrder: 16,
+    dimension: 'DISC',
+    options: [
+      { id: 339, content: '快速果断，先做后想', score: 'D' },
+      { id: 340, content: '参考他人意见再做', score: 'I' },
+      { id: 341, content: '深思熟虑再做决定', score: 'S' },
+      { id: 342, content: '基于事实和分析决策', score: 'C' }
+    ]
+  },
+  {
+    id: 120,
+    testId: 7,
+    content: '在团队项目中，我更愿意扮演：',
+    type: 1,
+    sortOrder: 1,
+    dimension: 'PDP',
+    options: [
+      { id: 343, content: '领袖角色，推动项目前进', score: '老虎' },
+      { id: 344, content: '社交核心，活跃团队气氛', score: '孔雀' },
+      { id: 345, content: '稳定力量，确保项目质量', score: '考拉' },
+      { id: 346, content: '分析专家，提供技术支持', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 121,
+    testId: 7,
+    content: '面对压力时，我会：',
+    type: 1,
+    sortOrder: 2,
+    dimension: 'PDP',
+    options: [
+      { id: 347, content: '迎难而上，解决问题', score: '老虎' },
+      { id: 348, content: '倾诉分享，释放压力', score: '孔雀' },
+      { id: 349, content: '保持冷静，按步执行', score: '考拉' },
+      { id: 350, content: '分析原因，制定对策', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 122,
+    testId: 7,
+    content: '我理想的职业环境是：',
+    type: 1,
+    sortOrder: 3,
+    dimension: 'PDP',
+    options: [
+      { id: 351, content: '充满挑战，有晋升机会', score: '老虎' },
+      { id: 352, content: '开放自由，人际交往频繁', score: '孔雀' },
+      { id: 353, content: '稳定和谐，工作生活平衡', score: '考拉' },
+      { id: 354, content: '专业严谨，技术导向', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 123,
+    testId: 7,
+    content: '我做决定时更倾向于：',
+    type: 1,
+    sortOrder: 4,
+    dimension: 'PDP',
+    options: [
+      { id: 355, content: '快速决策，敢于承担风险', score: '老虎' },
+      { id: 356, content: '综合考虑大家的想法', score: '孔雀' },
+      { id: 357, content: '谨慎评估，三思后行', score: '考拉' },
+      { id: 358, content: '基于数据和事实判断', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 124,
+    testId: 7,
+    content: '在工作中，我最看重：',
+    type: 1,
+    sortOrder: 5,
+    dimension: 'PDP',
+    options: [
+      { id: 359, content: '成就、认可和影响力', score: '老虎' },
+      { id: 360, content: '人际关系和归属感', score: '孔雀' },
+      { id: 361, content: '稳定、安全和可预测性', score: '考拉' },
+      { id: 362, content: '精确、专业和高质量', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 125,
+    testId: 7,
+    content: '我与他人沟通的方式通常是：',
+    type: 1,
+    sortOrder: 6,
+    dimension: 'PDP',
+    options: [
+      { id: 363, content: '直接明确，效率优先', score: '老虎' },
+      { id: 364, content: '热情友好，善于倾听', score: '孔雀' },
+      { id: 365, content: '温和耐心，稳重可靠', score: '考拉' },
+      { id: 366, content: '逻辑清晰，有理有据', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 126,
+    testId: 7,
+    content: '当我犯错误时，我会：',
+    type: 1,
+    sortOrder: 7,
+    dimension: 'PDP',
+    options: [
+      { id: 367, content: '承认错误，迅速改正', score: '老虎' },
+      { id: 368, content: '反思自省，寻求改进', score: '孔雀' },
+      { id: 369, content: '认真检讨，避免再犯', score: '考拉' },
+      { id: 370, content: '分析原因，完善流程', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 127,
+    testId: 7,
+    content: '我的工作风格更像是：',
+    type: 1,
+    sortOrder: 8,
+    dimension: 'PDP',
+    options: [
+      { id: 371, content: '目标导向，行动迅速', score: '老虎' },
+      { id: 372, content: '富有创意，灵活应变', score: '孔雀' },
+      { id: 373, content: '踏实稳定，按部就班', score: '考拉' },
+      { id: 374, content: '注重细节，精益求精', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 128,
+    testId: 7,
+    content: '我更喜欢什么样的任务类型？',
+    type: 1,
+    sortOrder: 9,
+    dimension: 'PDP',
+    options: [
+      { id: 375, content: '有挑战性，需要领导力', score: '老虎' },
+      { id: 376, content: '需要创意和表达能力', score: '孔雀' },
+      { id: 377, content: '需要耐心和持久性', score: '考拉' },
+      { id: 378, content: '需要专业技术和分析', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 129,
+    testId: 7,
+    content: '在业余时间，我更喜欢：',
+    type: 1,
+    sortOrder: 10,
+    dimension: 'PDP',
+    options: [
+      { id: 379, content: '竞争性运动或创业活动', score: '老虎' },
+      { id: 380, content: '社交活动和朋友聚会', score: '孔雀' },
+      { id: 381, content: '安静的活动如阅读或园艺', score: '考拉' },
+      { id: 382, content: '研究性活动或学习新技能', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 130,
+    testId: 7,
+    content: '当团队遇到困难时，我会：',
+    type: 1,
+    sortOrder: 11,
+    dimension: 'PDP',
+    options: [
+      { id: 383, content: '挺身而出，带领团队突破', score: '老虎' },
+      { id: 384, content: '鼓励大家，重建信心', score: '孔雀' },
+      { id: 385, content: '默默支持，坚守岗位', score: '考拉' },
+      { id: 386, content: '分析问题，提供方案', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 131,
+    testId: 7,
+    content: '我对成功的定义是：',
+    type: 1,
+    sortOrder: 12,
+    dimension: 'PDP',
+    options: [
+      { id: 387, content: '达成目标，获得成就', score: '老虎' },
+      { id: 388, content: '受人欢迎，有好人缘', score: '孔雀' },
+      { id: 389, content: '生活稳定，内心平静', score: '考拉' },
+      { id: 390, content: '专业精深，受人尊敬', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 132,
+    testId: 7,
+    content: '我倾向于如何表达自己：',
+    type: 1,
+    sortOrder: 13,
+    dimension: 'PDP',
+    options: [
+      { id: 391, content: '直接坦率，有话就说', score: '老虎' },
+      { id: 392, content: '生动有趣，善于表达', score: '孔雀' },
+      { id: 393, content: '含蓄内敛，谨言慎行', score: '考拉' },
+      { id: 394, content: '深思熟虑，有条不紊', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 133,
+    testId: 7,
+    content: '当制定计划时，我会：',
+    type: 1,
+    sortOrder: 14,
+    dimension: 'PDP',
+    options: [
+      { id: 395, content: '设定高目标，立即行动', score: '老虎' },
+      { id: 396, content: '灵活调整，随机应变', score: '孔雀' },
+      { id: 397, content: '详细规划，考虑周全', score: '考拉' },
+      { id: 398, content: '科学分析，数据支撑', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 134,
+    testId: 7,
+    content: '我希望别人如何评价我：',
+    type: 1,
+    sortOrder: 15,
+    dimension: 'PDP',
+    options: [
+      { id: 399, content: '有魄力，有领导力', score: '老虎' },
+      { id: 400, content: '有魅力，受欢迎', score: '孔雀' },
+      { id: 401, content: '可靠，值得信赖', score: '考拉' },
+      { id: 402, content: '专业，值得尊敬', score: '猫头鹰' }
+    ]
+  },
+  {
+    id: 403, testId: 8, content: '你是否能以抽象思维的方式思考问题？', type: 1, sortOrder: 1,
+    options: [
+      { id: 4031, content: '是', score: 'N' },
+      { id: 4032, content: '否', score: 'E' }
+    ]
+  },
+  {
+    id: 404, testId: 8, content: '你通常更喜欢参加社交活动吗？', type: 1, sortOrder: 2,
+    options: [
+      { id: 4041, content: '是', score: 'E' },
+      { id: 4042, content: '否', score: 'I' }
+    ]
+  },
+  {
+    id: 405, testId: 8, content: '你容易感到焦虑或担心吗？', type: 1, sortOrder: 3,
+    options: [
+      { id: 4051, content: '是', score: 'N' },
+      { id: 4052, content: '否', score: 'P' }
+    ]
+  },
+  {
+    id: 406, testId: 8, content: '你喜欢独自工作而不是团队合作吗？', type: 1, sortOrder: 4,
+    options: [
+      { id: 4061, content: '是', score: 'I' },
+      { id: 4062, content: '否', score: 'E' }
+    ]
+  },
+  {
+    id: 407, testId: 8, content: '你是否有强烈的同理心？', type: 1, sortOrder: 5,
+    options: [
+      { id: 4071, content: '是', score: 'E' },
+      { id: 4072, content: '否', score: 'P' }
+    ]
+  },
+  {
+    id: 408, testId: 8, content: '你经常做梦吗？', type: 1, sortOrder: 6,
+    options: [
+      { id: 4081, content: '是', score: 'N' },
+      { id: 4082, content: '否', score: 'S' }
+    ]
+  },
+  {
+    id: 409, testId: 8, content: '你喜欢户外活动吗？', type: 1, sortOrder: 7,
+    options: [
+      { id: 4091, content: '是', score: 'E' },
+      { id: 4092, content: '否', score: 'I' }
+    ]
+  },
+  {
+    id: 410, testId: 8, content: '你容易情绪波动吗？', type: 1, sortOrder: 8,
+    options: [
+      { id: 4101, content: '是', score: 'N' },
+      { id: 4102, content: '否', score: 'P' }
+    ]
+  },
+  {
+    id: 411, testId: 8, content: '你喜欢尝试新事物吗？', type: 1, sortOrder: 9,
+    options: [
+      { id: 4111, content: '是', score: 'E' },
+      { id: 4112, content: '否', score: 'I' }
+    ]
+  },
+  {
+    id: 412, testId: 8, content: '你容易感到沮丧吗？', type: 1, sortOrder: 10,
+    options: [
+      { id: 4121, content: '是', score: 'N' },
+      { id: 4122, content: '否', score: 'P' }
+    ]
+  },
+  {
+    id: 413, testId: 8, content: '你喜欢成为注意力的中心吗？', type: 1, sortOrder: 11,
+    options: [
+      { id: 4131, content: '是', score: 'E' },
+      { id: 4132, content: '否', score: 'I' }
+    ]
+  },
+  {
+    id: 414, testId: 8, content: '你经常担心自己的健康吗？', type: 1, sortOrder: 12,
+    options: [
+      { id: 4141, content: '是', score: 'N' },
+      { id: 4142, content: '否', score: 'P' }
+    ]
+  },
+  {
+    id: 415, testId: 8, content: '你喜欢阅读吗？', type: 1, sortOrder: 13,
+    options: [
+      { id: 4151, content: '是', score: 'I' },
+      { id: 4152, content: '否', score: 'E' }
+    ]
+  },
+  {
+    id: 416, testId: 8, content: '你容易感到孤独吗？', type: 1, sortOrder: 14,
+    options: [
+      { id: 4161, content: '是', score: 'N' },
+      { id: 4162, content: '否', score: 'P' }
+    ]
+  },
+  {
+    id: 417, testId: 8, content: '你喜欢计划和组织吗？', type: 1, sortOrder: 15,
+    options: [
+      { id: 4171, content: '是', score: 'E' },
+      { id: 4172, content: '否', score: 'I' }
+    ]
+  },
+  {
+    id: 418, testId: 8, content: '你经常感到紧张吗？', type: 1, sortOrder: 16,
+    options: [
+      { id: 4181, content: '是', score: 'N' },
+      { id: 4182, content: '否', score: 'P' }
+    ]
+  },
+  {
+    id: 419, testId: 8, content: '你喜欢与人交谈吗？', type: 1, sortOrder: 17,
+    options: [
+      { id: 4191, content: '是', score: 'E' },
+      { id: 4192, content: '否', score: 'I' }
+    ]
+  },
+  {
+    id: 420, testId: 8, content: '你是否有创造力？', type: 1, sortOrder: 18,
+    options: [
+      { id: 4201, content: '是', score: 'N' },
+      { id: 4202, content: '否', score: 'S' }
+    ]
+  },
+  { id: 421, testId: 9, content: '你通常如何描述自己的社交能力？', type: 1, sortOrder: 1, options: [{ id: 4211, content: '非常擅长社交', score: 'A' }, { id: 4212, content: '一般', score: 'C' }] },
+  { id: 422, testId: 9, content: '面对压力时，你通常会：', type: 1, sortOrder: 2, options: [{ id: 4221, content: '保持冷静', score: 'C' }, { id: 4222, content: '容易紧张', score: 'O' }] },
+  { id: 423, testId: 9, content: '在团队中，你通常扮演什么角色？', type: 1, sortOrder: 3, options: [{ id: 4231, content: '领导者', score: 'E' }, { id: 4232, content: '跟随者', score: 'Q2' }] },
+  { id: 424, testId: 9, content: '你是一个幽默的人吗？', type: 1, sortOrder: 4, options: [{ id: 4241, content: '是', score: 'F' }, { id: 4242, content: '否', score: 'C' }] },
+  { id: 425, testId: 9, content: '你完成任务的风格是：', type: 1, sortOrder: 5, options: [{ id: 4251, content: '有恒负责', score: 'G' }, { id: 4252, content: '比较随性', score: 'Q3' }] },
+  { id: 426, testId: 9, content: '你在社交场合的表现是：', type: 1, sortOrder: 6, options: [{ id: 4261, content: '大胆自信', score: 'H' }, { id: 4262, content: '害羞谨慎', score: 'I' }] },
+  { id: 427, testId: 9, content: '你更看重：', type: 1, sortOrder: 7, options: [{ id: 4271, content: '情感和感受', score: 'I' }, { id: 4272, content: '逻辑和事实', score: 'L' }] },
+  { id: 428, testId: 9, content: '你对他人的信任程度是：', type: 1, sortOrder: 8, options: [{ id: 4281, content: '容易信任', score: 'L' }, { id: 4282, content: '持怀疑态度', score: 'N' }] },
+  { id: 429, testId: 9, content: '你的思维方式更倾向于：', type: 1, sortOrder: 9, options: [{ id: 4291, content: '富有想象', score: 'M' }, { id: 4292, content: '务实', score: 'C' }] },
+  { id: 430, testId: 9, content: '你处理事情的方式是：', type: 1, sortOrder: 10, options: [{ id: 4301, content: '精明老练', score: 'N' }, { id: 4302, content: '天真直率', score: 'O' }] },
+  { id: 431, testId: 9, content: '你经常担心吗？', type: 1, sortOrder: 11, options: [{ id: 4311, content: '是', score: 'O' }, { id: 4312, content: '否', score: 'Q4' }] },
+  { id: 432, testId: 9, content: '你愿意尝试新事物吗？', type: 1, sortOrder: 12, options: [{ id: 4321, content: '是', score: 'Q1' }, { id: 4322, content: '否', score: 'G' }] },
+  { id: 433, testId: 9, content: '你喜欢独自工作吗？', type: 1, sortOrder: 13, options: [{ id: 4331, content: '是', score: 'Q2' }, { id: 4332, content: '否', score: 'A' }] },
+  { id: 434, testId: 9, content: '你有多自律？', type: 1, sortOrder: 14, options: [{ id: 4341, content: '非常自律', score: 'Q3' }, { id: 4342, content: '比较随性', score: 'M' }] },
+  { id: 435, testId: 9, content: '你容易紧张吗？', type: 1, sortOrder: 15, options: [{ id: 4351, content: '是', score: 'Q4' }, { id: 4352, content: '否', score: 'C' }] },
+  { id: 436, testId: 9, content: '你对自己要求高吗？', type: 1, sortOrder: 16, options: [{ id: 4361, content: '是', score: 'G' }, { id: 4362, content: '否', score: 'Q3' }] },
+  { id: 437, testId: 9, content: '你喜欢户外运动吗？', type: 1, sortOrder: 17, options: [{ id: 4371, content: '是', score: 'H' }, { id: 4372, content: '否', score: 'I' }] },
+  { id: 438, testId: 9, content: '你经常改变计划吗？', type: 1, sortOrder: 18, options: [{ id: 4381, content: '是', score: 'Q1' }, { id: 4382, content: '否', score: 'G' }] },
+  { id: 439, testId: 9, content: '你容易适应新环境吗？', type: 1, sortOrder: 19, options: [{ id: 4391, content: '是', score: 'C' }, { id: 4392, content: '否', score: 'O' }] },
+  { id: 440, testId: 9, content: '你喜欢规划未来吗？', type: 1, sortOrder: 20, options: [{ id: 4401, content: '是', score: 'J' }, { id: 4402, content: '否', score: 'M' }] },
+  { id: 441, testId: 10, content: '你喜欢机械或电子设备吗？', type: 1, sortOrder: 1, options: [{ id: 4411, content: '是', score: 'R' }, { id: 4412, content: '否', score: 'S' }] },
+  { id: 442, testId: 10, content: '你喜欢进行科学实验吗？', type: 1, sortOrder: 2, options: [{ id: 4421, content: '是', score: 'I' }, { id: 4422, content: '否', score: 'E' }] },
+  { id: 443, testId: 10, content: '你擅长绘画或设计吗？', type: 1, sortOrder: 3, options: [{ id: 4431, content: '是', score: 'A' }, { id: 4432, content: '否', score: 'C' }] },
+  { id: 444, testId: 10, content: '你喜欢帮助他人解决问题吗？', type: 1, sortOrder: 4, options: [{ id: 4441, content: '是', score: 'S' }, { id: 4442, content: '否', score: 'R' }] },
+  { id: 445, testId: 10, content: '你喜欢组织和规划活动吗？', type: 1, sortOrder: 5, options: [{ id: 4451, content: '是', score: 'E' }, { id: 4452, content: '否', score: 'I' }] },
+  { id: 446, testId: 10, content: '你擅长处理数据吗？', type: 1, sortOrder: 6, options: [{ id: 4461, content: '是', score: 'C' }, { id: 4462, content: '否', score: 'A' }] },
+  { id: 447, testId: 10, content: '你喜欢户外工作吗？', type: 1, sortOrder: 7, options: [{ id: 4471, content: '是', score: 'R' }, { id: 4472, content: '否', score: 'I' }] },
+  { id: 448, testId: 10, content: '你喜欢阅读科学书籍吗？', type: 1, sortOrder: 8, options: [{ id: 4481, content: '是', score: 'I' }, { id: 4482, content: '否', score: 'E' }] },
+  { id: 449, testId: 10, content: '你擅长创意写作吗？', type: 1, sortOrder: 9, options: [{ id: 4491, content: '是', score: 'A' }, { id: 4492, content: '否', score: 'C' }] },
+  { id: 450, testId: 10, content: '你喜欢教学或培训他人吗？', type: 1, sortOrder: 10, options: [{ id: 4501, content: '是', score: 'S' }, { id: 4502, content: '否', score: 'R' }] },
+  { id: 451, testId: 10, content: '你喜欢销售或说服他人吗？', type: 1, sortOrder: 11, options: [{ id: 4511, content: '是', score: 'E' }, { id: 4512, content: '否', score: 'I' }] },
+  { id: 452, testId: 10, content: '你擅长会计或财务管理吗？', type: 1, sortOrder: 12, options: [{ id: 4521, content: '是', score: 'C' }, { id: 4522, content: '否', score: 'A' }] },
+  { id: 453, testId: 10, content: '你喜欢修理东西吗？', type: 1, sortOrder: 13, options: [{ id: 4531, content: '是', score: 'R' }, { id: 4532, content: '否', score: 'S' }] },
+  { id: 454, testId: 10, content: '你喜欢分析问题吗？', type: 1, sortOrder: 14, options: [{ id: 4541, content: '是', score: 'I' }, { id: 4542, content: '否', score: 'E' }] },
+  { id: 455, testId: 10, content: '你喜欢表演或展示吗？', type: 1, sortOrder: 15, options: [{ id: 4551, content: '是', score: 'A' }, { id: 4552, content: '否', score: 'C' }] },
+  { id: 456, testId: 10, content: '你喜欢照顾他人吗？', type: 1, sortOrder: 16, options: [{ id: 4561, content: '是', score: 'S' }, { id: 4562, content: '否', score: 'R' }] },
+  { id: 457, testId: 10, content: '你喜欢领导团队吗？', type: 1, sortOrder: 17, options: [{ id: 4571, content: '是', score: 'E' }, { id: 4572, content: '否', score: 'I' }] },
+  { id: 458, testId: 10, content: '你喜欢遵循规则和程序吗？', type: 1, sortOrder: 18, options: [{ id: 4581, content: '是', score: 'C' }, { id: 4582, content: '否', score: 'A' }] },
+  { id: 459, testId: 11, content: '你更关注外部世界还是内心世界？', type: 1, sortOrder: 1, options: [{ id: 4591, content: '外部世界', score: 'E' }, { id: 4592, content: '内心世界', score: 'I' }] },
+  { id: 460, testId: 11, content: '你更容易注意到什么？', type: 1, sortOrder: 2, options: [{ id: 4601, content: '具体的事实和细节', score: 'S' }, { id: 4602, content: '可能性和想象', score: 'N' }] },
+  { id: 461, testId: 11, content: '做决定时，你更依赖什么？', type: 1, sortOrder: 3, options: [{ id: 4611, content: '逻辑和客观分析', score: 'T' }, { id: 4612, content: '情感和个人价值观', score: 'F' }] },
+  { id: 462, testId: 11, content: '你更喜欢什么样的生活方式？', type: 1, sortOrder: 4, options: [{ id: 4621, content: '有计划、有秩序', score: 'J' }, { id: 4622, content: '灵活、随性', score: 'P' }] },
+  { id: 463, testId: 11, content: '社交活动让你感到：', type: 1, sortOrder: 5, options: [{ id: 4631, content: '充满能量', score: 'E' }, { id: 4632, content: '消耗能量', score: 'I' }] },
+  { id: 464, testId: 11, content: '你更相信什么？', type: 1, sortOrder: 6, options: [{ id: 4641, content: '经验和事实', score: 'S' }, { id: 4642, content: '直觉和灵感', score: 'N' }] },
+  { id: 465, testId: 11, content: '你认为什么更重要？', type: 1, sortOrder: 7, options: [{ id: 4651, content: '客观真理', score: 'T' }, { id: 4652, content: '人文关怀', score: 'F' }] },
+  { id: 466, testId: 11, content: '你更喜欢：', type: 1, sortOrder: 8, options: [{ id: 4661, content: '决定并执行', score: 'J' }, { id: 4662, content: '保持开放', score: 'P' }] },
+  { id: 467, testId: 11, content: '你更喜欢什么样的工作环境？', type: 1, sortOrder: 9, options: [{ id: 4671, content: '与他人合作', score: 'E' }, { id: 4672, content: '独立工作', score: 'I' }] },
+  { id: 468, testId: 11, content: '学习新知识时，你倾向于：', type: 1, sortOrder: 10, options: [{ id: 4681, content: '从具体例子入手', score: 'S' }, { id: 4682, content: '先理解整体概念', score: 'N' }] },
+  { id: 469, testId: 11, content: '当与他人发生分歧时，你会：', type: 1, sortOrder: 11, options: [{ id: 4691, content: '分析对错', score: 'T' }, { id: 4692, content: '考虑对方感受', score: 'F' }] },
+  { id: 470, testId: 11, content: '你更喜欢：', type: 1, sortOrder: 12, options: [{ id: 4701, content: '按计划行事', score: 'J' }, { id: 4702, content: '随情况变化', score: 'P' }] },
+  { id: 471, testId: 11, content: '你通常从哪里获得能量？', type: 1, sortOrder: 13, options: [{ id: 4711, content: '与他人的互动', score: 'E' }, { id: 4712, content: '独处和反思', score: 'I' }] },
+  { id: 472, testId: 11, content: '你更容易被什么吸引？', type: 1, sortOrder: 14, options: [{ id: 4721, content: '现实可行的事物', score: 'S' }, { id: 4722, content: '富有创意的事物', score: 'N' }] },
+  { id: 473, testId: 11, content: '你如何评价一个人？', type: 1, sortOrder: 15, options: [{ id: 4731, content: '基于能力和成就', score: 'T' }, { id: 4732, content: '基于品德和善良', score: 'F' }] },
+  { id: 474, testId: 11, content: '你更喜欢的生活节奏是：', type: 1, sortOrder: 16, options: [{ id: 4741, content: '稳定有序', score: 'J' }, { id: 4742, content: '灵活多变', score: 'P' }] },
+  { id: 475, testId: 11, content: '在聚会中，你通常是：', type: 1, sortOrder: 17, options: [{ id: 4751, content: '主动与他人交谈', score: 'E' }, { id: 4752, content: '在一旁观察', score: 'I' }] },
+  { id: 476, testId: 11, content: '你更相信什么？', type: 1, sortOrder: 18, options: [{ id: 4761, content: '自己的感官体验', score: 'S' }, { id: 4762, content: '自己的第六感', score: 'N' }] },
+  { id: 477, testId: 11, content: '当需要做决定时，你更看重：', type: 1, sortOrder: 19, options: [{ id: 4771, content: '逻辑和一致性', score: 'T' }, { id: 4772, content: '和谐与共识', score: 'F' }] },
+  { id: 478, testId: 11, content: '你更喜欢：', type: 1, sortOrder: 20, options: [{ id: 4781, content: '确定的事情', score: 'J' }, { id: 4782, content: '新的可能性', score: 'P' }] }
+];
+
+const mbtiResults = [
+  {
+    id: 1,
+    testId: 1,
+    type: 'ENFJ',
+    name: '主人公型',
+    title: '你是温暖且有号召力的领导者',
+    analysis: '你是一个充满热情、善于表达的人。你具有很强的人际交往能力，能够真诚地关心他人，并激励他们实现共同的目标。你喜欢帮助他人发挥潜力，是天生的领导者。在团队中，你往往是凝聚人心的核心，能够带动大家的积极性。',
+    suggestion: '建议你在保持热情的同时，学会倾听不同的声音；在帮助他人的同时，也要关注自己的需求。尝试给自己一些独处的时间来反思和充电。',
+    strengths: '同理心、领导能力、沟通能力、理想主义',
+    careers: '教育、咨询、人力资源、公共服务、管理培训'
+  },
+  {
+    id: 2,
+    testId: 1,
+    type: 'ENFP',
+    name: '竞选者型',
+    title: '你是充满热情的创新者',
+    analysis: '你是一个自由、热情、富有想象力的人。你思维活跃，创意无限，总能看到各种可能性。你喜欢激励他人，享受当下的体验。你对任何事物都充满好奇，渴望探索未知的领域。',
+    suggestion: '建议你在保持热情的同时，学会专注于一件事并坚持到底。尝试制定具体的目标和计划，这会帮助你更好地实现梦想。',
+    strengths: '热情、想象力、创造力、社交能力',
+    careers: '创意行业、市场营销、咨询、写作、旅游'
+  },
+  {
+    id: 3,
+    testId: 1,
+    type: 'ENTJ',
+    name: '指挥官型',
+    title: '你是果断自信的领导者',
+    analysis: '你是一个天生具有领导才能的人。你思维敏捷，决策果断，善于从宏观角度分析问题。你对效率有很高的追求，喜欢制定战略计划并推动执行。你自信、有魄力，敢于承担风险和责任。',
+    suggestion: '建议你在追求目标的同时，多关注他人的感受和需求。学会倾听和包容不同的意见，会让你的领导力更加全面。',
+    strengths: '领导能力、决策力、战略思维、自信',
+    careers: '企业管理、创业、法律、投资、咨询'
+  },
+  {
+    id: 4,
+    testId: 1,
+    type: 'ENTP',
+    name: '辩论家型',
+    title: '你是聪明好奇的创新者',
+    analysis: '你是一个思维敏捷、好奇心强的人。你喜欢辩论和探讨各种观点，善于发现新的可能性。你思维灵活，能快速适应变化，但有时可能会因为兴趣太多而难以专注。你喜欢挑战传统，追求创新。',
+    suggestion: '建议你在探索新想法的同时，也要学会把一些想法落实到行动。适当的专注会让你的创新能力发挥更大的价值。',
+    strengths: '创新能力、适应性、好奇心、分析能力',
+    careers: '创业、咨询、研发、法律、金融分析'
+  },
+  {
+    id: 5,
+    testId: 1,
+    type: 'ESFJ',
+    name: '执政官型',
+    title: '你是热情友好的支持者',
+    analysis: '你是一个温暖、热情、善于社交的人。你非常在意他人的感受，喜欢照顾和帮助别人。你有很强的责任感，善于维护和谐的人际关系。你喜欢在人群中发挥影响力，是天生的组织者。',
+    suggestion: '建议你在照顾他人的同时，也要注意照顾自己的需求。学会说"不"，给自己一些独处的时间。',
+    strengths: '社交能力、同理心、责任感、组织能力',
+    careers: '教育、医疗、人力资源、销售、行政'
+  },
+  {
+    id: 6,
+    testId: 1,
+    type: 'ESFP',
+    name: '表演者型',
+    title: '你是热情洋溢的活力源泉',
+    analysis: '你是一个充满活力、热爱生活的人。你喜欢与人交往，享受当下的每一刻。你善于观察他人，能够轻松适应各种环境和情境。你是派对的灵魂人物，总能带动气氛。',
+    suggestion: '建议你在享受当下的同时，也为未来做一些规划。适当的规划会让你的生活更加稳定，也能更好地实现你的目标。',
+    strengths: '热情、适应力、社交能力、乐观',
+    careers: '表演艺术、销售、公关、旅游、教育'
+  },
+  {
+    id: 7,
+    testId: 1,
+    type: 'ESTJ',
+    name: '总经理型',
+    title: '你是天生的管理者和组织者',
+    analysis: '你是一个务实、有条理、逻辑清晰的人。你善于组织和管理，擅长处理具体的事务和细节。你重视传统和规则，在稳定的环境中能发挥最大的能力。你做事果断，有很强的执行力。',
+    suggestion: '建议你在保持条理的同时，也尝试接受一些变化和不确定性。学会理解和包容不同的观点，会让你的领导能力更加全面。',
+    strengths: '组织能力、责任感、务实、可靠',
+    careers: '管理岗位、行政、金融、法律、军事'
+  },
+  {
+    id: 8,
+    testId: 1,
+    type: 'ESTP',
+    name: '企业家型',
+    title: '你是行动派的冒险家',
+    analysis: '你是一个务实、灵活、喜欢冒险的人。你善于把握机会，能够在压力下保持冷静。你喜欢动手实践，通过尝试和犯错来学习。你享受刺激和挑战，生活态度积极。',
+    suggestion: '建议你在追求刺激的同时，也要考虑长远的后果。尝试在行动前做一些规划，这会让你更好地把握机会。',
+    strengths: '行动力、务实、危机处理能力、社交能力',
+    careers: '创业、销售、体育、金融、执法'
+  },
+  {
+    id: 9,
+    testId: 1,
+    type: 'INFJ',
+    name: '提倡者型',
+    title: '你是富有洞察力的理想主义者',
+    analysis: '你是一个思维深刻、富有洞察力的人。你有强烈的价值观和理想，对帮助他人充满热情。你善于理解他人的感受和动机，能够预见问题并提出创新的解决方案。你安静但有影响力。',
+    suggestion: '建议你在追求理想的同时，也要学会接受现实的不完美。适当放松对自己的要求，给自己一些时间来享受生活。',
+    strengths: '洞察力、创造力、理想主义、同理心',
+    careers: '咨询、艺术、心理学、写作、社会工作'
+  },
+  {
+    id: 10,
+    testId: 1,
+    type: 'INFP',
+    name: '调停者型',
+    title: '你是理想主义的思想家',
+    analysis: '你是一个浪漫、理想化、富有同理心的人。你重视内心的价值观，追求真实的自我表达。你善于理解他人的情感和动机，是很好的倾听者。你富有想象力和创造力，喜欢探索可能性。',
+    suggestion: '建议你在坚持理想的同时，也要学会面对现实中的困难。尝试表达自己的想法和感受，这会让你获得更多的支持。',
+    strengths: '同理心、创造力、理想主义、适应性',
+    careers: '写作、艺术、咨询、心理、教育'
+  },
+  {
+    id: 11,
+    testId: 1,
+    type: 'INTJ',
+    name: '建筑师型',
+    title: '你是独立思考的战略家',
+    analysis: '你是一个思维敏捷、逻辑性强的人。你善于制定长期战略，追求完美和效率。你独立思考，有自己的主见，不轻易受他人影响。你对知识有强烈的渴求，喜欢在专业领域深入钻研。',
+    suggestion: '建议你在追求完美的同时，也要学会欣赏他人的贡献。尝试更多地表达赞赏和感谢，这会让你的人际关系更加和谐。',
+    strengths: '战略思维、分析能力、独立性、智慧',
+    careers: '科研、技术、金融、战略咨询、法律'
+  },
+  {
+    id: 12,
+    testId: 1,
+    type: 'INTP',
+    name: '逻辑学家型',
+    title: '你是热爱思考的探索者',
+    analysis: '你是一个热爱思考、追求真理的人。你对逻辑和理论充满兴趣，善于分析和解决复杂问题。你喜欢独立工作，在学术和技术领域往往有很好的发展。你思维敏捷，喜欢探索新概念。',
+    suggestion: '建议你在享受思考的同时，也尝试将想法付诸实践。学会与他人分享你的见解，会让你的思想产生更大的影响。',
+    strengths: '分析能力、创造力、逻辑性、独立思考',
+    careers: '科学研究、软件开发、数学、哲学、写作'
+  },
+  {
+    id: 13,
+    testId: 1,
+    type: 'ISFJ',
+    name: '守卫者型',
+    title: '你是温暖而可靠的守护者',
+    analysis: '你是一个安静、友好、有责任感的人。你非常关心他人的感受，乐于助人，在人际关系中常常扮演支持者的角色。你做事认真，注重细节，是值得信赖的伙伴。你重视传统和承诺。',
+    suggestion: '建议你在照顾他人的同时，也要注意照顾自己的需求。学会为自己设定边界，才能更好地为他人提供支持。',
+    strengths: '关心他人、可靠、细心、忠诚',
+    careers: '医疗、教育、社工、行政、护理'
+  },
+  {
+    id: 14,
+    testId: 1,
+    type: 'ISFP',
+    name: '探险家型',
+    title: '你是温和而富有创造力的艺术家',
+    analysis: '你是一个温和、敏感、富有创造力的人。你热爱美和自然，喜欢用自己的方式表达内心的感受。你做事灵活，善于适应，但有时可能会回避冲突。你享受当下的体验，追求内心的平静。',
+    suggestion: '建议你在保持和谐的同时，也要学会表达自己的真实想法和需求。适当的自我表达会让你获得更多的理解和支持。',
+    strengths: '创造力、审美、灵活性、同理心',
+    careers: '艺术、设计、自然科学、健康护理、手工艺'
+  },
+  {
+    id: 15,
+    testId: 1,
+    type: 'ISTJ',
+    name: '物流师型',
+    title: '你是踏实可靠的责任承担者',
+    analysis: '你是一个务实、可靠、有责任感的人。你做事认真，注重细节，善于组织和管理。你重视规则和传统，承诺的事情一定会做到。你是值得信赖的伙伴，在团队中往往是可靠的后盾。',
+    suggestion: '建议你在保持可靠性的同时，也要学会灵活变通。尝试接受新的想法和方法，这会让你在变化的环境中更具适应性。',
+    strengths: '可靠性、责任感、有条理、诚信',
+    careers: '管理、行政、财务、法律、医学'
+  },
+  {
+    id: 16,
+    testId: 1,
+    type: 'ISTP',
+    name: '鉴赏家型',
+    title: '你是实用主义的冒险家',
+    analysis: '你是一个冷静、理性、喜欢动手操作的人。你善于分析问题，找出实际的解决方案。你喜欢探索事物的运作原理，对机械和科技有浓厚的兴趣。你在危机时刻能够保持冷静。',
+    suggestion: '建议你在追求独立的同时，也要关注他人的感受和需求。尝试与他人建立更深层次的连接，这会让你的生活更加丰富。',
+    strengths: '分析能力、动手能力、冷静、务实',
+    careers: '工程、技术、机械、航空、医疗'
+  }
+];
+
+const phq9Results = [
+  {
+    id: 20,
+    testId: 2,
+    minScore: 0,
+    maxScore: 4,
+    title: '抑郁症状：无',
+    analysis: '根据您的回答，您目前没有明显的抑郁症状。您的心理状态整体是健康的。',
+    suggestion: '继续保持良好的生活习惯，注意工作生活平衡，多做自己喜欢的事情。定期关注自己的心理健康，有需要时可以做一些放松活动。'
+  },
+  {
+    id: 21,
+    testId: 2,
+    minScore: 5,
+    maxScore: 9,
+    title: '抑郁症状：轻度',
+    analysis: '根据您的回答，您目前有轻微的抑郁症状，但整体可控。这些症状可能会影响您的心情，但不至于严重影响日常生活。',
+    suggestion: '建议您保持规律的作息，适当增加运动和社交活动。如果症状持续或加重，建议寻求专业的心理咨询。'
+  },
+  {
+    id: 22,
+    testId: 2,
+    minScore: 10,
+    maxScore: 14,
+    title: '抑郁症状：中度',
+    analysis: '根据您的回答，您目前表现出中等程度的抑郁症状。这些症状可能会影响您的工作和社交，需要引起重视。',
+    suggestion: '建议您尽快寻求专业的心理咨询或治疗。同时，保持规律的作息，适度的运动，与信任的人交流感受。'
+  },
+  {
+    id: 23,
+    testId: 2,
+    minScore: 15,
+    maxScore: 19,
+    title: '抑郁症状：中重度',
+    analysis: '根据您的回答，您目前表现出较严重的抑郁症状。这些症状已经明显影响到您的日常生活和工作。',
+    suggestion: '强烈建议您尽快寻求专业的心理或精神科医生的帮助。您的症状可能需要专业的治疗，包括心理咨询或药物治疗。'
+  },
+  {
+    id: 24,
+    testId: 2,
+    minScore: 20,
+    maxScore: 27,
+    title: '抑郁症状：重度',
+    analysis: '根据您的回答，您目前表现出严重的抑郁症状。这些症状已经严重影响到您的日常生活和工作，需要立即寻求专业帮助。',
+    suggestion: '请立即联系专业的心理或精神科医生。您的症状可能需要药物治疗和心理治疗相结合的方式。在此期间，请确保身边有人陪伴，注意自己的安全。'
+  }
+];
+
+const funResults = [
+  {
+    id: 30,
+    testId: 3,
+    type: 'A',
+    name: '社交型',
+    title: '你是天生的人际连接者',
+    analysis: '你是一个热情、友好、喜欢与人交往的人。你善于交朋友，在社交场合如鱼得水。你喜欢帮助他人，是朋友中的"润滑剂"。你的存在让周围的人感到温暖和快乐。',
+    suggestion: '建议你在享受社交的同时，也学会享受独处。给自己一些安静的时间来反思和充电，这会让你更好地平衡社交需求和个人成长。'
+  },
+  {
+    id: 31,
+    testId: 3,
+    type: 'B',
+    name: '思考型',
+    title: '你是深度的思考者',
+    analysis: '你是一个理性、好奇、喜欢钻研的人。你善于分析问题，追求逻辑和真相。你喜欢学习新知识，在思想的海洋中探索是你的乐趣。',
+    suggestion: '建议你在思考的同时，也多关注情感和人际关系。将你的思考分享给他人，会让你收获更多理解和共鸣。'
+  },
+  {
+    id: 32,
+    testId: 3,
+    type: 'C',
+    name: '计划型',
+    title: '你是天生的组织者',
+    analysis: '你是一个务实、有条理、喜欢计划的人。你善于管理时间和资源，追求效率和秩序。你做事稳重可靠，是朋友和同事可以依赖的对象。',
+    suggestion: '建议你在计划的同时，也学会灵活应变。有时候随性而为可能会有意想不到的收获，尝试接受一些不确定性。'
+  },
+  {
+    id: 33,
+    testId: 3,
+    type: 'D',
+    name: '自由型',
+    title: '你是自由的灵魂',
+    analysis: '你是一个随性、自由、富有创意的人。你不喜欢被束缚，追求心灵的解放。你有独特的审美和创造力，喜欢按照自己的节奏生活。',
+    suggestion: '建议你在追求自由的同时，也要学会承担责任。有时候一些约束是必要的，这能帮助你更好地实现自己的目标。'
+  }
+];
+
+const enneagramResults = [
+  {
+    id: 40,
+    testId: 4,
+    type: '1',
+    name: '完美型',
+    title: '你是追求卓越的改革者',
+    analysis: '你是一个有原则、有理想的人。你对自己和他人都有很高的期望，追求完美和正确。你善于发现问题并提出改进建议，是天然的改革者。你有强烈的道德感，诚实正直。',
+    suggestion: '建议你对他人多一份宽容，接受"不完美"也可以是美好的。学会放松对自己的严格要求，给自己犯错的空间。'
+  },
+  {
+    id: 41,
+    testId: 4,
+    type: '2',
+    name: '助人型',
+    title: '你是温暖体贴的给予者',
+    analysis: '你是一个热情、无私、善于关心他人的人。你喜欢帮助别人，从中获得价值感和归属感。你有强烈的同理心，能够敏锐地察觉他人的需求。是朋友和家人最信赖的依靠。',
+    suggestion: '建议你在帮助他人的同时，也要关注自己的需求。学会说"不"，避免过度付出导致倦怠。'
+  },
+  {
+    id: 42,
+    testId: 4,
+    type: '3',
+    name: '成就型',
+    title: '你是充满动力的成功追求者',
+    analysis: '你是一个有目标、有竞争力、渴望成功的人。你适应力强，善于变通，总能达成目标。你喜欢被认可和赞赏，追求卓越表现。是职场上的佼佼者。',
+    suggestion: '建议你在追求成功的同时，也要反思自己真正想要的是什么。学会欣赏过程而非仅仅关注结果。'
+  },
+  {
+    id: 43,
+    testId: 4,
+    type: '4',
+    name: '自我型',
+    title: '你是独特而富有创意的梦想家',
+    analysis: '你是一个敏感、富有想象力、追求独特的人。你关注内心深处的情感，渴望真实和自我表达。你有艺术气质，善于发现生活中的美和深度。',
+    suggestion: '建议你在追求独特的同时，也尝试融入群体。学会欣赏平凡中的不平凡。'
+  },
+  {
+    id: 44,
+    testId: 4,
+    type: '5',
+    name: '探索型',
+    title: '你是深邃的观察者和思考者',
+    analysis: '你是一个理性、好奇、渴望知识的人。你喜欢深入研究，理解事物的本质。你独立自主，不需要太多社交。善于分析和解决问题。',
+    suggestion: '建议你在追求知识的同时，也注重人际交往和情感表达。将你的见解分享给他人，会产生更大的价值。'
+  },
+  {
+    id: 45,
+    testId: 4,
+    type: '6',
+    name: '忠诚型',
+    title: '你是值得信赖的守护者',
+    analysis: '你是一个忠诚、负责任、有安全感的人。你善于预见风险，保持警惕。你遵守承诺，是朋友和团队中最可靠的成员。你重视归属感和安全保障。',
+    suggestion: '建议你在保持警惕的同时，也学会信任他人。尝试接受不确定性，培养内心的安全感。'
+  },
+  {
+    id: 46,
+    testId: 4,
+    type: '7',
+    name: '享乐型',
+    title: '你是乐观积极的冒险家',
+    analysis: '你是一个热情、乐观、热爱生活的人。你喜欢新鲜事物，追求快乐和自由。你有丰富的想象力，善于发现机会。总能给周围的人带来正能量。',
+    suggestion: '建议你在追求快乐的同时，也学会面对困难和承诺。尝试专注于一件事，避免过度分散精力。'
+  },
+  {
+    id: 47,
+    testId: 4,
+    type: '8',
+    name: '领袖型',
+    title: '你是强势而保护型的支配者',
+    analysis: '你是一个自信、果断、有影响力的人。你喜欢掌控局面，保护弱势群体。你有强大的意志力，敢于面对挑战和冲突。是天生的领导者和保护者。',
+    suggestion: '建议你在展现力量的同时，也学会倾听他人的声音。尝试柔和一些，接受他人的帮助。'
+  },
+  {
+    id: 48,
+    testId: 4,
+    type: '9',
+    name: '和平型',
+    title: '你是温和友善的和平缔造者',
+    analysis: '你是一个平静、和善、富有同理心的人。你善于调解冲突，维护和谐的人际关系。你有耐心，能够接纳不同的观点。是团队中的润滑剂。',
+    suggestion: '建议你在追求和平的同时，也要关注自己的需求和感受。学会表达不同的意见，不要总是迎合他人。'
+  }
+];
+
+const oceanResults = [
+  {
+    id: 50,
+    testId: 5,
+    minScore: 20,
+    maxScore: 25,
+    dimension: 'E',
+    title: '外向性：极强外向',
+    analysis: '你是一个极度外向的人，喜欢与人交往，充满活力。你喜欢成为关注的中心，善于社交，容易结交新朋友。在群体活动中你会感到更加兴奋和有动力。',
+    suggestion: '尝试给自己一些独处的时间，这有助于你更好地反思和成长。'
+  },
+  {
+    id: 51,
+    testId: 5,
+    minScore: 15,
+    maxScore: 19,
+    dimension: 'E',
+    title: '外向性：外向',
+    analysis: '你是一个外向的人，喜欢与人互动。你善于社交，喜欢参加聚会和活动。从与他人的交往中获得能量和动力。',
+    suggestion: '保持你活跃的社交生活，同时培养独处的能力。'
+  },
+  {
+    id: 52,
+    testId: 5,
+    minScore: 10,
+    maxScore: 14,
+    dimension: 'E',
+    title: '外向性：平衡',
+    analysis: '你是一个平衡型的人，既能享受社交也能享受独处。你会根据情境和个人状态灵活调整社交程度。',
+    suggestion: '继续保持这种平衡，了解什么时候需要社交，什么时候需要独处。'
+  },
+  {
+    id: 53,
+    testId: 5,
+    minScore: 5,
+    maxScore: 9,
+    dimension: 'E',
+    title: '外向性：内向',
+    analysis: '你是一个内向的人，更喜欢安静的环境和独处。你从内省和独处中获得能量，但也能在必要 时进行社交。',
+    suggestion: '尊重自己的内向倾向，同时适度参与社交活动。'
+  },
+  {
+    id: 54,
+    testId: 5,
+    minScore: 20,
+    maxScore: 25,
+    dimension: 'N',
+    title: '神经质：极低神经质',
+    analysis: '你是一个情绪非常稳定的人，很少感到焦虑或情绪波动。你能很好地应对压力，保持冷静和理性。',
+    suggestion: '你的情绪稳定性是你的优势，但也注意关注自己和他人的情感需求。'
+  },
+  {
+    id: 55,
+    testId: 5,
+    minScore: 15,
+    maxScore: 19,
+    dimension: 'N',
+    title: '神经质：情绪稳定',
+    analysis: '你是一个情绪稳定的人，能较好地应对生活中的压力和挑战。虽然偶尔会感到焦虑，但总体上情绪波动不大。',
+    suggestion: '继续保持健康的生活方式，如运动和充足的睡眠。'
+  },
+  {
+    id: 56,
+    testId: 5,
+    minScore: 10,
+    maxScore: 14,
+    dimension: 'N',
+    title: '神经质：中等',
+    analysis: '你有一定的情绪波动，这是正常的心理反应。你会感到焦虑或沮丧，但能够通过各种方式调节自己的情绪。',
+    suggestion: '学习更多情绪管理技巧，如冥想或心理咨询。'
+  },
+  {
+    id: 57,
+    testId: 5,
+    minScore: 5,
+    maxScore: 9,
+    dimension: 'N',
+    title: '神经质：较高神经质',
+    analysis: '你比较敏感，容易感到焦虑和担忧。你可能会因为小事情而情绪波动，但你的敏感也让你更有同理心。',
+    suggestion: '建议学习放松技巧，如深呼吸和正念冥想。必要时寻求专业帮助。'
+  },
+  {
+    id: 58,
+    testId: 5,
+    minScore: 20,
+    maxScore: 25,
+    dimension: 'O',
+    title: '开放性：极高开放性',
+    analysis: '你是一个极具想象力和好奇心的人。你喜欢新事物和复杂的想法，对艺术和文化有浓厚的兴趣。你思维开放，善于接受不同的观点。',
+    suggestion: '继续保持你的创造力和开放思维，将你的想象力转化为实际行动。'
+  },
+  {
+    id: 59,
+    testId: 5,
+    minScore: 15,
+    maxScore: 19,
+    dimension: 'O',
+    title: '开放性：高开放性',
+    analysis: '你是一个思维开放的人，喜欢探索新想法。你有丰富的想象力，对艺术和美学有一定的欣赏力。你愿意尝试新的体验和方法。',
+    suggestion: '继续培养你的创造力和好奇心，这会让你的生活更加丰富多彩。'
+  },
+  {
+    id: 60,
+    testId: 5,
+    minScore: 10,
+    maxScore: 14,
+    dimension: 'O',
+    title: '开放性：中等',
+    analysis: '你是一个平衡型的人，既脚踏实地又保持开放。你能够接受新想法，但也会考虑实际可行性。你的思维方式既有创意又务实。',
+    suggestion: '继续保持这种平衡，在创新和务实之间找到最佳点。'
+  },
+  {
+    id: 61,
+    testId: 5,
+    minScore: 5,
+    maxScore: 9,
+    dimension: 'O',
+    title: '开放性：传统',
+    analysis: '你是一个务实、传统的人，更喜欢熟悉的事物和方式。你注重实际效果，对新想法持谨慎态度。你的稳定性是你的一大优势。',
+    suggestion: '适度开放心态，尝试一些新事物可能会有惊喜。'
+  },
+  {
+    id: 62,
+    testId: 5,
+    minScore: 20,
+    maxScore: 25,
+    dimension: 'A',
+    title: '宜人性：极高宜人',
+    analysis: '你是一个非常有爱心、善解人意的人。你信任他人，乐于助人，总是愿意站在别人的角度思考问题。你是很好的倾听者和朋友。',
+    suggestion: '学会保护自己，不要过度付出。适度的自我保护是必要的。'
+  },
+  {
+    id: 63,
+    testId: 5,
+    minScore: 15,
+    maxScore: 19,
+    dimension: 'A',
+    title: '宜人性：高宜人',
+    analysis: '你是一个友善、体贴的人，有良好的合作精神。你关心他人，善于处理人际关系。是一个值得信赖的朋友和同事。',
+    suggestion: '继续保持你的善良，同时学会说"不"。'
+  },
+  {
+    id: 64,
+    testId: 5,
+    minScore: 10,
+    maxScore: 14,
+    dimension: 'A',
+    title: '宜人性：中等',
+    analysis: '你是一个平衡型的人，既有自己的原则也能体谅他人。你能够在坚持自己和理解他人之间找到平衡。',
+    suggestion: '继续培养你的同理心，同时保持自己的原则。'
+  },
+  {
+    id: 65,
+    testId: 5,
+    minScore: 5,
+    maxScore: 9,
+    dimension: 'A',
+    title: '宜人性：独立',
+    analysis: '你是一个有主见、相对独立的人。你更注重实际利益，在人际交往中保持一定的距离。你的独立性是你的优势，但有时可能会显得冷漠。',
+    suggestion: '适度培养同理心，加强人际连接会让你的生活更加丰富。'
+  },
+  {
+    id: 66,
+    testId: 5,
+    minScore: 20,
+    maxScore: 25,
+    dimension: 'C',
+    title: '尽责性：极高尽责',
+    analysis: '你是一个极其负责任、有组织、有纪律的人。你工作勤奋，注重细节，总是按时完成任务。你是团队中最可靠的成员。',
+    suggestion: '学会放松，接受不完美。过度要求自己可能会导致压力过大。'
+  },
+  {
+    id: 67,
+    testId: 5,
+    minScore: 15,
+    maxScore: 19,
+    dimension: 'C',
+    title: '尽责性：高尽责',
+    analysis: '你是一个有责任心、有条理的人。你能够自律，完成自己的承诺。你注重工作效率和质量，是可靠的合作伙伴。',
+    suggestion: '继续保持你的责任感，同时注意工作生活平衡。'
+  },
+  {
+    id: 68,
+    testId: 5,
+    minScore: 10,
+    maxScore: 14,
+    dimension: 'C',
+    title: '尽责性：中等',
+    analysis: '你是一个平衡型的人，既有责任感又能灵活变通。你能够完成任务，但在时间管理上还有提升空间。',
+    suggestion: '尝试使用一些时间管理工具，提高工作效率。'
+  },
+  {
+    id: 69,
+    testId: 5,
+    minScore: 5,
+    maxScore: 9,
+    dimension: 'C',
+    title: '尽责性：随意',
+    analysis: '你是一个相对随意、灵活的人。你不喜欢被束缚，更喜欢自由地安排自己的时间和生活。你的适应能力很强。',
+    suggestion: '适度培养责任感和条理性，这有助于你在生活和工作中取得更大的成就。'
+  }
+];
+
+const discResults = [
+  {
+    id: 70,
+    testId: 6,
+    type: 'D',
+    name: '支配型（领袖型）',
+    title: '你是一个敢于行动的领导者',
+    analysis: '你是一个有魄力、有决心、喜欢掌控局面的人。你果断直接，追求结果，不怕面对困难和冲突。你是天生的领导者，善于激励和推动他人。',
+    suggestion: '建议你在展现领导力的同时，也学会倾听他人的意见。多关注团队成员的情绪和需求，你的独断可能会让一些人感到压力。学会适当放权，会让你的团队更加高效。',
+    strengths: '自信、果断、领导力、执行力、决策力',
+    careers: '企业管理、创业、销售、执法、政治'
+  },
+  {
+    id: 71,
+    testId: 6,
+    type: 'I',
+    name: '影响型（社交型）',
+    title: '你是富有感染力的激励者',
+    analysis: '你是一个热情、外向、善于交际的人。你喜欢成为关注的中心，善于用言语和情感影响他人。你的乐观和热情能够感染周围的人，是天生的激励者。',
+    suggestion: '建议你在发挥影响力的同时，也要学会倾听和专注。在表达想法之前先理解他人的立场，学会接受建设性的批评。',
+    strengths: '沟通能力、热情、影响力、乐观、人际交往',
+    careers: '销售、市场营销、公关、教育、演艺'
+  },
+  {
+    id: 72,
+    testId: 6,
+    type: 'S',
+    name: '稳定型（支持型）',
+    title: '你是值得信赖的守护者',
+    analysis: '你是一个忠诚、可靠、有耐心的人。你重视稳定和安全感，善于支持他人。你做事踏实，注重细节，是团队中不可或缺的力量。你温和友善，人际关系和谐。',
+    suggestion: '建议你在保持稳定性的同时，也勇于表达自己的观点和需求。学会说"不"，不要总是牺牲自己来满足他人。尝试接受变化，这会让你更加适应环境。',
+    strengths: '忠诚、可靠、耐心、稳定、支持力',
+    careers: '行政、人力资源、医疗、教育、社会工作'
+  },
+  {
+    id: 73,
+    testId: 6,
+    type: 'C',
+    name: '谨慎型（分析型）',
+    title: '你是精确严谨的专业人士',
+    analysis: '你是一个精确、有条理、注重细节的人。你善于分析问题，追求准确性和完美。你做事谨慎，注重规则和流程，是质量控制方面的专家。你的逻辑思维能力强。',
+    suggestion: '建议你在追求精确的同时，也要学会灵活变通。过度追求完美可能会影响效率，有时候"足够好"就足够了。学会信任他人的工作，不要事事亲力亲为。',
+    strengths: '精确、有条理、分析能力、专业、严谨',
+    careers: '会计、金融、技术、法律、科研'
+  }
+];
+
+const pdpResults = [
+  {
+    id: 80,
+    testId: 7,
+    type: '老虎',
+    name: '支配型老虎',
+    title: '你是有魄力的领袖者',
+    analysis: '你是一个充满自信、敢于冒险、追求成就的人。你有强烈的领导欲望，喜欢掌控局面和做决策。你直接果断，行动迅速，是天生的领袖者。你喜欢挑战，享受竞争带来的刺激。',
+    suggestion: '建议你在发挥领导力的同时，也要学会倾听团队成员的声音。尝试控制自己的急躁情绪，给自己和他人更多耐心。学会授权，不要事事亲力亲为。',
+    strengths: '自信、果断、领导力、行动力、竞争力',
+    careers: '企业管理、创业、投资、执法、政治'
+  },
+  {
+    id: 81,
+    testId: 7,
+    type: '孔雀',
+    name: '表达型孔雀',
+    title: '你是魅力四射的社交明星',
+    analysis: '你是一个热情洋溢、善于表达、喜欢成为焦点的人。你有很强的交际能力，能够轻松地与他人建立联系。你的乐观和幽默感染着周围的人，是派对的灵魂和团队的润滑剂。',
+    suggestion: '建议你在发挥社交天赋的同时，也要学会专注和倾听。在表达之前先理解情况，不要急于表现。学会接受他人的反馈和建议。',
+    strengths: '沟通能力、热情、影响力、乐观、社交技巧',
+    careers: '销售、市场营销、公关、演艺、教育'
+  },
+  {
+    id: 82,
+    testId: 7,
+    type: '考拉',
+    name: '耐心型考拉',
+    title: '你是温暖可靠的守护者',
+    analysis: '你是一个忠诚、可靠、有耐心的人。你重视稳定和安全感，善于支持他人。你做事踏实稳定，注重承诺，是团队中最可信赖的成员。你温和友善，擅长维护和谐的人际关系。',
+    suggestion: '建议你在保持耐心的同时，也要勇于表达自己的需求和观点。学会说"不"，不要总是牺牲自己来维持和平。尝试接受变化和挑战，这会让你成长。',
+    strengths: '忠诚、可靠、耐心、稳定、善解人意',
+    careers: '行政、人力资源、医疗、教育、社工'
+  },
+  {
+    id: 83,
+    testId: 7,
+    type: '猫头鹰',
+    name: '精确型猫头鹰',
+    title: '你是严谨细致的专业者',
+    analysis: '你是一个精确、有条理、追求完美的人。你善于分析问题，注重细节和质量。你做事谨慎，认真负责，不喜欢冒险。你是天生的问题解决者，擅长用逻辑和数据解决问题。',
+    suggestion: '建议你在追求精确的同时，也要学会灵活变通。过度追求完美可能会导致拖延和压力。尝试放松标准，接受"足够好"的解决方案。学会信任他人的判断。',
+    strengths: '精确、有条理、分析力、专业、严谨',
+    careers: '会计、金融、技术、法律、科研、医疗'
+  }
+];
+
+const epqResults = [
+  {
+    id: 90,
+    testId: 8,
+    type: 'E',
+    name: '外向型',
+    title: '你是典型外向型人格',
+    analysis: '你是一个外向、开朗、善于社交的人。你喜欢与人交往，在群体活动中充满活力。你倾向于关注外部世界，容易适应新环境。',
+    suggestion: '继续保持你活跃的社交生活，但也要学会享受独处的时间来反思和充电。'
+  },
+  {
+    id: 91,
+    testId: 8,
+    type: 'I',
+    name: '内向型',
+    title: '你是典型内向型人格',
+    analysis: '你是一个内敛、沉静、善于思考的人。你喜欢独处，在小圈子中更自在。你倾向于关注内心世界，有丰富的内心生活。',
+    suggestion: '尊重你的内向倾向，但也不要完全回避社交，适当的社交有助于拓展视野。'
+  },
+  {
+    id: 92,
+    testId: 8,
+    type: 'N',
+    name: '情绪稳定型',
+    title: '你情绪稳定，心态平和',
+    analysis: '你是一个情绪稳定、不易焦虑的人。你能够较好地应对压力，保持冷静和理性。',
+    suggestion: '你的情绪稳定性是你的优势，但也注意关注自己和他人的情感需求。'
+  },
+  {
+    id: 93,
+    testId: 8,
+    type: 'P',
+    name: '精神质偏高',
+    title: '你可能有一些精神质特征',
+    analysis: '你可能比较独立、有创意，但也可能表现出一些固执或不合群的特点。',
+    suggestion: '建议发展同理心，学会理解他人的感受和观点。'
+  }
+];
+
+const sixteenPFResults = [
+  {
+    id: 100,
+    testId: 9,
+    type: 'A',
+    name: '乐群性',
+    score: 'high',
+    title: '你热情外向，乐于社交',
+    analysis: '你开朗、友好、善于与人交往。你喜欢参与社交活动，容易与人建立联系。',
+    suggestion: '你的社交能力是你的优势，但也要学会在必要时独处思考。'
+  },
+  {
+    id: 101,
+    testId: 9,
+    type: 'C',
+    name: '稳定性',
+    score: 'high',
+    title: '你情绪稳定，适应力强',
+    analysis: '你情绪稳定，能够冷静面对压力和挑战。你有较强的自我控制能力。',
+    suggestion: '继续保持这种稳定性，但也要关注他人的情感需求。'
+  },
+  {
+    id: 102,
+    testId: 9,
+    type: 'E',
+    name: '恃强性',
+    score: 'high',
+    title: '你自信独立，有主见',
+    analysis: '你自信、有主见，喜欢指挥和领导。你有较强的竞争意识和成就动机。',
+    suggestion: '建议在发挥领导力的同时，也要倾听他人的意见。'
+  },
+  {
+    id: 103,
+    testId: 9,
+    type: 'F',
+    name: '活泼性',
+    score: 'high',
+    title: '你轻松愉快，乐观开朗',
+    analysis: '你乐观、轻松、有幽默感。你喜欢社交场合，乐于与人交流。',
+    suggestion: '你的乐观态度有助于团队氛围，但也要学会处理严肃事务。'
+  },
+  {
+    id: 104,
+    testId: 9,
+    type: 'G',
+    name: '有恒性',
+    score: 'high',
+    title: '你责任心强，有恒负责',
+    analysis: '你责任心强，做事有始有终。你遵守规则，重视承诺。',
+    suggestion: '继续保持你的责任感，但也要学会灵活变通。'
+  },
+  {
+    id: 105,
+    testId: 9,
+    type: 'H',
+    name: '敢为性',
+    score: 'high',
+    title: '你冒险敢为，勇敢果断',
+    analysis: '你大胆、勇敢、敢于冒险。你在社交场合能够自如表现。',
+    suggestion: '你的勇气是你的优势，但要在行动前考虑后果。'
+  },
+  {
+    id: 106,
+    testId: 9,
+    type: 'I',
+    name: '敏感性',
+    score: 'high',
+    title: '你敏感细腻，富有同理心',
+    analysis: '你敏感、富有想象力，有较强的同理心。你重视情感和审美体验。',
+    suggestion: '你的敏感性是你的优势，但也要学会处理批评和挫折。'
+  },
+  {
+    id: 107,
+    testId: 9,
+    type: 'L',
+    name: '怀疑性',
+    score: 'low',
+    title: '你信任他人，易于相处',
+    analysis: '你信任他人，善于与人和谐相处。你不太怀疑别人的动机。',
+    suggestion: '你的信任态度有助于建立良好关系，但也要保持适度的警惕。'
+  },
+  {
+    id: 108,
+    testId: 9,
+    type: 'M',
+    name: '幻想性',
+    score: 'high',
+    title: '你富有想象，创意无限',
+    analysis: '你富有想象力，思维活跃，有创意。你不满足于现状，喜欢探索可能性。',
+    suggestion: '你的想象力是你的优势，但也要注重实际行动。'
+  },
+  {
+    id: 109,
+    testId: 9,
+    type: 'N',
+    name: '世故性',
+    score: 'high',
+    title: '你精明世故，洞察人心',
+    analysis: '你精明、善于社交，能够客观分析问题。你了解人情世故，处理事务老练。',
+    suggestion: '你的世故有助于社交，但也要保持真诚和单纯。'
+  },
+  {
+    id: 110,
+    testId: 9,
+    type: 'O',
+    name: '忧虑性',
+    score: 'low',
+    title: '你冷静沉着，自信乐观',
+    analysis: '你冷静、自信、不易忧虑。你能够客观看待问题，不易受情绪影响。',
+    suggestion: '你的冷静是你的优势，但也要关注他人的担忧。'
+  },
+  {
+    id: 111,
+    testId: 9,
+    type: 'Q1',
+    name: '实验性',
+    score: 'high',
+    title: '你思想开放，勇于创新',
+    analysis: '你思想开放，喜欢尝试新事物。你不拘泥于传统，愿意接受新观念。',
+    suggestion: '你的开放思想有助于创新，但也要尊重传统和规则。'
+  },
+  {
+    id: 112,
+    testId: 9,
+    type: 'Q2',
+    name: '独立性',
+    score: 'high',
+    title: '你独立自主，自立自强',
+    analysis: '你独立、有主见，不依赖他人。你能够独立解决问题，做事果断。',
+    suggestion: '你的独立性是你的优势，但也要学会团队合作。'
+  },
+  {
+    id: 113,
+    testId: 9,
+    type: 'Q3',
+    name: '自律性',
+    score: 'high',
+    title: '你自律严谨，言行一致',
+    analysis: '你自律、有毅力，做事有计划。你能够控制自己的情绪和行为。',
+    suggestion: '继续保持你的自律，但也要学会放松和灵活。'
+  },
+  {
+    id: 114,
+    testId: 9,
+    type: 'Q4',
+    name: '紧张性',
+    score: 'low',
+    title: '你心态平和，从容不迫',
+    analysis: '你心态平和，不易紧张和焦虑。你能够冷静应对压力。',
+    suggestion: '你的从容是你的优势，但也要保持适度的紧迫感。'
+  }
+];
+
+const hollandResults = [
+  {
+    id: 120,
+    testId: 10,
+    type: 'R',
+    name: '现实型',
+    title: '你是务实的动手者',
+    analysis: '你是一个务实、动手能力强的人。你喜欢实际操作和具体的工作任务。你善于使用工具和机械，喜欢户外活动。',
+    suggestion: '建议选择技术性、操作性强的工作，如工程、技术、农业等。'
+  },
+  {
+    id: 121,
+    testId: 10,
+    type: 'I',
+    name: '研究型',
+    title: '你是爱思考的研究者',
+    analysis: '你是一个喜欢思考、善于分析的人。你对科学和学术研究有浓厚兴趣，喜欢解决复杂问题。',
+    suggestion: '建议选择研究型、学术型的工作，如科研、教育、技术开发等。'
+  },
+  {
+    id: 122,
+    testId: 10,
+    type: 'A',
+    name: '艺术型',
+    title: '你是富有创意的艺术家',
+    analysis: '你是一个富有想象力、追求个性的人。你对艺术和创意表达有浓厚兴趣，喜欢自由创作。',
+    suggestion: '建议选择艺术性、创意性的工作，如设计、艺术、写作、音乐等。'
+  },
+  {
+    id: 123,
+    testId: 10,
+    type: 'S',
+    name: '社会型',
+    title: '你是热心的服务者',
+    analysis: '你是一个热情、有同理心的人。你喜欢帮助他人，善于与人沟通和建立关系。',
+    suggestion: '建议选择服务型、教育型的工作，如教育、医疗、社会工作、人力资源等。'
+  },
+  {
+    id: 124,
+    testId: 10,
+    type: 'E',
+    name: '企业型',
+    title: '你是自信的领导者',
+    analysis: '你是一个有影响力、喜欢领导他人的人。你有较强的说服力和组织能力，追求成就和权力。',
+    suggestion: '建议选择管理型、销售型的工作，如企业管理、创业、销售、政治等。'
+  },
+  {
+    id: 125,
+    testId: 10,
+    type: 'C',
+    name: '常规型',
+    title: '你是严谨的执行者',
+    analysis: '你是一个务实、有条理、注重细节的人。你喜欢规范和秩序，擅长处理数据。',
+    suggestion: '建议选择事务型、规整型的工作，如财务、行政、法律、数据分析等。'
+  }
+];
+
+const jungResults = [
+  {
+    id: 130,
+    testId: 11,
+    type: 'INTJ',
+    name: '建筑师型',
+    title: '你是独立思考的战略家',
+    analysis: '你是一个思维敏捷、逻辑性强的人。你善于制定长期战略，追求完美和效率。你独立思考，有主见。',
+    suggestion: '建议选择需要战略思维和专业能力的领域，如科研、技术、金融等。'
+  },
+  {
+    id: 131,
+    testId: 11,
+    type: 'INTP',
+    name: '逻辑学家型',
+    title: '你是热爱思考的探索者',
+    analysis: '你是一个热爱思考、追求真理的人。你对逻辑和理论有浓厚兴趣，善于分析复杂问题。',
+    suggestion: '建议选择学术研究、技术开发等需要深度思考的领域。'
+  },
+  {
+    id: 132,
+    testId: 11,
+    type: 'ENTJ',
+    name: '指挥官型',
+    title: '你是果断自信的领导者',
+    analysis: '你是一个天生具有领导才能的人。你思维敏捷，决策果断，善于从宏观角度分析问题。',
+    suggestion: '建议选择管理、创业、法律等需要领导力的领域。'
+  },
+  {
+    id: 133,
+    testId: 11,
+    type: 'ENTP',
+    name: '辩论家型',
+    title: '你是聪明好奇的创新者',
+    analysis: '你是一个思维敏捷、好奇心强的人。你喜欢辩论和讨论各种观点，善于发现新的可能性。',
+    suggestion: '建议选择需要创新能力和沟通能力的领域，如咨询、创业等。'
+  },
+  {
+    id: 134,
+    testId: 11,
+    type: 'INFJ',
+    name: '提倡者型',
+    title: '你是富有洞察力的理想主义者',
+    analysis: '你是一个思维深刻、富有洞察力的人。你有强烈的价值观和理想，对帮助他人充满热情。',
+    suggestion: '建议选择心理咨询、社会工作、教育等帮助他人的领域。'
+  },
+  {
+    id: 135,
+    testId: 11,
+    type: 'INFP',
+    name: '调停者型',
+    title: '你是理想主义的思想家',
+    analysis: '你是一个浪漫、理想化、富有同理心的人。你重视内心的价值观，追求真实的自我表达。',
+    suggestion: '建议选择写作、艺术、咨询等需要创意和同理心的领域。'
+  },
+  {
+    id: 136,
+    testId: 11,
+    type: 'ENFJ',
+    name: '主人公型',
+    title: '你是温暖且有号召力的领导者',
+    analysis: '你是一个充满热情、善于表达的人。你有很强的人际交往能力，能够激励他人实现共同目标。',
+    suggestion: '建议选择教育、人力资源、公关等需要人际影响力的领域。'
+  },
+  {
+    id: 137,
+    testId: 11,
+    type: 'ENFP',
+    name: '竞选者型',
+    title: '你是充满热情的创新者',
+    analysis: '你是一个自由、热情、富有想象力的人。你思维活跃，创意无限，喜欢激励他人。',
+    suggestion: '建议选择市场营销、创意行业、旅游等需要热情和创意的领域。'
+  }
+];
+
+function calculateEPQResult(answers) {
+  let E = 0, N = 0, P = 0, L = 0;
+
+  for (let i = 0; i < answers.length; i++) {
+    const answerId = answers[i];
+    const questionId = 403 + i;
+    const question = mockQuestions.find(q => q.id === questionId);
+    if (question) {
+      const option = question.options.find(o => o.id === answerId);
+      if (option) {
+        if (option.score === 'E') E++;
+        else if (option.score === 'N') N++;
+        else if (option.score === 'P') P++;
+        else if (option.score === 'L') L++;
+      }
+    }
+  }
+
+  let type = 'E';
+  let result = epqResults[0];
+  if (N > E) {
+    type = 'N';
+    result = epqResults[2];
+  }
+
+  return {
+    type: type,
+    result: result,
+    score: { E, N, P, L }
+  };
+}
+
+function calculate16PFResult(answers) {
+  const factors = {
+    A: 0, C: 0, E: 0, F: 0, G: 0, H: 0, I: 0, L: 0,
+    M: 0, N: 0, O: 0, Q1: 0, Q2: 0, Q3: 0, Q4: 0
+  };
+
+  for (let i = 0; i < answers.length; i++) {
+    const answerId = answers[i];
+    const questionId = 421 + i;
+    const question = mockQuestions.find(q => q.id === questionId);
+    if (question) {
+      const option = question.options.find(o => o.id === answerId);
+      if (option && option.score) {
+        factors[option.score]++;
+      }
+    }
+  }
+
+  const maxFactor = Object.keys(factors).reduce((a, b) => factors[a] > factors[b] ? a : b, 'A');
+  const result = sixteenPFResults.find(r => r.type === maxFactor) || sixteenPFResults[0];
+
+  return {
+    type: maxFactor,
+    result: result,
+    score: factors
+  };
+}
+
+function calculateHollandResult(answers) {
+  const types = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
+
+  for (let i = 0; i < answers.length; i++) {
+    const answerId = answers[i];
+    const questionId = 441 + i;
+    const question = mockQuestions.find(q => q.id === questionId);
+    if (question) {
+      const option = question.options.find(o => o.id === answerId);
+      if (option && option.score) {
+        types[option.score]++;
+      }
+    }
+  }
+
+  let maxType = 'R';
+  let maxCount = 0;
+  for (const type in types) {
+    if (types[type] > maxCount) {
+      maxCount = types[type];
+      maxType = type;
+    }
+  }
+
+  const result = hollandResults.find(r => r.type === maxType) || hollandResults[0];
+
+  return {
+    type: maxType,
+    result: result,
+    score: types
+  };
+}
+
+function calculateJungResult(answers) {
+  let E = 0, I = 0, S = 0, N = 0, T = 0, F = 0, J = 0, P = 0;
+
+  for (let i = 0; i < answers.length; i++) {
+    const answerId = answers[i];
+    const questionId = 459 + i;
+    const question = mockQuestions.find(q => q.id === questionId);
+    if (question) {
+      const option = question.options.find(o => o.id === answerId);
+      if (option && option.score) {
+        const score = option.score;
+        if (score === 'E') E++;
+        else if (score === 'I') I++;
+        else if (score === 'S') S++;
+        else if (score === 'N') N++;
+        else if (score === 'T') T++;
+        else if (score === 'F') F++;
+        else if (score === 'J') J++;
+        else if (score === 'P') P++;
+      }
+    }
+  }
+
+  let jungType = '';
+  jungType += E >= I ? 'E' : 'I';
+  jungType += S >= N ? 'S' : 'N';
+  jungType += T >= F ? 'T' : 'F';
+  jungType += J >= P ? 'J' : 'P';
+
+  const result = jungResults.find(r => r.type === jungType) || jungResults[0];
+
+  return {
+    type: jungType,
+    result: result,
+    score: { E, I, S, N, T, F, J, P }
+  };
+}
+
+function getQuestionsByTestId(testId) {
+  return mockQuestions.filter(q => q.testId === testId);
+}
+
+function getMBTIQuestions(testId) {
+  return mockQuestions.filter(q => q.testId === testId);
+}
+
+function calculateMBTIResult(answers) {
+  let E = 0, I = 0, S = 0, N = 0, T = 0, F = 0, J = 0, P = 0;
+
+  const questions = getMBTIQuestions(1);
+
+  for (let i = 0; i < questions.length && i < answers.length; i++) {
+    const answerId = answers[i];
+    const question = questions[i];
+    const option = question.options.find(o => o.id === answerId);
+
+    if (option) {
+      const score = option.score;
+      if (score === 'E') E++;
+      else if (score === 'I') I++;
+      else if (score === 'S') S++;
+      else if (score === 'N') N++;
+      else if (score === 'T') T++;
+      else if (score === 'F') F++;
+      else if (score === 'J') J++;
+      else if (score === 'P') P++;
+    }
+  }
+
+  let mbtiType = '';
+  mbtiType += E >= I ? 'E' : 'I';
+  mbtiType += S >= N ? 'S' : 'N';
+  mbtiType += T >= F ? 'T' : 'F';
+  mbtiType += J >= P ? 'J' : 'P';
+
+  const result = mbtiResults.find(r => r.type === mbtiType) || mbtiResults[0];
+
+  return {
+    type: mbtiType,
+    result: result,
+    score: { E, I, S, N, T, F, J, P }
+  };
+}
+
+function calculatePHQ9Result(answers) {
+  let totalScore = 0;
+
+  for (let i = 0; i < answers.length; i++) {
+    const answerId = answers[i];
+    const question = mockQuestions.find(q => q.id === 51 + i);
+    if (question) {
+      const option = question.options.find(o => o.id === answerId);
+      if (option) {
+        totalScore += option.score;
+      }
+    }
+  }
+
+  let result = phq9Results[0];
+  for (let i = phq9Results.length - 1; i >= 0; i--) {
+    if (totalScore >= phq9Results[i].minScore) {
+      result = phq9Results[i];
+      break;
+    }
+  }
+
+  return {
+    totalScore: totalScore,
+    result: result,
+    score: totalScore
+  };
+}
+
+function calculateFunResult(answers) {
+  const counts = { A: 0, B: 0, C: 0, D: 0 };
+
+  for (let i = 0; i < answers.length; i++) {
+    const answerId = answers[i];
+    const question = mockQuestions.find(q => q.id === 60 + i);
+    if (question) {
+      const option = question.options.find(o => o.id === answerId);
+      if (option) {
+        counts[option.score]++;
+      }
+    }
+  }
+
+  let maxType = 'A';
+  let maxCount = 0;
+  for (const type in counts) {
+    if (counts[type] > maxCount) {
+      maxCount = counts[type];
+      maxType = type;
+    }
+  }
+
+  const result = funResults.find(r => r.type === maxType) || funResults[0];
+
+  return {
+    type: maxType,
+    result: result,
+    score: counts
+  };
+}
+
+function calculateEnneagramResult(answers) {
+  const counts = { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, '8': 0, '9': 0 };
+
+  for (let i = 0; i < answers.length; i++) {
+    const answerId = answers[i];
+    const question = mockQuestions.find(q => q.id === 65 + i);
+    if (question) {
+      const option = question.options.find(o => o.id === answerId);
+      if (option) {
+        counts[option.score]++;
+      }
+    }
+  }
+
+  let maxType = '1';
+  let maxCount = 0;
+  for (const type in counts) {
+    if (counts[type] > maxCount) {
+      maxCount = counts[type];
+      maxType = type;
+    }
+  }
+
+  const result = enneagramResults.find(r => r.type === maxType) || enneagramResults[0];
+
+  return {
+    type: maxType,
+    result: result,
+    score: counts
+  };
+}
+
+function calculateOCEANResult(answers) {
+  const dimensions = {
+    E: 0, N: 0, O: 0, A: 0, C: 0
+  };
+  const dimensionQuestions = {
+    E: [84, 85, 94, 102],
+    N: [86, 87, 95, 103],
+    O: [88, 89, 96, 101],
+    A: [90, 91, 97, 99],
+    C: [92, 93, 98, 100]
+  };
+
+  for (let i = 0; i < answers.length; i++) {
+    const questionId = 84 + i;
+    const answerId = answers[i];
+    const question = mockQuestions.find(q => q.id === questionId);
+    if (question) {
+      const option = question.options.find(o => o.id === answerId);
+      if (option) {
+        for (const dim in dimensionQuestions) {
+          if (dimensionQuestions[dim].includes(questionId)) {
+            dimensions[dim] += option.score;
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  const results = [];
+  for (const dim in dimensions) {
+    const score = dimensions[dim];
+    const result = oceanResults.find(r => r.dimension === dim && score >= r.minScore && score <= r.maxScore);
+    results.push({
+      dimension: dim,
+      score: score,
+      analysis: result || oceanResults.find(r => r.dimension === dim)
+    });
+  }
+
+  const mainType = results.reduce((max, r) => r.score > max.score ? r : max, results[0]);
+
+  return {
+    type: mainType.dimension,
+    result: mainType.analysis,
+    score: dimensions,
+    allResults: results
+  };
+}
+
+function calculateDISCResult(answers) {
+  const counts = { D: 0, I: 0, S: 0, C: 0 };
+
+  for (let i = 0; i < answers.length; i++) {
+    const answerId = answers[i];
+    const question = mockQuestions.find(q => q.id === 104 + i);
+    if (question) {
+      const option = question.options.find(o => o.id === answerId);
+      if (option) {
+        counts[option.score]++;
+      }
+    }
+  }
+
+  let maxType = 'D';
+  let maxCount = 0;
+  for (const type in counts) {
+    if (counts[type] > maxCount) {
+      maxCount = counts[type];
+      maxType = type;
+    }
+  }
+
+  const result = discResults.find(r => r.type === maxType) || discResults[0];
+
+  return {
+    type: maxType,
+    result: result,
+    score: counts
+  };
+}
+
+function calculatePDPResult(answers) {
+  const counts = { '老虎': 0, '孔雀': 0, '考拉': 0, '猫头鹰': 0 };
+
+  for (let i = 0; i < answers.length; i++) {
+    const answerId = answers[i];
+    const question = mockQuestions.find(q => q.id === 120 + i);
+    if (question) {
+      const option = question.options.find(o => o.id === answerId);
+      if (option) {
+        counts[option.score]++;
+      }
+    }
+  }
+
+  let maxType = '老虎';
+  let maxCount = 0;
+  for (const type in counts) {
+    if (counts[type] > maxCount) {
+      maxCount = counts[type];
+      maxType = type;
+    }
+  }
+
+  const result = pdpResults.find(r => r.type === maxType) || pdpResults[0];
+
+  return {
+    type: maxType,
+    result: result,
+    score: counts
+  };
+}
+
+function calculateResult(testId, answers) {
+  if (testId === 1) return calculateMBTIResult(answers);
+  if (testId === 2) return calculatePHQ9Result(answers);
+  if (testId === 3) return calculateFunResult(answers);
+  if (testId === 4) return calculateEnneagramResult(answers);
+  if (testId === 5) return calculateOCEANResult(answers);
+  if (testId === 6) return calculateDISCResult(answers);
+  if (testId === 7) return calculatePDPResult(answers);
+  if (testId === 8) return calculateEPQResult(answers);
+  if (testId === 9) return calculate16PFResult(answers);
+  if (testId === 10) return calculateHollandResult(answers);
+  if (testId === 11) return calculateJungResult(answers);
+  return { result: mbtiResults[0] };
+}
+
+module.exports = {
+  mockCategories,
+  mockTests,
+  mockQuestions,
+  mbtiResults,
+  phq9Results,
+  funResults,
+  enneagramResults,
+  oceanResults,
+  discResults,
+  pdpResults,
+  epqResults,
+  sixteenPFResults,
+  hollandResults,
+  jungResults,
+  getQuestionsByTestId,
+  calculateResult,
+  calculateMBTIResult,
+  calculatePHQ9Result,
+  calculateFunResult,
+  calculateEnneagramResult,
+  calculateOCEANResult,
+  calculateDISCResult,
+  calculatePDPResult,
+  calculateEPQResult,
+  calculate16PFResult,
+  calculateHollandResult,
+  calculateJungResult
+};

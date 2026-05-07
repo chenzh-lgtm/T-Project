@@ -1,0 +1,158 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+  padding-bottom: 40rpx;
+}
+
+.header {
+  padding: 60rpx 40rpx 40rpx;
+  text-align: center;
+}
+
+.title {
+  display: block;
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #2d3436;
+  margin-bottom: 16rpx;
+}
+
+.subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: #636e72;
+  line-height: 1.5;
+}
+
+.version-list {
+  padding: 0 30rpx;
+}
+
+.version-card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  margin-bottom: 30rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.version-card.free {
+  border: 3rpx solid #00b894;
+}
+
+.version-card.paid {
+  border: 3rpx solid #6C5CE7;
+  position: relative;
+}
+
+.version-card.paid::before {
+  content: '推荐';
+  position: absolute;
+  top: 20rpx;
+  right: -30rpx;
+  background: linear-gradient(135deg, #6C5CE7, #a29bfe);
+  color: #ffffff;
+  font-size: 20rpx;
+  padding: 6rpx 50rpx;
+  transform: rotate(45deg);
+}
+
+.card-header {
+  padding: 36rpx 32rpx 24rpx;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.version-badge {
+  font-size: 22rpx;
+  font-weight: 600;
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+.free-badge {
+  background: rgba(0, 184, 148, 0.12);
+  color: #00b894;
+}
+
+.paid-badge {
+  background: linear-gradient(135deg, #6C5CE7, #a29bfe);
+  color: #ffffff;
+}
+
+.price {
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.version-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2d3436;
+  flex: 1;
+}
+
+.card-divider {
+  height: 2rpx;
+  background: #f0f0f0;
+  margin: 0 32rpx;
+}
+
+.card-body {
+  padding: 28rpx 32rpx 20rpx;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.feature-item.highlight {
+  font-weight: 500;
+}
+
+.check-icon {
+  font-size: 32rpx;
+  color: #00b894;
+}
+
+.feature-text {
+  font-size: 28rpx;
+  color: #2d3436;
+  line-height: 1.5;
+}
+
+.card-footer {
+  padding: 0 32rpx 32rpx;
+}
+
+.version-desc {
+  font-size: 26rpx;
+  color: #636e72;
+}
+
+.tips-section {
+  margin: 40rpx 30rpx 0;
+  padding: 32rpx;
+  background: rgba(108, 92, 231, 0.08);
+  border-radius: 16rpx;
+}
+
+.tips-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #6C5CE7;
+  margin-bottom: 12rpx;
+}
+
+.tips-text {
+  display: block;
+  font-size: 26rpx;
+  color: #636e72;
+  line-height: 1.6;
+}

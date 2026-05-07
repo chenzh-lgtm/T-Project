@@ -12,7 +12,13 @@
 .test-cover {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.test-emoji {
+  font-size: 120rpx;
 }
 
 .cover-overlay {
@@ -64,20 +70,15 @@
   justify-content: center;
   background: #f0f0f0;
   border-radius: 50%;
+  transition: all 0.2s;
 }
 
-.collect-btn image {
-  width: 40rpx;
-  height: 40rpx;
+.collect-emoji {
+  font-size: 40rpx;
 }
 
 .collect-btn.collected {
   background: rgba(108, 92, 231, 0.1);
-}
-
-.collect-btn.collected image {
-  width: 40rpx;
-  height: 40rpx;
 }
 
 .test-meta {
@@ -94,9 +95,8 @@
   color: #636e72;
 }
 
-.meta-item image {
-  width: 36rpx;
-  height: 36rpx;
+.meta-emoji {
+  font-size: 32rpx;
   margin-right: 12rpx;
 }
 
@@ -175,19 +175,13 @@
   margin-top: 20rpx;
 }
 
-.notice-icon {
-  width: 60rpx;
-  height: 60rpx;
+.notice-emoji {
+  font-size: 48rpx;
   flex-shrink: 0;
-}
-
-.notice-icon image {
-  width: 100%;
-  height: 100%;
+  margin-right: 20rpx;
 }
 
 .notice-content {
-  margin-left: 20rpx;
   flex: 1;
 }
 
@@ -227,9 +221,8 @@
   margin-right: 30rpx;
 }
 
-.share-btn image {
-  width: 44rpx;
-  height: 44rpx;
+.share-emoji {
+  font-size: 40rpx;
   margin-bottom: 6rpx;
 }
 
@@ -249,4 +242,9 @@
   font-weight: 500;
   padding: 28rpx 0;
   border-radius: 50rpx;
+  transition: transform 0.2s;
+}
+
+.start-btn:active {
+  transform: scale(0.98);
 }

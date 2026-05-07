@@ -1,0 +1,177 @@
+.container {
+  min-height: 100vh;
+  background: #f5f6fa;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  background: linear-gradient(135deg, #6C5CE7, #a29bfe);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-btn {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  font-size: 48rpx;
+  color: white;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: white;
+}
+
+.placeholder {
+  width: 80rpx;
+}
+
+.content {
+  padding: 30rpx;
+}
+
+.source-tip {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: rgba(108, 92, 231, 0.1);
+  border-radius: 16rpx;
+  margin-bottom: 30rpx;
+}
+
+.tip-icon {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+
+.tip-text {
+  font-size: 26rpx;
+  color: #6C5CE7;
+}
+
+.report-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.report-card {
+  background: white;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.report-header {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.test-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.report-tag {
+  font-size: 22rpx;
+  color: #6C5CE7;
+  background: rgba(108, 92, 231, 0.1);
+  padding: 8rpx 16rpx;
+  border-radius: 16rpx;
+}
+
+.tag-score {
+  color: #00b894;
+  background: rgba(0, 184, 148, 0.1);
+}
+
+.report-body {
+  margin-bottom: 20rpx;
+}
+
+.report-title {
+  font-size: 28rpx;
+  color: #636e72;
+  margin-bottom: 12rpx;
+  display: block;
+}
+
+.report-time {
+  font-size: 24rpx;
+  color: #b2bec3;
+}
+
+.report-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1rpx solid #f0f0f0;
+  padding-top: 20rpx;
+}
+
+.delete-btn {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-icon {
+  font-size: 36rpx;
+}
+
+.view-arrow {
+  font-size: 32rpx;
+  color: #6C5CE7;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 60rpx;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #b2bec3;
+  margin-bottom: 16rpx;
+}
+
+.empty-desc {
+  font-size: 26rpx;
+  color: #dfe6e9;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 0;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #b2bec3;
+}

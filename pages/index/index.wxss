@@ -21,7 +21,13 @@
   height: 80rpx;
   border-radius: 50%;
   margin-right: 20rpx;
-  background: #e9e9e9;
+  background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #ffffff;
 }
 
 .nickname {
@@ -58,16 +64,6 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
-.banner-decoration {
-  position: absolute;
-  right: -40rpx;
-  top: -40rpx;
-  width: 200rpx;
-  height: 200rpx;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-}
-
 .category-section {
   margin-top: 40rpx;
   padding: 0 40rpx;
@@ -93,9 +89,8 @@
   color: #6C5CE7;
 }
 
-.more-btn image {
-  width: 24rpx;
-  height: 24rpx;
+.arrow {
+  font-size: 24rpx;
   margin-left: 8rpx;
 }
 
@@ -114,6 +109,11 @@
   border-radius: 20rpx;
   box-shadow: 0 4rpx 20rpx rgba(108, 92, 231, 0.08);
   margin: 0 10rpx;
+  transition: transform 0.2s;
+}
+
+.category-item:active {
+  transform: scale(0.95);
 }
 
 .category-icon {
@@ -124,23 +124,11 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 16rpx;
-}
-
-.category-icon image {
-  width: 50rpx;
-  height: 50rpx;
-}
-
-.bg-personality {
   background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
 }
 
-.bg-mental {
-  background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
-}
-
-.bg-fun {
-  background: linear-gradient(135deg, #fdcb6e 0%, #f39c12 100%);
+.category-emoji {
+  font-size: 48rpx;
 }
 
 .category-name {
@@ -166,14 +154,25 @@
   padding: 24rpx;
   margin-bottom: 24rpx;
   box-shadow: 0 4rpx 20rpx rgba(108, 92, 231, 0.08);
+  transition: transform 0.2s;
+}
+
+.test-card:active {
+  transform: scale(0.98);
 }
 
 .test-cover {
   width: 180rpx;
   height: 180rpx;
   border-radius: 16rpx;
-  background: #e9e9e9;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.test-emoji {
+  font-size: 64rpx;
 }
 
 .test-info {
@@ -214,8 +213,7 @@
   color: #b2bec3;
 }
 
-.meta-item image {
-  width: 28rpx;
-  height: 28rpx;
-  margin-right: 8rpx;
+.meta-icon {
+  font-size: 24rpx;
+  margin-right: 6rpx;
 }

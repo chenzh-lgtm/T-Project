@@ -1,12 +1,12 @@
 <view class="container">
   <view class="profile-header">
     <view class="user-info-section">
-      <button class="avatar-btn" open-type="getUserProfile" bindgetuserprofile="onGetUserProfile">
-        <image class="avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill"></image>
-      </button>
+      <view class="avatar-btn">
+        <view class="avatar">{{avatarText}}</view>
+      </view>
       <view class="user-detail">
-        <text class="nickname">{{userInfo.nickname || '点击登录'}}</text>
-        <text class="user-tip" wx:if="{{!userInfo}}">登录后查看更多功能</text>
+        <text class="nickname">心理测试</text>
+        <text class="user-tip">探索你的内心世界</text>
       </view>
     </view>
   </view>
@@ -31,29 +31,29 @@
   <view class="menu-section">
     <view class="menu-item" bindtap="onHistoryTap">
       <view class="menu-icon">
-        <image src="/images/icon-history.png" mode="aspectFit"></image>
+        <text class="menu-emoji">📜</text>
       </view>
       <text class="menu-text">测试历史</text>
       <view class="menu-arrow">
-        <image src="/images/arrow-right.png" mode="aspectFit"></image>
+        <text>→</text>
       </view>
     </view>
     <view class="menu-item" bindtap="onCollectionTap">
       <view class="menu-icon">
-        <image src="/images/icon-collection.png" mode="aspectFit"></image>
+        <text class="menu-emoji">⭐</text>
       </view>
       <text class="menu-text">我的收藏</text>
       <view class="menu-arrow">
-        <image src="/images/arrow-right.png" mode="aspectFit"></image>
+        <text>→</text>
       </view>
     </view>
     <view class="menu-item" bindtap="onReportsTap">
       <view class="menu-icon">
-        <image src="/images/icon-report.png" mode="aspectFit"></image>
+        <text class="menu-emoji">📊</text>
       </view>
       <text class="menu-text">我的报告</text>
       <view class="menu-arrow">
-        <image src="/images/arrow-right.png" mode="aspectFit"></image>
+        <text>→</text>
       </view>
     </view>
   </view>
@@ -61,29 +61,29 @@
   <view class="menu-section">
     <view class="menu-item" bindtap="onAboutTap">
       <view class="menu-icon">
-        <image src="/images/icon-about.png" mode="aspectFit"></image>
+        <text class="menu-emoji">ℹ️</text>
       </view>
       <text class="menu-text">关于我们</text>
       <view class="menu-arrow">
-        <image src="/images/arrow-right.png" mode="aspectFit"></image>
+        <text>→</text>
       </view>
     </view>
     <view class="menu-item" bindtap="onHelpTap">
       <view class="menu-icon">
-        <image src="/images/icon-help.png" mode="aspectFit"></image>
+        <text class="menu-emoji">❓</text>
       </view>
       <text class="menu-text">帮助与反馈</text>
       <view class="menu-arrow">
-        <image src="/images/arrow-right.png" mode="aspectFit"></image>
+        <text>→</text>
       </view>
     </view>
     <view class="menu-item" bindtap="onSettingsTap">
       <view class="menu-icon">
-        <image src="/images/icon-settings.png" mode="aspectFit"></image>
+        <text class="menu-emoji">⚙️</text>
       </view>
       <text class="menu-text">设置</text>
       <view class="menu-arrow">
-        <image src="/images/arrow-right.png" mode="aspectFit"></image>
+        <text>→</text>
       </view>
     </view>
   </view>

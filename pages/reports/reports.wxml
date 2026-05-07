@@ -1,0 +1,55 @@
+<view class="container">
+  <view class="header">
+    <view class="back-btn" bindtap="onBackTap">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="title">我的报告</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <view class="content" wx:if="{{!loading}}">
+    <view class="source-tip" wx:if="{{useLocal}}">
+      <text class="tip-icon">💡</text>
+      <text class="tip-text">显示本地保存的报告</text>
+    </view>
+
+    <view class="report-list" wx:if="{{reports.length > 0}}">
+      <view
+        class="report-card"
+        wx:for="{{reports}}"
+        wx:key="id"
+        bindtap="onReportTap"
+        data-report="{{item}}"
+      >
+        <view class="report-header">
+          <text class="test-name">{{item.test_name}}</text>
+          <view class="report-tag" wx:if="{{item.mbti_type}}">{{item.mbti_type}}</view>
+          <view class="report-tag tag-score" wx:if="{{item.total_score > 0}}">得分{{item.total_score}}</view>
+          <view class="report-tag" wx:if="{{item.type_display}}">{{item.type_display}}</view>
+        </view>
+
+        <view class="report-body">
+          <text class="report-title" wx:if="{{item.title}}">{{item.title}}</text>
+          <text class="report-time">{{item.created_at}}</text>
+        </view>
+
+        <view class="report-actions">
+          <view class="delete-btn" catchtap="onDeleteTap" data-report="{{item}}">
+            <text class="delete-icon">🗑️</text>
+          </view>
+          <view class="view-arrow">→</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:else>
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">暂无报告</text>
+      <text class="empty-desc">去做个测试吧！</text>
+    </view>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

@@ -1,29 +1,31 @@
 .container {
   min-height: 100vh;
-  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
-  padding-bottom: 160rpx;
+  background: #f8f9fa;
+  padding-bottom: 180rpx;
 }
 
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 30rpx 40rpx;
-  background: #ffffff;
+  background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
 }
 
-.back-btn {
-  width: 60rpx;
-  height: 60rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f0f0f0;
-  border-radius: 50%;
+.back-btn,
+.save-btn {
+  padding: 10rpx 20rpx;
 }
 
-.back-btn image {
-  width: 36rpx;
-  height: 36rpx;
+.back-arrow {
+  font-size: 40rpx;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.save-btn text {
+  font-size: 26rpx;
+  color: #ffffff;
 }
 
 .progress-info {
@@ -33,34 +35,26 @@
 
 .progress-text {
   font-size: 28rpx;
-  color: #636e72;
-}
-
-.save-btn {
-  padding: 12rpx 24rpx;
-  font-size: 26rpx;
-  color: #6C5CE7;
-  background: rgba(108, 92, 231, 0.1);
-  border-radius: 50rpx;
+  color: #ffffff;
+  font-weight: 500;
 }
 
 .progress-bar-wrapper {
-  padding: 0 40rpx;
-  background: #ffffff;
-  padding-bottom: 30rpx;
+  padding: 20rpx 40rpx;
+  background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
 }
 
 .progress-bar {
-  height: 8rpx;
-  background: #e9e9e9;
-  border-radius: 4rpx;
+  height: 12rpx;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10rpx;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #6C5CE7 0%, #a29bfe 100%);
-  border-radius: 4rpx;
+  background: #ffffff;
+  border-radius: 10rpx;
   transition: width 0.3s ease;
 }
 
@@ -72,160 +66,152 @@
   background: #ffffff;
   border-radius: 24rpx;
   padding: 40rpx;
-  box-shadow: 0 4rpx 20rpx rgba(108, 92, 231, 0.1);
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
 }
 
 .question-type-tag {
   display: inline-block;
-  padding: 8rpx 20rpx;
-  font-size: 22rpx;
-  color: #6C5CE7;
   background: rgba(108, 92, 231, 0.1);
-  border-radius: 50rpx;
-  margin-bottom: 24rpx;
+  color: #6C5CE7;
+  font-size: 22rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 30rpx;
+  margin-bottom: 20rpx;
 }
 
 .question-text {
-  display: block;
-  font-size: 32rpx;
+  font-size: 34rpx;
   color: #2d3436;
-  line-height: 1.8;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.6;
 }
 
-.options-list {
+.options-simple {
   padding: 0 40rpx;
 }
 
-.option-item {
+/* 单选题样式 */
+.option-box {
   display: flex;
+  align-items: center;
   background: #ffffff;
   border-radius: 20rpx;
   padding: 30rpx;
   margin-bottom: 24rpx;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
-  border: 2rpx solid transparent;
+  border: 3rpx solid #e9ecef;
   transition: all 0.3s ease;
 }
 
-.option-item.selected {
+.option-box.active {
   border-color: #6C5CE7;
   background: rgba(108, 92, 231, 0.05);
 }
 
-.option-indicator {
-  position: relative;
+.option-box:active {
+  background: #f0f0f0;
+  transform: scale(0.98);
+}
+
+.option-circle {
   width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background: #e9ecef;
+  color: #636e72;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: 600;
   flex-shrink: 0;
 }
 
-.option-letter {
-  width: 60rpx;
-  height: 60rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f0f0f0;
-  color: #636e72;
-  font-size: 28rpx;
-  font-weight: 600;
-  border-radius: 50%;
-}
-
-.option-item.selected .option-letter {
-  background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
+.option-box.active .option-circle {
+  background: #6C5CE7;
   color: #ffffff;
 }
 
-.option-check {
-  position: absolute;
-  right: -10rpx;
-  top: -10rpx;
-  width: 36rpx;
-  height: 36rpx;
-  background: #6C5CE7;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.option-check image {
-  width: 24rpx;
-  height: 24rpx;
-}
-
-.option-content {
+.option-text-simple {
   flex: 1;
   margin-left: 24rpx;
+  font-size: 30rpx;
+  color: #2d3436;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.option-checkmark {
+  color: #6C5CE7;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+/* 量表题样式 */
+.scale-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 20rpx;
 }
 
-.option-text {
+.scale-button {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  border: 3rpx solid #e9ecef;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.scale-button.active {
+  border-color: #6C5CE7;
+  background: rgba(108, 92, 231, 0.05);
+}
+
+.scale-button:active {
+  background: #f0f0f0;
+  transform: scale(0.98);
+}
+
+.scale-option-text {
   font-size: 28rpx;
   color: #2d3436;
-  line-height: 1.6;
+  font-weight: 500;
 }
 
-.scale-options {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 24rpx;
+.scale-button.active .scale-option-text {
+  color: #6C5CE7;
 }
 
-.scale-item {
-  width: 70rpx;
-  height: 70rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f0f0f0;
-  border-radius: 50%;
-  font-size: 28rpx;
-  color: #636e72;
-}
-
-.scale-item.selected {
-  background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
-  color: #ffffff;
-}
-
+/* 底部按钮 */
 .bottom-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 20rpx 40rpx;
-  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  padding: 24rpx 40rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
   background: #ffffff;
   box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.05);
 }
 
 .prev-btn,
-.next-btn {
-  display: flex;
-  align-items: center;
-  padding: 24rpx 32rpx;
-  background: #f0f0f0;
+.next-btn,
+.submit-btn {
+  padding: 24rpx 48rpx;
   border-radius: 50rpx;
-  font-size: 28rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.prev-btn {
+  background: #e9ecef;
   color: #636e72;
 }
 
 .prev-btn.disabled {
-  opacity: 0.5;
-}
-
-.prev-btn image,
-.next-btn image {
-  width: 32rpx;
-  height: 32rpx;
-  margin: 0 8rpx;
+  opacity: 0.4;
 }
 
 .next-btn {
@@ -234,15 +220,9 @@
 }
 
 .submit-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+  background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
   color: #ffffff;
-  font-size: 32rpx;
-  font-weight: 500;
-  padding: 28rpx 0;
-  border-radius: 50rpx;
-  margin-left: 30rpx;
+  flex: 1;
+  text-align: center;
+  margin-left: 20rpx;
 }
