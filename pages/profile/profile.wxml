@@ -26,6 +26,11 @@
       <text class="stat-value">{{stats.reportCount}}</text>
       <text class="stat-label">报告数量</text>
     </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">{{stats.bookingCount}}</text>
+      <text class="stat-label">预约数量</text>
+    </view>
   </view>
 
   <view class="menu-section">
@@ -52,6 +57,15 @@
         <text class="menu-emoji">📊</text>
       </view>
       <text class="menu-text">我的报告</text>
+      <view class="menu-arrow">
+        <text>→</text>
+      </view>
+    </view>
+    <view class="menu-item" bindtap="onBookingsTap">
+      <view class="menu-icon">
+        <text class="menu-emoji">📅</text>
+      </view>
+      <text class="menu-text">我的预约</text>
       <view class="menu-arrow">
         <text>→</text>
       </view>

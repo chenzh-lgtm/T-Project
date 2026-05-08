@@ -4,7 +4,8 @@ Page({
     stats: {
       testCount: 0,
       collectionCount: 0,
-      reportCount: 0
+      reportCount: 0,
+      bookingCount: 0
     }
   },
 
@@ -21,11 +22,13 @@ Page({
       const collections = wx.getStorageSync('collections') || [];
       const reports = wx.getStorageSync('savedReports') || [];
       const history = wx.getStorageSync('testHistory') || [];
+      const bookings = wx.getStorageSync('bookings') || [];
 
       this.setData({
         'stats.testCount': history.length,
         'stats.collectionCount': collections.length,
-        'stats.reportCount': reports.length
+        'stats.reportCount': reports.length,
+        'stats.bookingCount': bookings.length
       });
     } catch (e) {
       console.error('更新统计数据失败', e);
@@ -47,6 +50,12 @@ Page({
   onReportsTap() {
     wx.navigateTo({
       url: '/pages/reports/reports'
+    });
+  },
+
+  onBookingsTap() {
+    wx.navigateTo({
+      url: '/pages/bookings/bookings'
     });
   },
 

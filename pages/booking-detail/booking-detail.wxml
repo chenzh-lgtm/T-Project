@@ -1,0 +1,97 @@
+<view class="container">
+  <view class="booking-card">
+    <view class="card-header">
+      <view class="counselor-info">
+        <view class="counselor-avatar">{{booking.counselorAvatar}}</view>
+        <view class="counselor-detail">
+          <text class="counselor-name">{{booking.counselorName}}</text>
+          <text class="booking-status {{booking.status}}">
+            {{booking.status === 'pending' ? '待咨询' : booking.status === 'completed' ? '已完成' : '已取消'}}
+          </text>
+        </view>
+      </view>
+    </view>
+
+    <view class="card-body">
+      <view class="info-section">
+        <text class="section-title">📅 预约时间</text>
+        <view class="time-info">
+          <text class="date">{{booking.date}}</text>
+          <text class="time">{{booking.time}}</text>
+        </view>
+      </view>
+
+      <view class="info-section">
+        <text class="section-title">📍 咨询地点</text>
+        <text class="location-text">{{booking.location}}</text>
+      </view>
+    </view>
+
+    <view class="card-footer">
+      <view class="btn-group" wx:if="{{booking.status === 'pending'}}">
+        <button 
+          class="action-btn cancel" 
+          bindtap="goBack"
+        >
+          返回
+        </button>
+        <button 
+          class="action-btn confirm" 
+          bindtap="completeBooking"
+        >
+          完成咨询
+        </button>
+      </view>
+      <button 
+        wx:if="{{booking.status === 'completed' && !booking.rating}}" 
+        class="action-btn review" 
+        bindtap="openReview"
+      >
+        评价咨询师
+      </button>
+      <view wx:if="{{booking.status === 'completed' && booking.rating}}" class="review-result">
+        <text class="review-label">您的评价</text>
+        <view class="review-stars">
+          <text wx:for="5" wx:key="*this" class="star">{{index < booking.rating ? '⭐' : '☆'}}</text>
+        </view>
+        <text wx:if="{{booking.comment}}" class="review-comment">{{booking.comment}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{showReview}}" class="review-modal" bindtap="closeReview">
+    <view class="review-content" catchtap="stopPropagation">
+      <view class="review-header">
+        <text class="review-title">评价咨询师</text>
+        <text class="review-close" bindtap="closeReview">✕</text>
+      </view>
+      
+      <view class="rating-section">
+        <text class="rating-label">评分</text>
+        <view class="rating-stars">
+          <text 
+            wx:for="{{[1,2,3,4,5]}}" 
+            wx:key="*this" 
+            class="rating-star {{index < rating ? 'selected' : ''}}"
+            bindtap="selectRating"
+            data-rating="{{index + 1}}"
+          >
+            ★
+          </text>
+        </view>
+      </view>
+
+      <view class="comment-section">
+        <text class="comment-label">评价内容</text>
+        <textarea 
+          class="comment-input" 
+          placeholder="请输入您的评价..." 
+          value="{{comment}}"
+          bindinput="inputComment"
+        />
+      </view>
+
+      <button class="submit-btn" bindtap="submitReview">提交评价</button>
+    </view>
+  </view>
+</view>

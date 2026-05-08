@@ -1,0 +1,57 @@
+<view class="container">
+  <view class="nav-header">
+    <view class="nav-title">心理咨询</view>
+  </view>
+
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === 'articles' ? 'active' : ''}}" bindtap="switchTab" data-tab="articles">
+      <text class="tab-icon">📚</text>
+      <text class="tab-text">心理访谈</text>
+    </view>
+    <view class="tab-item {{activeTab === 'counselors' ? 'active' : ''}}" bindtap="switchTab" data-tab="counselors">
+      <text class="tab-icon">👨‍⚕️</text>
+      <text class="tab-text">预约咨询</text>
+    </view>
+  </view>
+
+  <scroll-view class="content-scroll" scroll-y>
+    <view wx:if="{{activeTab === 'articles'}}" class="articles-section">
+      <view class="section-title">热门文章</view>
+      <view class="article-list">
+        <view wx:for="{{articles}}" wx:key="id" class="article-item" bindtap="onArticleTap" data-id="{{item.id}}">
+          <view class="article-icon">📖</view>
+          <view class="article-content">
+            <text class="article-title">{{item.title}}</text>
+            <text class="article-summary">{{item.summary}}</text>
+            <view class="article-footer">
+              <text class="article-category">{{item.category}}</text>
+              <text class="article-count">阅读 {{item.readCount}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{activeTab === 'counselors'}}" class="counselors-section">
+      <view class="section-title">心理咨询师</view>
+      <view class="counselor-list">
+        <view wx:for="{{counselors}}" wx:key="id" class="counselor-card" bindtap="onCounselorTap" data-id="{{item.id}}">
+          <view class="counselor-avatar">{{item.avatar}}</view>
+          <view class="counselor-info">
+            <view class="counselor-header">
+              <text class="counselor-name">{{item.name}}</text>
+              <text class="counselor-title">{{item.title}}</text>
+            </view>
+            <text class="counselor-specialty">专长：{{item.specialty}}</text>
+            <view class="counselor-meta">
+              <text class="meta-item">💼 {{item.experience}}</text>
+              <text class="meta-item">⭐ {{item.rating}}</text>
+              <text class="meta-item">👥 {{item.consultCount}}次咨询</text>
+            </view>
+          </view>
+          <view class="counselor-arrow">→</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

@@ -1,0 +1,82 @@
+<view class="container">
+  <view class="counselor-header">
+    <view class="counselor-avatar">{{counselor.avatar}}</view>
+    <view class="counselor-basic">
+      <text class="counselor-name">{{counselor.name}}</text>
+      <text class="counselor-title">{{counselor.title}}</text>
+      <view class="counselor-rating">
+        <text class="star">⭐</text>
+        <text class="rating-value">{{counselor.rating}}</text>
+        <text class="divider">|</text>
+        <text class="consult-count">已咨询 {{counselor.consultCount}} 次</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="info-section">
+    <view class="section-title">📋 个人简介</view>
+    <view class="info-card">
+      <view class="info-row">
+        <text class="info-label">学历背景</text>
+        <text class="info-value">{{counselor.education}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">从业经验</text>
+        <text class="info-value">{{counselor.experience}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">所属部门</text>
+        <text class="info-value">{{counselor.department}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">专业领域</text>
+        <text class="info-value">{{counselor.specialty}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="info-section">
+    <view class="section-title">💬 个人介绍</view>
+    <view class="intro-text">{{counselor.introduction}}</view>
+  </view>
+
+  <view class="booking-section">
+    <view class="section-title">📅 预约时间</view>
+    
+    <scroll-view class="date-scroll" scroll-x>
+      <view class="date-list">
+        <view wx:for="{{availableTimes}}" 
+          wx:key="date"
+          class="date-item {{currentDateIndex === index ? 'active' : ''}}"
+          bindtap="selectDate"
+          data-index="{{index}}"
+        >
+          <text class="date-label">{{item.date}}</text>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="time-section">
+      <view class="time-grid">
+        <view 
+          wx:for="{{availableSlots}}" 
+          wx:key="*this"
+          class="time-item {{selectedTime === item ? 'selected' : ''}}"
+          bindtap="selectTime"
+          data-time="{{item}}"
+        >
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="location-section">
+      <text class="location-icon">📍</text>
+      <text class="location-text">{{counselor.location}}</text>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <button class="booking-btn" bindtap="confirmBooking">确认预约</button>
+  </view>
+</view>

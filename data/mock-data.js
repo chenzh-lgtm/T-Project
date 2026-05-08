@@ -4212,7 +4212,169 @@ function calculateResult(testId, answers) {
   return { type: mbtiResults[0].type, name: mbtiResults[0].name };
 }
 
+const counselors = [
+  {
+    id: 1,
+    name: '张明华',
+    avatar: '👨‍⚕️',
+    title: '高级心理咨询师',
+    department: '心理健康教育中心',
+    specialty: '情绪管理、压力调适、人际关系',
+    experience: '10年',
+    consultCount: 500,
+    rating: 4.9,
+    education: '心理学硕士',
+    introduction: '专注于青少年心理健康教育，擅长帮助学生解决学习压力、人际关系等问题。',
+    availableTimes: [
+      { date: '2024-01-15', slots: ['09:00', '10:00', '14:00', '15:00'] },
+      { date: '2024-01-16', slots: ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'] },
+      { date: '2024-01-17', slots: ['14:00', '15:00', '16:00'] },
+      { date: '2024-01-18', slots: ['09:00', '10:00', '14:00'] },
+      { date: '2024-01-19', slots: ['09:00', '10:00', '11:00', '14:00', '15:00'] }
+    ],
+    location: '心理健康教育中心101室'
+  },
+  {
+    id: 2,
+    name: '李静怡',
+    avatar: '👩‍⚕️',
+    title: '心理咨询师',
+    department: '心理健康教育中心',
+    specialty: '恋爱心理、自我成长、职业规划',
+    experience: '8年',
+    consultCount: 420,
+    rating: 4.8,
+    education: '心理学博士',
+    introduction: '擅长恋爱关系、自我认知和职业发展方面的咨询，帮助学生探索自我，实现成长。',
+    availableTimes: [
+      { date: '2024-01-15', slots: ['14:00', '15:00', '16:00'] },
+      { date: '2024-01-16', slots: ['09:00', '10:00', '14:00', '15:00'] },
+      { date: '2024-01-17', slots: ['09:00', '10:00', '11:00', '14:00'] },
+      { date: '2024-01-18', slots: ['10:00', '11:00', '15:00', '16:00'] },
+      { date: '2024-01-19', slots: ['14:00', '15:00'] }
+    ],
+    location: '心理健康教育中心102室'
+  },
+  {
+    id: 3,
+    name: '王建国',
+    avatar: '👨‍⚕️',
+    title: '资深心理咨询师',
+    department: '心理健康教育中心',
+    specialty: '焦虑抑郁、学业压力、家庭关系',
+    experience: '15年',
+    consultCount: 800,
+    rating: 4.9,
+    education: '心理学硕士',
+    introduction: '长期从事高校心理健康工作，在焦虑抑郁情绪调节方面有丰富经验。',
+    availableTimes: [
+      { date: '2024-01-15', slots: ['09:00', '10:00', '11:00'] },
+      { date: '2024-01-16', slots: ['14:00', '15:00', '16:00'] },
+      { date: '2024-01-17', slots: ['09:00', '10:00', '14:00', '15:00'] },
+      { date: '2024-01-18', slots: ['09:00', '10:00', '11:00', '14:00'] },
+      { date: '2024-01-19', slots: ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'] }
+    ],
+    location: '心理健康教育中心103室'
+  },
+  {
+    id: 4,
+    name: '陈思琪',
+    avatar: '👩‍⚕️',
+    title: '心理咨询师',
+    department: '心理健康教育中心',
+    specialty: '社交恐惧、自信提升、情绪管理',
+    experience: '6年',
+    consultCount: 350,
+    rating: 4.7,
+    education: '心理学硕士',
+    introduction: '专注于社交焦虑和自信心提升领域，帮助学生克服社交障碍，建立自信。',
+    availableTimes: [
+      { date: '2024-01-15', slots: ['15:00', '16:00'] },
+      { date: '2024-01-16', slots: ['09:00', '10:00', '11:00', '14:00'] },
+      { date: '2024-01-17', slots: ['14:00', '15:00', '16:00'] },
+      { date: '2024-01-18', slots: ['09:00', '10:00'] },
+      { date: '2024-01-19', slots: ['10:00', '11:00', '14:00', '15:00'] }
+    ],
+    location: '心理健康教育中心104室'
+  },
+  {
+    id: 5,
+    name: '刘志强',
+    avatar: '👨‍⚕️',
+    title: '高级心理咨询师',
+    department: '心理健康教育中心',
+    specialty: '职业规划、学业指导、时间管理',
+    experience: '12年',
+    consultCount: 600,
+    rating: 4.8,
+    education: '心理学博士',
+    introduction: '擅长职业规划和学业指导，帮助学生制定学习计划，规划职业发展方向。',
+    availableTimes: [
+      { date: '2024-01-15', slots: ['09:00', '10:00', '14:00', '15:00', '16:00'] },
+      { date: '2024-01-16', slots: ['09:00', '10:00', '11:00'] },
+      { date: '2024-01-17', slots: ['09:00', '10:00', '11:00', '14:00', '15:00'] },
+      { date: '2024-01-18', slots: ['14:00', '15:00', '16:00'] },
+      { date: '2024-01-19', slots: ['09:00', '10:00'] }
+    ],
+    location: '心理健康教育中心105室'
+  },
+  {
+    id: 6,
+    name: '赵晓雯',
+    avatar: '👩‍⚕️',
+    title: '心理咨询师',
+    department: '心理健康教育中心',
+    specialty: '亲子关系、家庭沟通、情绪疏导',
+    experience: '7年',
+    consultCount: 380,
+    rating: 4.8,
+    education: '心理学硕士',
+    introduction: '专注于家庭关系和亲子沟通领域，帮助学生改善与家人的关系，学会情绪疏导。',
+    availableTimes: [
+      { date: '2024-01-15', slots: ['10:00', '11:00', '14:00'] },
+      { date: '2024-01-16', slots: ['15:00', '16:00'] },
+      { date: '2024-01-17', slots: ['09:00', '10:00'] },
+      { date: '2024-01-18', slots: ['09:00', '10:00', '11:00', '14:00', '15:00'] },
+      { date: '2024-01-19', slots: ['14:00', '15:00', '16:00'] }
+    ],
+    location: '心理健康教育中心106室'
+  }
+];
+
+const mentalHealthArticles = [
+  {
+    id: 1,
+    title: '如何应对考试焦虑',
+    summary: '考试前感到紧张是正常的，关键是如何正确应对...',
+    category: '学习压力',
+    readCount: 1256
+  },
+  {
+    id: 2,
+    title: '建立良好的人际关系',
+    summary: '良好的人际关系对心理健康至关重要...',
+    category: '人际交往',
+    readCount: 980
+  },
+  {
+    id: 3,
+    title: '情绪管理小技巧',
+    summary: '学会管理情绪，做情绪的主人...',
+    category: '情绪调节',
+    readCount: 1560
+  },
+  {
+    id: 4,
+    title: '大学生职业规划指南',
+    summary: '如何制定适合自己的职业规划...',
+    category: '职业规划',
+    readCount: 890
+  }
+];
+
 module.exports = {
+  counselors,
+  mentalHealthArticles,
   mockCategories,
   mockTests,
   mockQuestions,
