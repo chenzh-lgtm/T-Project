@@ -41,12 +41,12 @@
   border: 3rpx solid #00b894;
 }
 
-.version-card.paid {
+.version-card.advanced {
   border: 3rpx solid #6C5CE7;
   position: relative;
 }
 
-.version-card.paid::before {
+.version-card.advanced::before {
   content: '推荐';
   position: absolute;
   top: 20rpx;

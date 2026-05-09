@@ -36,11 +36,9 @@
     </view>
 
     <!-- 进阶版 -->
-    <view class="version-card paid" bindtap="onSelectVersion" data-version="advanced">
+    <view class="version-card advanced" bindtap="onSelectVersion" data-version="advanced">
       <view class="card-header">
-        <view class="version-badge paid-badge">
-          <text class="price">¥5</text>
-        </view>
+        <view class="version-badge free-badge">免费</view>
         <text class="version-name">Step II Form Q (进阶版)</text>
       </view>
       <view class="card-divider"></view>
