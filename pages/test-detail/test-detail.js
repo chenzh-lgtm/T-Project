@@ -61,24 +61,6 @@ Page({
   },
 
   onStartTest() {
-    // 检查是否登录
-    if (!storage.isLoggedIn()) {
-      wx.showModal({
-        title: '提示',
-        content: '需要先登录才能进行测试',
-        confirmText: '去登录',
-        cancelText: '取消',
-        success: (res) => {
-          if (res.confirm) {
-            wx.switchTab({
-              url: '/pages/profile/profile'
-            });
-          }
-        }
-      });
-      return;
-    }
-
     const { test } = this.data;
     if (test.id === 1) {
       wx.navigateTo({
