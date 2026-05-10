@@ -39,9 +39,8 @@ Page({
 
   onArticleTap(e) {
     const articleId = e.currentTarget.dataset.id;
-    wx.showToast({
-      title: `查看文章 ${articleId}`,
-      icon: 'none'
+    wx.navigateTo({
+      url: `/pages/article-detail/article-detail?id=${articleId}`
     });
   },
 

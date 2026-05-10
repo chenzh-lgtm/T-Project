@@ -1,0 +1,23 @@
+<view class="container" wx:if="{{article}}">
+  <view class="article-header">
+    <text class="article-title">{{article.title}}</text>
+    <view class="article-meta">
+      <text class="article-category">{{article.category}}</text>
+      <text class="article-reads">{{article.readCount}} 阅读</text>
+    </view>
+  </view>
+
+  <view class="article-content">
+    <text class="content-text">{{article.content}}</text>
+  </view>
+
+  <view class="article-footer">
+    <button class="share-btn" open-type="share">
+      分享给好友
+    </button>
+  </view>
+</view>
+
+<view class="empty" wx:else>
+  <text class="empty-text">文章不存在</text>
+</view>

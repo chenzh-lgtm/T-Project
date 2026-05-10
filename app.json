@@ -16,7 +16,8 @@
     "pages/history/history",
     "pages/collection/collection",
     "pages/help/help",
-    "pages/settings/settings"
+    "pages/settings/settings",
+    "pages/article-detail/article-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

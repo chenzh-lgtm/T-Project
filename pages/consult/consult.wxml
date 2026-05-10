@@ -1,8 +1,4 @@
 <view class="container">
-  <view class="nav-header">
-    <view class="nav-title">心理咨询</view>
-  </view>
-
   <view class="tab-bar">
     <view class="tab-item {{activeTab === 'articles' ? 'active' : ''}}" bindtap="switchTab" data-tab="articles">
       <text class="tab-icon">📚</text>
